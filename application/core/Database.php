@@ -9,8 +9,10 @@ class Database extends CI_Model{
      * connection is invalid the connection is closed
      */
     function connect() {
-        $this->connect = new mysqli("localhost", "root",
-                "", "uhitch");     
+        /*$this->connect = new mysqli("localhost", "",
+                "", "uhitch");*/
+        $this->connect = new mysqli("localhost", "uhitch",
+                "uhitch123", "uhitch");   
         
         if($this->connect->connect_errno) {
             $this->closeconnection();

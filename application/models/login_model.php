@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-//require(base_url('application/core/Database.php'));
+ //require(base_url('application/core/Database.php'));
 
 class Login_model extends User_Model {
     public $db;

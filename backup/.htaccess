@@ -1,0 +1,81 @@
+SetEnv TZ America/New_York
+
+FileETag None
+
+DirectoryIndex index.php
+
+# BEGIN REQUIRED FOR WEBFONTS
+AddType font/ttf .ttf
+AddType font/eot .eot
+AddType font/otf .otf
+AddType font/woff .woff
+
+<Files .htaccess>
+    order allow,deny
+    deny from all
+</Files>
+
+<FilesMatch "\.(ttf|otf|eot|woff)$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+</FilesMatch>
+
+# END REQUIRED FOR WEBFONTS
+
+<ifModule mod_headers.c>
+    # Turn on Expires and set default expires to 3 days
+    ExpiresActive On
+    ExpiresDefault A259200
+
+    # Set up caching on media files for 1 month
+    <FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf)$">
+        Header set Cache-Control "max-age=2592000"
+    </FilesMatch>
+
+    # Set up 2 Hour caching on commonly updated files
+    <FilesMatch ".(js|css|pdf|txt)$">
+        Header set Cache-Control "max-age=604800"
+    </FilesMatch>
+
+    # Force no caching for dynamic files
+    <FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+        Header unset Cache-Control
+    </FilesMatch>
+</ifModule>
+#
+<ifModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault A300
+
+    # Expires after 1 month
+    ExpiresByType image/gif A2592000
+    ExpiresByType image/png A2592000
+    ExpiresByType image/jpg A2592000
+    ExpiresByType image/x-icon A2592000
+    ExpiresByType application/pdf A2592000
+    ExpiresByType application/x-javascript A2592000
+    ExpiresByType text/plain A2592000
+
+    # Expires after 1 day
+    ExpiresByType text/css A86400
+</ifModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+#    RewriteCond %{HTTP_USER_AGENT} Opera/[1-3] [OR]
+#    RewriteCond %{HTTP_USER_AGENT} Safari/[1-4] [OR]
+#    RewriteCond %{HTTP_USER_AGENT} Navigator/ [OR]
+#    RewriteCond %{HTTP_USER_AGENT} MSIE [1-8]
+##    RewriteRule .? error/outofdate [L]
+
+#    RewriteCond %{REQUEST_FILENAME} !-f
+#    RewriteCond %{REQUEST_FILENAME} !-d
+#    RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+#
+#    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s(.*)/index\.php [NC]
+#    RewriteRule ^ %1 [R=301,L]
+
+    ErrorDocument 404 /index.php
+</IfModule>

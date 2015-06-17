@@ -1,0 +1,186 @@
+    #RegisterUser #register_content {
+        float: right;
+        position: relative;
+        padding: 1em;
+        margin-right: 0.8em;
+        width: 72%;   
+        overflow: visible;
+    }
+    
+    #RegisterUser #submit_content {
+        display: block;
+        overflow: visible;
+        margin: 1em auto;
+        text-align: center;
+    }
+    
+    #RegisterUser #submit_content button {
+        display: inline;
+        padding: 0.5em 1.5em;
+        margin: 0.5em 1em;
+        -webkit-font-smoothing: antialiased;
+        font-size: 130%;
+    }
+    
+    #RegisterUser #register_content h2 {
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
+    
+    
+    #RegisterUser #register_content hr {
+        margin: 3px 0;
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    #RegisterUser #register_content span div {
+        margin: 0.7em 0 0.7em 1.2em; 
+        float: left;
+        text-align: left;
+        display: block;
+    }
+    
+    #RegisterUser #register_content span div img {
+        display: block;
+        margin: 0 auto;
+        padding: 0;
+        height: 40px;
+    }
+    
+    #RegisterUser #register_content span input[type="checkbox"]{
+        text-align: left;
+        margin: 0.6em 3px;
+    }
+    
+    #RegisterUser #register_content span input[type="radio"] {
+        margin: 0.5em 3px;
+    }
+    
+    #RegisterUser #register_content span {
+        padding: 0 10px;
+        height: 50px;
+        margin: 0;
+        display: block;
+    }
+    
+    #RegisterUser .info {
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    #RegisterUser #register_form {
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    #RegisterUser #register_form input[type=text],
+    #RegisterUser #register_form input[type=number]{
+        margin: 1% auto 2%;
+        padding: 1% ;
+        width: 15.5em;
+        display: block;
+        text-align: left;
+    }
+    
+    #RegisterUser #register_form input[type=text].inline,
+    #RegisterUser #register_form input[type=number].inline {
+        display: inline;
+        margin: 0 0 2% 0.5%;
+    }
+    
+    #RegisterUser #register_form input[type=text].city {
+        width: 10em;
+    }
+    
+    #RegisterUser #register_form input[type=text].state,
+    #RegisterUser #register_form input[type=number].state {
+        width: 4em;
+    }
+    
+    #RegisterUser #register_form input[type=text].phone {
+        width: 9.4em;
+    }
+    
+    #RegisterUser content_register .customhr {
+        text-align: center;
+        margin: 3% auto;
+    }
+    
+    #RegisterUser span hr {
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    #RegisterUser #register_form input[type=text].zip,
+    #RegisterUser #register_form input[type=number].zip{
+        width: 4.6em;
+    }
+    
+    #RegisterUser #register_content p {
+        float: left;
+        display: inline-block;
+        overflow: hidden;
+        width: 90px;
+        height: 50px;
+        background: #228B22;
+        padding: 2% 1%;
+        color: white;
+        position: relative;
+        text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
+        font-weight: bold;
+        -webkit-font-smoothing: antialiased;
+        vertical-align: middle;
+        line-height: 14px;
+        
+        -moz-border-radius:    5px;
+        -webkit-border-radius: 5px;
+        border-radius:          5px;
+        
+        -moz-box-shadow: inset 0 0 0 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+        -webkit-box-shadow: inset 0 0 0 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+        box-shadow: inset 0 0 0 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+
+    }
+
+#register_content span div select {
+    font-size: 100%;
+    width: 20em;
+    display: block;
+    margin: 3% auto;
+}
+
+#register_content #schoolinfo,
+#register_content #campus,
+#register_content #sportsNactivities{
+    overflow: auto;
+    padding: 0.5em;
+    /*margin: 0.5em 0 2.5em 1.5em;*/
+    margin: 1em auto;
+
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+
+    -webkit-box-shadow: 0px 5px 15px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 5px 15px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 5px 15px rgba(50, 50, 50, 0.75);
+}
+.student_org {
+    padding: 2% 4% !important;
+}
+#addAnother {
+    display: block;  
+    padding: 0;
+}
+#addAnother a,
+#addAnother a:active,
+#addAnother a:visited{
+    text-decoration: none;
+    color: #228b22;
+    margin: 0;
+    padding: 0;
+}

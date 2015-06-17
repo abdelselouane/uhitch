@@ -1,0 +1,104 @@
+#signIn div {
+    margin: 0 auto;
+    padding: 1px;
+    width: 30em;
+    overflow: visible;
+    position: relative;
+}
+#signIn .error, #signIn .error2 { display: none; }
+#signIn .error2 {vertical-align: middle;}
+#signIn .error, #signIn .error2 {
+    position: relative;
+    margin: 0 0 0 1em;
+    padding: 0.3em 0.5em;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0px -1px 0 black;
+    font-size: 100%;
+    background-color: rgba(34,139,34,0.7);
+    width: 50%;
+    box-shadow: 0px 1px 5px 0px #AAA;
+    -webkit-box-shadow: 0px 1px 5px 0px #AAA;
+    -moz-box-shadow: 0px 1px 5px 0px #AAA;
+    border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+}
+#signIn .error:after, #signIn .error2:after {
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+}
+#signIn .error:after {
+    bottom: 100%;
+    left: 50%;
+    border-bottom-color: #228b22;
+    border-width: 13px;
+    margin-left: -13px;
+}
+#signIn .error2:after {
+    bottom: 10%;
+    left: -6%;
+    border-right-color: #228b22;
+    border-width: 10px;
+    margin-left: -5px;
+}
+#signIn #userBirthdate { width: 41%; top: 5px; position: relative;}
+#signIn .side_input {display: inline-block; vertical-align: middle;}
+#signIn #vehicle_selection { width: 35%; }
+#signIn #birthday_selection { width: 60%; }
+#signIn div .name { width: 9em !important; display: inline-block !important; }
+#signIn div .name:first-child { margin-right: 0.65em;}
+#signIn div input[type=text],
+#signIn div input[type=email],
+#signIn div input[type=password] {
+    width: 20em;
+    font-size: 120%;
+    padding: 6px 10px;
+    margin: 0.25em 0;
+    border: 1px solid #228b22;    
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+#signIn select { margin-right: 0.7em; display: inline-block; vertical-align: middle }
+#signIn input[type=radio] { border: 1px solid; }
+#signIn p {font-size: 115%; padding: 0 0.3em; margin: 0;}
+#signIn span {margin-top: 1em; color: #228b22; }
+#signIn #gender {margin: 0.6em 0; width: 40%;}
+#signIn div label {padding: 1em 0.4em; }
+#signIn #sign_n_terms {width: 100%; overflow: hidden; padding: 0; margin: 0; }
+#signIn #sign_n_terms div {display: inline-block; vertical-align: middle; width: 41%; }
+#signIn #sign_n_terms button{padding: 10px 30px; margin: 0.5em auto; font-size: 115%;}
+#signIn #sign_n_terms div p {font-size: 95%; padding: 0.5em; margin: 0 auto; text-align: center; }
+#signIn #sign_n_terms a { color: #228b22; } 
+.ui-autocomplete {overflow: auto;}
+ul.ui-autocomplete.ui-menu li a{font-family: Helvetica;}
+.ui-menu .ui-menu-item a.ui-corner-all:hover, .ui-menu .ui-menu-item a.ui-corner-all:focus, .ui-menu .ui-menu-item a.ui-corner-all:active {
+    background:#bdefbd !important;
+    color:#000;
+    border-radius:0;
+}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    background: #bdefbd;
+    border: none;
+    color:#fff;
+    border-radius:0;
+    font-weight: normal;
+}
+.ui-autocomplete.source:hover {
+    background: #454545;
+}
+.ui-menu .ui-menu-item a:hover {
+
+}
+.ui-menu .ui-menu-item a{
+    background:#fff;
+    height: 1.5em;
+/*    height:10px;
+    font-size:8px;*/
+}

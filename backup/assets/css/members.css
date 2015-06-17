@@ -1,0 +1,1834 @@
+#page h1, h2, h3, h4 {
+    color: #4e4e4e;
+}
+
+#page #members {
+    margin: 0 auto;
+    /*border: 1px solid;*/
+    width: 55em;
+    padding: 0.5em 1em;
+    overflow: hidden;
+}
+
+#page #members #uhitch-map {
+    float: right;
+    height: 38em;
+    width: 70%;
+    position: relative;
+    bottom: 2em;
+}
+
+#page #members #search {
+    background-color: #fff;
+    padding: 0.3em 0.8em ;
+    width: 20em;
+    font-family: Roboto;
+    font-size: 105%;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: relative;
+    z-index: 30;
+    top: 1em;
+    left: 8em; 
+}
+
+#page #members #search:focus {
+    width: 22em;
+}
+
+#page #members #uhitch-map,
+#page #members #information #user-home figure img {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.75);
+
+}
+
+#page #members #information {
+    float: left;
+    width: 28%;
+    margin: 1% 0;
+    overflow: hidden;
+}
+
+#page #members #information #ride_feeds-container {
+    padding: 5px 0;
+    margin: 2% auto 0;
+    text-align: center;
+}
+
+#page #members #information #ride_feeds-container a {
+    display: block;
+    margin: 5% auto;
+    width: 55%;
+    padding: 0.5em 0;
+    background: #cccccc;
+    background-image: -webkit-linear-gradient(top, #cccccc, #999999);
+    background-image: -moz-linear-gradient(top, #cccccc, #999999);
+    background-image: -ms-linear-gradient(top, #cccccc, #999999);
+    background-image: -o-linear-gradient(top, #cccccc, #999999);
+    background-image: linear-gradient(to bottom, #cccccc, #999999);
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    border-radius: 0.2em;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 0 8px 6px -6px black;
+}
+
+#page .sending-msg {
+    background-color: #fff;
+    padding: 0.5em 1em;
+    float: right;
+    width: 400px;
+    
+}
+
+/*    -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);*/
+
+#page .discussion {
+    list-style: none;
+    
+    margin: 0;
+    padding: 0 0 50px 0;  
+}
+
+#page .discussion .message {
+    background-color: #fff;
+    /*width: 80%;*/
+    padding: 0 1em;
+}
+
+#page .discussion li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+}
+
+#page .discussion p {
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+}
+
+#page .discussion .avatar {
+    width: 40px;
+    position: relative;
+}
+
+#page .discussion time {
+    color: #8A8A8A;
+    font-size: 75%;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#page .discussion img {
+    display: block; 
+    width: 100%;
+}
+
+#page #members #information #ride_feeds-container a,
+#page #members #information #ride_feeds-container a:hover,
+#page #members #information #ride_feeds-container a:active {
+    outline: none;
+    text-decoration: none;
+    font-family: Arial;
+    color: #ffffff;
+    text-shadow: 0px -1.5px 2px #666666;
+}
+
+#page #members #information #ride_feeds-container h3 {
+    display: block;
+    font-size: 1.4em;
+    text-indent: 0.5em;
+    margin-top: 7%;
+}
+
+#page #members #ride_feeds-container button {
+    margin: 0 auto;
+    text-align: center;
+    padding: 0.5em 1em;
+    width: 75%;
+    border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;  
+    
+    border:1px solid #979797;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+    background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+    background-color:#ededed;
+}
+
+#page #members #ride_feeds-container a,
+#page #members #ride_feeds-container a:hover,
+#page #members #ride_feeds-container a:focus{
+    outline: none;
+    text-shadow:1px 1px 0px #ffffff;
+}
+
+#page #members #ride_feeds-container button:active{
+    outline: none;
+}
+
+#page #members #ride_feeds-container button .left,
+#page #members #ride_feeds-container button .right {
+    font-size: 1.3em;
+}
+
+#page #members #ride_feeds-container button .left {
+    float: left; 
+    
+}
+
+#page #members #ride_feeds-container button .right {
+    float: right;
+}
+
+#page #members #information #ride_feeds {
+    margin: 4% auto;
+    height: 15em;
+    display: block;
+    overflow: hidden;
+}
+
+#page #members #information #ride_feeds hr {
+    display: block;
+}
+
+#page #members #information #ride_feeds .no_ticker {
+    cursor: auto !important;
+    font-family: Century Gothic, sans-serif;
+    border: none !important;
+    margin: 3em 0;
+    color: #228b22;
+}
+
+#page #members #information #ride_feeds .arrow {
+    display: block;
+    position: relative;
+    margin: 1em 0;
+    font-size: 3em;
+    text-shadow: 0px 6.5px 0 #904645;
+}
+
+#page #members #information #ride_feeds .no_ticker,
+#page #members #information #ride_feeds .ride_ticker {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid;
+    padding: 0.5em;
+    cursor: pointer;
+    position: relative; 
+}
+
+#page #members #information #ride_feeds .ride_price {
+    font-size: 140%;
+    position: absolute;
+    bottom: 1px;
+    right: 0;
+}
+
+#page #members #information #ride_feeds .ride_price .per_seat {
+    display: block;
+    font-size: 60% !important
+}
+
+#page #members #information #ride_feeds .ride_found,
+#page #members #information #ride_feeds .ride_details {
+    display: block;
+    text-align: left;
+}
+
+#page #members #information #ride_feeds .ride_found {
+    font-size: 100%;
+    color: #228b22;
+}
+
+#page #members #information #ride_feeds .ride_details {
+    font-size: 95%;
+    color: #585858;
+}
+
+#page #members #information #ride_feeds figure {
+    display: block;
+    margin: 0;
+    
+    height: 2.8em;
+    width: 2.8em;
+    border: 1px solid;
+}
+
+#page #members #information #ride_feeds figure,
+#page #members #information #ride_feeds .ride_information {
+    float: left;
+}
+
+#page #members #information #user-home,
+#page #members #information #user-events {
+    width: 98%;
+    overflow: visible;  
+}
+
+#page #members #information #user-events {
+    margin: 5% auto;
+    text-align: center;
+    border: 1px solid;
+}
+
+#page #members #information #user-events > h2{
+    margin: 0 auto;
+}
+
+#page #members #information #user-home figure {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin: 0 auto 1em;
+    text-align: center;
+}
+
+#page #members #information #user-home #search {
+    margin: 0 auto 0.5em;
+    padding: 0.5em 0.3em;
+    display: block;
+    font-size: 110%;
+    
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    
+    -webkit-box-shadow: inset 0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    inset 0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         inset 0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+}
+
+#page #members #information #user-home #search:focus {
+    outline: 0;
+}
+
+#page #members #information #user-home p {
+    padding: 0;
+    text-align: left;
+    display: block;
+    margin: 0 auto 0.1em;
+    font-size: 90%;
+    color: #228b22;
+    text-indent: 2em;
+    
+}
+#page #members #events hr {margin: 4em 0 2em;}
+#page #members #events span,
+#page #members #events #add_file{
+    display: block;
+}
+#page #members #events #add_file{
+    margin: 0 auto 1em;
+}
+
+#page #members #information #user-home a,
+#page #members #information #user-home a:hover,
+#page #members #information #user-home a:visited{
+    text-decoration: none;
+    color: #228b22;
+}
+
+#page #members #information #user-home figure img {
+    width: 11em;
+    height: 11em;
+    margin: 0;
+    padding: 0;
+}
+
+#page #members #events {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color:  #F4F4F4;
+    padding: 1em;
+    text-align: center;
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+}
+
+#page #members #events input[type=text]{
+    display: block;
+    margin: 3% auto 2%;
+    padding: 0.3em 0.5em;
+    font-size: 105%;
+    width: 55%;
+}
+
+#page #members #events span{
+    font-size: 130%;
+    margin-bottom: 0.5em;
+}
+
+#page #members #events button{
+    margin: 3% auto;
+    font-size: 120%;
+    text-shadow: 1px -1px 2px #000000;
+}
+
+#page #members #events textarea {
+    font-size: 125%;
+    border: 0;
+    padding: 0.5em 1em;
+    width: 20em;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    min-height: 4em;
+    
+    -moz-box-shadow:    inset 1px 1px 4px #5C5C5C;
+   -webkit-box-shadow:  inset 1px 1px 4px #5C5C5C;
+   box-shadow:         inset 1px 1px 4px #5C5C5C;
+}
+
+#page #postRide {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+#page #postRide #rideMap {
+    float: left;
+    width: 52%;
+    height: 40em;
+    margin: 1% 0;
+    padding: 0;
+    -webkit-animation: fadein 3s; /* Safari and Chrome */
+       -moz-animation: fadein 3s; /* Firefox */
+        -ms-animation: fadein 3s; /* Internet Explorer */
+         -o-animation: fadein 3s; /* Opera */
+            animation: fadein 3s;
+    
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 7px 0px rgba(50, 50, 50, 0.75);
+}
+
+#page .search-result {
+    margin: 15px 0 25px;
+    min-height: 100px;
+    padding: 0.7em;
+    cursor: pointer;
+    background-color: #f8f8f8;
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+}
+
+#page .search-info h3 span {
+    width: 48%;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: normal;
+}
+
+#page .green {
+    color: #228b22;
+}
+
+#page .search-result figure,
+#page .search-info {
+    display: inline-block;
+    height: 125px;
+    vertical-align: top;
+}
+
+#page .search-result figure {
+    background-color: #fff;
+}
+
+#page .search-info {
+    /*border: 1px solid;*/
+    width: 70%;
+}
+
+#page .search-result:hover {
+    background-color: #EEE;
+}
+
+#page .search-result figure {
+    overflow: hidden;
+    width: 125px;
+    margin: 0 2% 0 0;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+#page .search-result figure img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#page #postRide #rideInfo {
+    float: left;
+    width: 48%;
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+#page #postRide #rideInfo h1 {
+    margin: 0.4em auto 0em;
+}
+
+#page #postRide #rideInfo .destination label {
+    margin: 0 auto;
+    border: 1px solid;
+}
+
+#page #postRide #rideInfo .destination,
+#page #postRide #rideInfo .ride_input {
+    margin: 0.5em auto;
+}
+
+#page #postRide #rideInfo .ride_input {
+    width: 90%;
+}
+
+#page #postRide #rideInfo .ride_notes {
+    margin: 0 auto;
+    padding: 0;
+}
+
+#page #postRide #rideInfo .ride_notes textarea {
+    border: 1px solid #a4a4a4;
+    
+}
+
+#page #postRide #rideInfo .destination,
+#page #postRide #rideInfo .ride_notes{
+    display: block;
+    float: none;
+}
+
+#page #postRide #rideInfo .destination {
+    width: 15em;
+}
+
+#page #postRide #rideInfo .right,
+#page #postRide #rideInfo .left {
+    margin: 2% 0.1em;
+    width: 45%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+#page #postRide #rideInfo input[type=date],
+#page #postRide #rideInfo input[type=time]{
+    margin-top: 0.4em;
+    padding: 0.3em 0.3em;
+    font-size: 105%;
+}
+
+#page #postRide #rideInfo select,
+#page #postRide #rideInfo #price{ 
+    padding: 0.3em;
+    font-size: 105%;
+    margin-top: 0.4em;
+}
+
+#page #postRide #rideInfo select {
+    margin: 0.5em 0;
+    font-size: 120%;
+    width: 20%;
+    height: 10%;
+}
+
+#page #postRide #rideInfo input[type=text]#price {
+    width: 25%
+}
+
+#page #postRide #rideInfo input[type=text] {
+    font-size: 110%;
+    padding: 0.5em 0.3em;
+    width: 85%;
+    margin: 0.5em 0;
+}
+
+#page #postRide #rideInfo input[type=text].city {
+    width: 40%;
+}
+
+#page #postRide #rideInfo input[type=text].state {
+    width: 16%;
+}
+
+#page #postRide #rideInfo input[type=text].zip {
+    width: 21%;
+}
+
+#page #postRide #rideInfo textArea,
+#page #postRide #rideInfo label {
+    display: block;
+}
+
+#page #postRide #rideInfo label {
+    margin: 0 auto;
+    padding: 0.3em 0;
+    font-size: 110%;
+    text-align: left;
+    width: 18em;
+}
+
+#page #postRide #rideInfo textArea {
+    width: 18em;
+    padding: 0.5em 0.3em;
+    font-size: 110%;
+    margin: 0 auto;
+}
+
+#page #postRide #rideInfo button {
+    margin: 5% auto;
+    text-align: center;
+    padding: 0.5em 1.5em;
+    font-size: 125%;
+    -webkit-font-smoothing: antialiased;
+}
+
+#page #profile {
+    padding: 0;
+    margin: 0;
+}
+
+#page #profile .general_info,
+#page #profile #rides{
+    padding: 0;
+    margin: 0 auto;
+    width: 45em;
+    overflow: hidden;
+}
+
+#page #profile .general_info figure {
+    border: 1px solid #ccc;
+    float: left;
+    width: 10em;
+    height: 10em;
+    margin: 0 1em;
+    overflow: visible;
+    
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+#page #profile .general_info figure img {
+    width: 100%;
+    height: 100%;
+}
+
+#page #profile .general_info #user {
+    float: left;
+    padding: 1em;
+    display: inline;
+}
+
+#page #profile .general_info #user .ratings {
+    float: left;
+    display: inline;
+    margin-left: 2em;
+}
+
+#page #profile .general_info #user .rating-img {
+    /*display: inline;*/
+    margin: 0 1.2em;
+    position: relative;
+    padding: 0;
+    top: -0.3em;
+}
+
+#page #profile .general_info #user .rating-img figure {
+    border: none;
+    width: 2em;
+    height: 2em;
+    margin: 0 0.3em 0 0;
+    overflow: hidden;
+    
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+#page #profile .general_info #user .rating-img img {
+    margin: 0;
+    text-align: center;
+    width: 90%;
+    height: 90%;
+}
+
+#page #profile .general_info #user .ratings h4 {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 75%;
+}
+
+#page #profile .general_info #user h3 {
+    display: inline;
+    float: left;
+}
+
+#page #profile .general_info #user .user_info,
+#page #profile .general_info #user .user_info span{
+    display: block;
+}
+
+#page #profile .general_info #user .user_info {
+    margin: 1% 0;
+    padding: 0;
+    font-size: 105%;
+    /*border: 1px solid;*/
+    overflow: hidden;
+    float: left;
+}
+
+#page #profile .general_info #user .user_info span {
+    margin: 2% 0;
+}
+
+#page #profile .ride {
+    margin: 3% 0;
+    display: block;
+}
+
+#page #profile .ride figure,
+#page #profile .ride div {
+    height: 4em;
+    float: left;
+    /*display: inline-block;*/
+    margin: 0;
+    padding: 0;
+}
+
+#page #profile .ride figure {
+    background: #228b22;
+    width: 4em;
+    text-align: center;
+}
+
+#page #profile .ride div {
+    background: #ccc;
+    width: 50%;    
+}
+
+#page #profile .ride h5 {
+    /*display: block;*/
+    /*float: left;*/
+    display: inline-block;
+}
+
+#page #profile .ride img {
+    width: 80%;
+    height: 80%;
+    margin: 10% auto; 
+}
+
+#profile hr {
+    margin: 3% auto;
+    padding: 0;
+    /*color: #E5E5E5;*/
+/*    background-color: #E5E5E5; */
+    display: block;
+    float: none;
+    width: 80%;
+}
+
+#page #message {
+    width: 55em;
+    margin: 0 auto;
+    padding: 1em;
+    overflow: hidden;
+}
+
+#page #message #inbox {
+    margin: 0 auto;
+    padding: 1em 0.5em;
+    width: 15em;
+    float: left;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+#page #members .msg {
+    margin: 0;
+    overflow: hidden;
+}
+
+#page #message .latest-msg {
+    height: 60px;
+    padding: 0.5em 0;
+    border: 1px solid;
+}
+
+#page #message .latest-msg .msg {
+    display: inline-block;
+    vertical-align: middle;
+    width: 73%;
+    height: 60px;
+}
+
+#page #message .latest-msg figure {
+    border: 1px solid;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin: 0 0 0 10px;
+    vertical-align: middle;
+}
+
+
+#page #members select {
+    font-family: ‘Times New Roman’, Times, serif;
+    font-size: 125%;
+    display: block;
+    margin: 0.6em auto;
+    line-height: 1;
+    text-align: center;
+    width: 13em;
+    /*border: 0;*/
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+}
+
+#page #message #conversation {
+    float: right;
+    padding: 0;
+    width: 65%;
+}
+
+#page #message span {
+    padding: 0 0.5em;
+    font-family: CollegiateFLF;
+    margin: 0.2em 0 0.8em;
+}
+
+#page #message #conversation span,
+#page #message #conversation input[type=text]{
+    font-size: 110%;
+    display: block;
+}
+
+#page #message #conversation input[type=text],
+#page #message #conversation textarea{
+    border: 1px #ccc solid;
+    padding: 0.5em;
+    margin-left: 0.5em;
+    width: 93%;  
+}
+
+#page #message #conversation textarea {
+    width: 93%;
+    margin-left: 0.5em;
+    padding: 0.5em 0.6em;
+    font-size: 105%;
+}
+.created a,
+.created a:hover, 
+.created a:active {
+    color: #228b22 !important;
+}
+
+.created a:hover {
+    text-decoration: underline;
+}
+
+#page #message #conversation #message_board {
+    min-height: 15em;
+    width: 93%;
+    
+    margin: 0.6em 0 0.5em 0.6em;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    background-color: #eeeeee;
+    
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+#page #message #conversation textarea {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+#page #message #conversation button {
+    margin: 0.5em auto;
+    font-size: 125%;
+    padding: 0.5em 2.5em;
+    -webkit-font-smoothing: antialiased;
+    /*float: right;*/
+}
+
+#members #ride_message {
+    width: 50%;
+    padding: 10px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#members #btn {display: block;margin: 0 auto; text-align: center;}
+
+#members #btn button,
+#members #btn a {
+    display: inline; 
+    font-size: 130%;
+    margin: .5em 1em;
+    /*width: 5em;*/
+    padding: 0.5em 2em;
+    text-decoration: none;
+}
+
+
+#members #ride_message a,
+#members #ride_message a:active,
+#members #ride_message a:focus{
+    text-decoration: none;
+}
+
+#members #ride_message h2 {
+    margin: 0 0 1em;
+    padding: 0;
+    font-size: 200%;
+}
+
+#members #ride_message img {
+    width: 10em;
+    height: 10em;
+}
+
+#members #ride_message p {
+    font-size: 110%;
+}
+
+#members #ride_message button {
+    font-size: 120%; 
+    margin: 3% auto;
+    -webkit-font-smoothing: antialiased;
+    float: none;
+    padding: 2% 3%;
+    background: #904645;
+
+    -webkit-box-shadow: 0px 7px 0px #643130, 0px 6px 15px rgba(0,0,0,.7);
+    -moz-box-shadow: 0px 7px 0px #643130, 0px 6px 15px rgba(0,0,0,.7);
+    box-shadow: 0px 7px 0px #643130, 0px 6px 15px rgba(0,0,0,.7);   
+}
+
+#members #ride_message button:active{
+    -webkit-box-shadow: 0px 3px 0px #643130, 0px 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow: 0px 3px 0px #643130, 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px #643130, 0px 3px 6px rgba(0,0,0,.9);
+    position: relative;
+    top: 3px;
+}
+
+#members #ride_message p,#members #ride_messgae button {display: block;}
+.bold {font-weight: bold;text-shadow: 0px -1px 1px black;}
+
+#profile #rating {
+    position:relative; 
+    display: block; 
+    left: 3px;
+    text-align:center;
+}
+/* Start Profile*/
+#profile #user_info {
+    width: 45em;
+    margin: 1% auto 2%;
+    padding: 1em;
+    background-color: #F4F4F4;
+}
+#profile #profile_img,
+#profile_userDetails,
+#userprofile,
+#profile #user_info .rideHistory{display: inline-block; vertical-align: top;}
+#userprofile .splitInfo,
+#profile_userDetails .splitInfo {
+    padding: 0.5em;
+    display: block;
+    margin: 0;
+}
+#profile #profile_img .button {
+    width: 50%;
+    margin: 0.5em auto;
+    text-align: center;
+    text-decoration: none;
+}
+#userprofile {
+    margin: 0 !important;
+}
+#userprofile .splitInfo span,
+#profile_userDetails .splitInfo span {
+    font-size: 1.1em;
+    margin: 1% 0;
+}
+#userprofile span,
+#profile_userDetails span {
+    display: block;
+}
+#profile #profile_img figure {
+    border: 1px #ccc;
+    width: 12em;
+    height: 12em;
+    padding: 0;
+    margin: 0 0.5em;
+    background-color: #fff;
+}
+#profile #profile_img span {
+    display: block;
+    font-size: 90%;
+    margin: 0.3em 0.5em;
+    color: #228b22;
+}
+#profile_userDetails,
+#userprofile {
+    margin: 0 1em;
+    width: 65%;
+    height: 16em;
+}
+#profile #profile_img img {width: 100%;height: 100%;}
+#profile #user_info,
+#profile #profile_img figure,
+#profile #user_info .rideHistory .upcomingItems,
+#profile #user_info .rideHistory .historyItems {
+    box-shadow: 0 0 1.5px black;
+    -webkit-box-shadow: 0 0 1.5px black;
+    -moz-box-shadow: 0 0 1.5px black;
+}
+#profile #user_info .rideHistory {
+    width: 47%;
+    padding: 0em 0.5em;
+}
+#userprofile > h2,
+#profile_userDetails > h2,
+#profile #user_info .rideHistory > h2{
+    margin: 0 auto;
+    text-align: center;
+    text-shadow: 0 -1px 1px #fff;
+}
+#profile #user_info .rideHistory > h2 {text-decoration: underline;}
+#profile #user_info .rideHistory .upcomingItems {
+    width: 95%;
+    margin: 1em auto;
+    padding: 0.3em 0.5em;
+    background-color: #fff;
+}
+#profile #user_info .rideHistory .noItems {text-align: center; margin: 10% 0;}
+#profile #user_info .rideHistory .noItems h3 {
+    text-shadow: none;
+}
+#profile #user_info .rideHistory .upcomingItems span {
+    float: right;
+}
+#profile #user_info .rideHistory .upcomingItems h3 {text-shadow: none; text-align: center; font-size: 100%; margin: 0.5em 0 1em;}
+#profile #user_info .rideHistory .upcomingItems > p {margin: 1% 0;}
+#profile #user_info,
+#profile #profile_img,
+#profile #profile_img figure,
+#userprofile,
+#profile_userDetails{overflow: hidden;}
+
+/*End Profile*/
+
+#page #message h3 {
+    text-align: center;
+    margin-top: 3em;
+    font-family: CollegiateFLF;
+    font-weight: normal;
+}
+#page #message .inbox-content {
+    height: 265px;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+#page #ratings {
+    margin: 0 auto;
+    text-align: center;
+    width: 75%;
+    overflow: hidden;
+}
+
+#page #ratings #rating_info {margin: 0 auto;  }
+
+#page #ratings #rating_info > div {
+    float: left;
+    width: 45%;
+    margin: 0.5em 0;
+    padding-left: 1em;
+}
+
+#page #ratings #rating_info .left,
+#page #ratings #rating_info .right {
+    font-size: 1.2em;
+    margin-bottom: 0.3em;
+    color: #228b22;
+}
+
+#page #ratings #rating_info .left {
+    float: left;
+    text-indent: 0.5em;
+}
+
+#page #ratings #rating_info .right {
+    float: right;
+}
+
+#page #ratings #rating_info > div > textarea,
+#page #ratings #rating_info > div > textarea:active {
+    width: 90%;
+    text-align: left;
+    font-size: 1.3em;
+    padding: 0.5em;
+    border: 1px solid #A7A7A7;
+    text-indent: 0;
+    height: 5em;
+}
+
+#page #ratings #rating_info > div > span,
+#page #ratings #rating_info > div > figure {
+    display: block;
+    overflow: hidden;
+}
+
+#page #ratings #rating_info > div > span {
+    font-size: 150%;
+}
+
+#page #ratings #rating_info > div > figure {
+    width: 15em;
+    height: 15em;
+    margin: 0.5em auto; 
+}
+
+#page #ratings #rating_info > div > figure > img {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+#page #ratings #rating_info > div > figure,
+#page #ratings #rating_info > div p,
+#page #rideInformation .travelInformation #direction-info {
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+}
+#page #rideInformation .travelInformation .inline {
+    display: inline-block;
+    width: 22.5%;
+    text-align: center;
+}
+
+#page #rideInformation .travelInformation .inline > * {
+    display: block;
+    margin: 0;
+    font-size: 110%;
+}
+
+#page #ratings #rating_info > div p {
+    background-color: #F4F4F4;
+    overflow: hidden;
+    padding: 5%;
+    font-size: 1.3em;
+    color: #228b22;
+}
+.map-info {
+    color: #228b22;
+}
+#page #ratings #rateuser,
+#page #ratings #rating_info {
+    display: block;
+    overflow: hidden;
+}
+
+#page #rideInformation .travelInformation .red {
+    color: red;
+}
+
+#page #ratings #rating_info  {
+    padding: 1em 0;
+}
+
+#page #ratings #rateuser .rate {
+    display: inline-block !important; 
+    margin: 0 5% ;
+}
+
+#page #ratings #rateuser .rate span {
+    display: block;
+    font-size: 1.3em;
+}
+
+#page #ratings #rateuser button {
+    display: block;
+    margin: 1em auto;
+    font-size: 1.5em;
+    padding: 0.5em 1em;
+}
+
+#page #ratings #rateuser img {
+    opacity: 0.5;
+}
+
+#page #rideInformation,
+#page #driverInformation {
+    display: inline-block;
+    padding: 1em 0;
+    vertical-align: top;
+} 
+#page #rideInformation {
+    width: 60%;
+}
+#page #rideInformation .travelInformation,
+#page #driverInformation .travelInformation,
+#page .travelInformation figure, 
+#page .travelInformation #direction-map {
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+}
+#page #rideInformation .travelInformation {
+    position: relative;
+}
+#page #rideInformation .travelInformation #direction-map {
+    height: 20em;
+    margin: 0 auto;
+}
+#page #rideInformation .travelInformation #direction-info {
+    position: absolute;
+    z-index: 5;
+    padding: 0.5em;
+    top: 8%;
+    left: 4%;
+    border-radius: 5px;
+    background-color: white;
+}
+#page #rideInformation .travelInformation #direction-info p {
+    display: block;
+    margin: 0;
+    font-size: 1em;
+}
+#page #rideInformation .travelInformation #direction-info p span {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+#page #rideInformation .travelInformation > p {
+    font-size: 1.2em;
+    text-align: center;
+}
+#page #rideInformation .travelInformation #no-comment {margin: 3% 0 0;}
+#page #rideInformation .travelInformation #comment {text-align: left;}
+#page .travelInformation {
+    background-color: #F4F4F4;
+    padding: 1em;
+    margin-bottom: 1em;   
+}
+#page .travelInformation h2,
+#page .travelInformation h4 {
+    text-shadow: none;
+    margin: 0;
+    color: #228b22;
+    text-shadow: 0 -1.5px 0 #fff;
+}
+#page #rideInformation .travelInformation p {
+    min-height: 2em;
+    margin: 0;
+    font-size: 1.2em;
+}
+#page #rideInformation .travelInformation h4 {
+    display: inline-block;
+    margin-right: 1.3em;
+    font-size: 80%;   
+}
+
+#page #rideInformation .travelInformation #map {
+    margin: 0 auto;
+    width: 98%;
+    height: 12em;
+    border: 1px solid;
+}
+
+#page .travelInformation figure {
+    height: 12em;
+    width: 12em; 
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
+    background-color: #fff;
+    display: block;
+}
+
+#page .travelInformation #hitchBtn-container {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+#page .travelInformation #hitchBtn-container a {
+    display: inline-block;
+    width: 35%;
+    font-size: 100%;
+    margin: 0 0.5em;
+}
+
+#page .travelInformation .driverInfo {
+    margin: 1em auto;
+    text-align: left;
+}
+
+#page .travelInformation .driverInfo figure img {
+    width: 100%;
+    height: 100%;
+}
+
+#page .travelInformation .driverInfo span {
+    margin: 0.5em 0;
+    font-size: 115%;
+    text-align: center;
+}
+
+#page .travelInformation .driverInfo span a {
+    font-size: 100% !important;
+    color:#228b22;
+}
+
+#page .travelInformation .driverInfo span a:hover {
+    text-decoration: underline !important;
+}
+
+#page .travelInformation .driverInfo > * {
+    display: block;
+}
+
+#page #driverInformation  {
+    width: 37%;
+    text-align: center;
+    margin-left: 1em;
+}
+
+#page #driverInformation a {
+    text-decoration: none;
+    text-align: center;
+    width: 8em;
+    font-size:  120%;
+    margin: 1.5em auto;
+}
+#page .travelInformation .split {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+}
+
+.center {
+    margin: 0.5em auto;
+    text-align: center;
+}
+.no-shadow {
+    text-shadow: none !important;
+}
+#page #events select {
+    font-size: 110%;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+#page #events .event {
+    overflow: hidden;
+    padding: 0.5em;
+    width: 90%;
+    margin: 0.3em auto 1.5em;
+    background-color: #fff;
+    text-align: left;
+    min-height: 120px;
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+}
+#page #event-location,
+#page #event-time {width: 60%; margin: 0 auto 1em; padding: 0.3em 0;}
+#page input.eventCity,
+#page input.eventState,
+#page input.eventZip {display: inline-block !important; margin: 0 !important; }
+#page input.eventState { width: 15% !important;}
+#page input.eventCity { width: 45% !important; }
+#page input.eventZip { width: 20% !important; }
+#page #events #events > div > p { font-size: 120%; }
+#page #event-time .eventDate,
+#page #event-time .eventTime {display: inline-block !important;}
+#page #event-time .eventDate {width: 160px !important;}
+#page #event-time .eventTime {width: 120px;}
+
+#page #events .event figure {
+    width: 7em;
+    height: 7em;
+    margin: 0 0.2em 0 0;
+}
+#page #events .event figure img {
+    width: 100%;
+}
+#page #events .event > .event_info { width: 77%;}
+#page #events .event > .event_info h2 {text-shadow: none !important; margin: 0 0 2%;}
+#page #events .event > .event_info div {
+    display: inline-block;
+    vertical-align: top;
+    width: 125px;
+}
+#page #events .event > .event_info a,
+#page #events .event > .event_info a:visited ,
+#page #events .event > .event_info a:focus {text-decoration: none; color: #228b22;}
+#page #events .event > .event_info a:hover {text-decoration: underline;}
+#page #events .event > .event_info .location {
+    width: 340px !important;
+}
+#page #events .event figure,
+#page #events .event > div {
+    display: inline-block;
+    vertical-align: top;
+}
+.paginate {
+    color: #q6D6D6D !important;
+}
+.paginate a, .paginate b {
+    border-radius: 5px;
+    text-decoration: none;
+}
+#page #events .m-FontSize {
+    font-size: 105% !important;
+}
+#page #events #no-events a {
+    width: 175px;
+    padding: 0.8em 0;
+    text-decoration: none;
+    margin: 2% auto 1%;
+}
+#page #events .event .event_ride {
+    float: right;
+    overflow: visible;
+    margin: 3% 1%;
+}
+
+#page #events .event .event_ride a {
+    text-decoration: none;
+    border: 1px solid #6F2A29 !important;
+    background: #904645 !important;
+    
+    -webkit-box-shadow: 0px 7px 0px #643130, 0px 6px 15px rgba(0,0,0,.7) !important;
+    -moz-box-shadow: 0px 7px 0px #643130, 0px 6px 15px rgba(0,0,0,.7) !important;
+    box-shadow: 0px 7px 0px #643130, 0px 6px 15px rgba(0,0,0,.7) !important;   
+
+}
+
+#page #events .event .event_ride a:active{
+    -webkit-box-shadow: 0px 3px 0px #643130, 0px 3px 6px rgba(0,0,0,.9) !important;
+    -moz-box-shadow: 0px 3px 0px #643130, 0px 3px 6px rgba(0,0,0,.9) !important;
+    box-shadow: 0px 3px 0px #643130, 0px 3px 6px rgba(0,0,0,.9) !important;
+}
+
+#page #events .event > div > span {
+    display: block;
+    font-size: 110% !important;
+}
+
+#create_password #content #password {
+    text-align: center;
+}
+#event-time .eventDate,
+#event-time .eventTime {
+    text-align: center;
+    margin: 0.5em 1em !important;;
+    font-size: 110% !important;;
+    padding: 0.3em 0.5em !important;;
+}
+
+#create_password #content p {
+    margin: 0;
+    font-size: 110%;
+    padding: 0;
+}
+
+#create_password #content hr {
+    margin: 0 auto 1em;
+}
+
+#create_password #content input[type=text] {    
+    margin: 0.5em auto;
+}
+
+#create_password #content button {
+    font-size: 110%;
+    padding: 0.5em 2em; 
+    margin: 0.5em auto;
+}
+#create_password message_Error {
+    width: 70% !important;
+}
+#create_password message_Error > p{
+    text-align: center;
+}
+#menu-container h3 {
+    margin: 0.5em 0.3em;
+}
+.section {
+    display: block;
+    overflow: hidden;
+    margin: 1em auto;
+}
+.section .duelInput {
+    display: inline-block;
+}
+.section .duelInput input[type=text]{
+    display: block !important;
+    vertical-align: middle;
+    margin-bottom: 1em !important;
+    width: 12.5em !important;
+}
+.section label,
+.section input[type=text] {
+    display: inline-block !important;
+    vertical-align: top;
+}
+.section input[type=text] {
+    width: 30% !important;
+    border: 1px solid ;
+    margin: 0 !important;
+}
+.section label {
+    width: 7em;
+    text-align: right;
+    margin-right: 1em;
+    font-size: 110%;
+}
+.accountbtn {
+    display: block;
+    font-size: 120% !important;
+}
+.section-container {
+    margin: 0em auto 2em;
+    padding: 1em 0;
+}
+#events .normal {
+    margin: 0 !important;
+    padding: 0;
+    font-size: 110% !important;
+}
+#events #no-events {
+    font-size: 125%;
+    text-align: center;
+    margin: 2em auto;
+    text-align: center;
+}
+#events #events-title {font-size: 125%;}
+.marker {display: block; text-shadow: none !important;}
+.markerLink, .markerLink:active, .markerLink:focus {
+    color: #228b22 !important; text-decoration: none !important;
+}
+.forest { color: #228b22 !important;} 
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
+}
+.popup {
+    width: 600px;
+    display: none;
+    /*height: 200px;*/
+    /*line-height: 200px;*/
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    padding: 1em 0 0;
+    z-index: 11; /* 1px higher than the overlay layer */
+}
+.popup #details span {
+    display: block;
+}
+.popup #photo,
+.popup #details {
+    display: inline-block;  
+}
+.popup #photo {
+    width: 150px;
+    margin: 0 1em;
+}
+.popup #photo figure {
+    width: 80%;
+    height: 7em;
+    border: 1px solid;
+    margin: 0 auto;
+}
+.popup #details {text-align: left;}
+.popup #details h2
+.popup #details h4 { text-shadow: none; }
+.popup #details h4 { 
+    margin: 5% 0;
+    text-shadow: none;
+    text-decoration: underline;
+}
+.popup #map {
+    margin: 3% auto 0;
+    width: 100%;
+    height: 200px;
+}
+.popup #closebtn img {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 3%;
+}
+.popup #closebtn img:active {
+    top: 20px;
+}
+.settings-popup p {
+    font-size: 130%;
+    text-align: center;
+}
+
+.settings-popup button {
+    display: inline-block;
+    margin-bottom: 2em;
+    font-size: 120%;
+    margin: 0 1em 2em;
+    width: 30%;
+}
+
+.paginate a,
+.paginate a:hover,
+.paginate a:active,
+.paginate b {
+    border: 1px solid;
+    padding: 5px 10px;
+    color: rgb(51, 51, 122);
+}
+
+.paginate b {
+    color: #000000 !important;
+}
+#input-time{width: 115px !important;}
+#input-date{
+    width: 155px !important;
+    padding: 0.3em 0.3em !important;
+    margin: 0.4em 0 0 !important;
+    font-size: 105% !important;
+}
+#input-date::-webkit-calendar-picker-indicator{
+    display: none;
+}
+#input-date::-webkit-input-placeholder{ 
+    visibility: hidden !important;
+}
+/* DatePicker Container */
+.ui-datepicker {
+    /*width: 216px;*/
+    height: auto;
+    font: 16px Arial, sans-serif;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+}
+.ui-datepicker a {
+	text-decoration: none;
+}
+/* DatePicker Table */
+.ui-datepicker table {
+	width: 100%;
+}
+
+.ui-datepicker-header {
+    background: url('../img/dark_leather.png') repeat 0 0 #000;
+    color: #e0e0e0;
+    font-weight: bold;
+    -webkit-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, 2);
+    -moz-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+    box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+    text-shadow: 1px -1px 0px #000;
+    filter: dropshadow(color=#000, offx=1, offy=-1);
+    line-height: 30px;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #111;
+}
+.ui-datepicker-title {
+	text-align: center;
+}
+.ui-datepicker-prev, .ui-datepicker-next {
+    display: inline-block;
+    width: 30px !important;
+    height: 30px !important;
+    text-align: center;
+    cursor: pointer !important;
+    background-image: url('../imgs/arrow.png') !important;
+    background-repeat: no-repeat;
+    line-height: 600%;
+    overflow: hidden;
+}
+.ui-datepicker-prev {
+    float: left;
+    background-position: center -30px;
+}
+.ui-datepicker-next {
+    float: right;
+    background-position: center 0px;
+}
+.ui-datepicker thead {
+    background-color: #f7f7f7;
+    background-image: -moz-linear-gradient(top,  #f7f7f7 0%, #f1f1f1 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#f1f1f1));
+    background-image: -webkit-linear-gradient(top,  #f7f7f7 0%,#f1f1f1 100%);
+    background-image: -o-linear-gradient(top,  #f7f7f7 0%,#f1f1f1 100%);
+    background-image: -ms-linear-gradient(top,  #f7f7f7 0%,#f1f1f1 100%);
+    background-image: linear-gradient(top,  #f7f7f7 0%,#f1f1f1 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#f1f1f1',GradientType=0 );
+    border-bottom: 1px solid #bbb;
+}
+.ui-datepicker th {
+    text-transform: uppercase;
+    font-size: 6pt;
+    padding: 5px 0;
+    color: #666666;
+    text-shadow: 1px 0px 0px #fff;
+    filter: dropshadow(color=#fff, offx=1, offy=0);
+}
+.ui-datepicker tbody td {
+    padding: 0;
+    border-right: 1px solid #bbb;
+}
+.ui-datepicker tbody td:last-child {
+    border-right: 0px;
+}
+.ui-datepicker tbody tr {
+    border-bottom: 1px solid #bbb;
+}
+.ui-datepicker tbody tr:last-child {
+    border-bottom: 0px;
+}
+.ui-datepicker td span, .ui-datepicker td a {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #666666;
+    text-shadow: 1px 1px 0px #fff;
+    filter: dropshadow(color=#fff, offx=1, offy=1);
+}
+.ui-datepicker-calendar .ui-state-default {
+    background: #ededed;
+    background: -moz-linear-gradient(top,  #ededed 0%, #dedede 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#dedede));
+    background: -webkit-linear-gradient(top,  #ededed 0%,#dedede 100%);
+    background: -o-linear-gradient(top,  #ededed 0%,#dedede 100%);
+    background: -ms-linear-gradient(top,  #ededed 0%,#dedede 100%);
+    background: linear-gradient(top,  #ededed 0%,#dedede 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#dedede',GradientType=0 );
+    -webkit-box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, .5);
+    -moz-box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, .5);
+    box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, .5);
+}
+.ui-datepicker-calendar .ui-state-hover {
+    background: #f7f7f7;
+}
+.ui-datepicker-calendar .ui-state-active {
+    background: #6eafbf;
+    -webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    -moz-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    color: #e0e0e0;
+    text-shadow: 0px 1px 0px #4d7a85;
+    filter: dropshadow(color=#4d7a85, offx=0, offy=1);
+    border: 1px solid #55838f;
+    position: relative;
+    margin: -1px;
+}
+.ui-datepicker-unselectable .ui-state-default {
+    background: #f4f4f4;
+    color: #b4b3b3;
+}
+.ui-datepicker-calendar td:first-child .ui-state-active {
+    width: 29px;
+    margin-left: 0;
+}
+.ui-datepicker-calendar td:last-child .ui-state-active {
+    width: 29px;
+    margin-right: 0;
+}
+.ui-datepicker-calendar tr:last-child .ui-state-active {
+    height: 29px;
+    margin-bottom: 0;
+}
+.ui-state-highlight {
+    background: #6eafbf !important;
+    -webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    -moz-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    color: #fff !important;
+    text-shadow: 0px 1px 0px #4d7a85 !important;
+    filter: dropshadow(color=#4d7a85, offx=0, offy=1) !important;
+    border: 1px solid #55838f !important;
+    position: relative;
+    margin: -1px;
+}

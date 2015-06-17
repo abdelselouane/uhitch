@@ -1,0 +1,199 @@
+
+
+@font-face {
+  font-family: 'Graduate';
+  font-style: normal;
+  font-weight: bolder;
+  background: transparent;
+  src: local('Graduate'), local('Graduate-Regular'), url(http://themes.googleusercontent.com/static/fonts/graduate/v2/3igPYHysOQSqw-Nqzu4SMnYhjbSpvc47ee6xR_80Hnw.woff) format('woff');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color:#333;
+}
+
+#splash_container {
+    overflow: hidden;
+}
+
+#splash_container .logging {
+    text-shadow: 1px -2px 1px #000000;
+    filter: dropshadow(color=#000000,offX=1,offY=-2);
+}
+
+header {
+    width: 100%;
+    padding: 1em; 
+    display: block;
+    overflow: visible;
+}
+
+nav {
+    width: 60%;
+    margin: 0 auto;
+    min-width: 900px;
+}
+
+nav a {
+    border: 0;
+    outline: 0;
+    text-decoration: none;
+    color: white;
+    font-family: CollegiateFLF;
+    letter-spacing: 0.2em;
+}
+
+nav img {
+    float: left;
+}
+
+ul img {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+nav span {
+    color: white;
+    float: right;
+}
+
+#splash {
+    width: 100%;
+    padding: 2em;
+    overflow: hidden;
+}
+
+#splash_content {
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}
+
+#splash_content, 
+#splash menu,
+#splash p{
+    margin: 0 auto;
+    min-width: 900px;
+}
+
+#splash footer {
+    padding: 0.1em 0 0;
+    margin-top: 1em;
+    background: #515151;
+} 
+
+#splash_content button {
+	font-size: 2.25em;
+        margin-bottom: 1.5em;
+	font-family:Arial;
+	font-weight:normal;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	border:1px solid #008055;
+	padding:9px 18px;
+	text-decoration:none;
+	background:-webkit-gradient(linear,left top,left bottom,color-stop(5%,#80B9A2),color-stop(100%,#008055));
+	background:-moz-linear-gradient( center top, #80B9A2 5%, #008055 100% );
+	background:-ms-linear-gradient( top, #80B9A2 5%, #008055 100% );
+        background: linear-gradient(#80B9A2, #008055);
+        background:-o-linear-gradient(#80B9A2, #008055);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80B9A2', endColorstr='#008055');
+	background-color:#008055;
+	color:#ffffff;
+	display:inline-block;
+	text-shadow: 0 -3px 1px #000000;
+        
+        box-shadow: 0px 7px 0px #00442b, 0px 6px 15px rgba(0,0,0,.7);
+        -webkit-box-shadow: 0px 7px 0px #00442b, 0px 6px 15px rgba(0,0,0,.7);;
+        -moz-box-shadow: 0px 7px 0px #00442b, 0px 6px 15px rgba(0,0,0,.7);
+}
+
+#splash_content button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #008055), color-stop(100%, #006C41) );
+	background:-moz-linear-gradient( center top, #008055 5%, #006C41 100% );
+	background:-ms-linear-gradient( top, #008055 5%, #006C41 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#008055', endColorstr='#006C41');
+	background-color:#77a809;
+}
+
+#splash_content button:active{
+    position: relative;
+    top: 2px;
+    outline: none;
+    -o-transition: 0.2s all ease;
+    -webkit-transition: 0.2s all ease;
+    -moz-transition: 0.2s all ease;
+    transition: 0.2s all ease;
+    box-shadow: 0px 3px 0px #00442b, 0px 6px 15px rgba(0,0,0,.7);
+    -webkit-box-shadow: 0px 3px 0px #00442b, 0px 6px 15px rgba(0,0,0,.7);;
+    -moz-box-shadow: 0px 3px 0px #00442b, 0px 6px 15px rgba(0,0,0,.7);
+    text-shadow: 0 2px 0px #000000;
+}
+
+#splash_content button:focus {
+    outline: none;
+}
+
+#splash  {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    padding: 0;
+}
+
+#splash footer p {
+    color: white;
+    padding: 1em 0 0.5em;
+    text-align: center;
+}
+
+#splash menu {
+    margin: 0;
+    padding: 0.1em 0;
+}
+
+#splash menu ul {
+    list-style: none;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+}
+
+#splash menu li {
+    display: inline-block;
+    margin: 0 10px;
+    padding:0;
+    height: 1em;
+    line-height: 2em;
+    vertical-align: middle;
+}
+
+#splash menu li a {
+    color: white;
+    text-decoration: underline;
+    font-size: 115%;
+    text-shadow: 1px -1.5px 0px #000000;
+}
+
+@media all and (min-width: 400px) {
+    body {
+        background: url(../imgs/background/background-normal.png) no-repeat center center fixed;
+    }
+}
+
+@media all and (min-width: 992px) {
+    body {
+        background: url(../imgs/background/background-large.png) no-repeat center center fixed;
+    }
+}
+

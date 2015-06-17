@@ -1,0 +1,237 @@
+
+#RegisterUser h2 {
+    text-align: center;
+}
+
+#RegisterUser #content {
+    width: 90%;
+    padding: 10px 0;
+    overflow: hidden;
+    border: 0;
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+}
+
+#RegisterUser #content_register{
+    width: 98%;
+    overflow: auto;
+    padding: 0 5px;  
+    margin: 0 auto;
+    overflow: visible;
+}
+
+#RegisterUser .altbtn {
+    font-family: 'Yanone Kaffeesatz';
+    display: block;
+    color: white !important;
+    font-size: 110% !important; 
+    background: #904645;
+    color: white;
+    padding: 0.5em 2em;
+    margin: 2% 0 0;
+    width: 4em;
+    text-align: center;
+    margin: 0 auto;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0px -2px 1px black;
+    
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    
+    border: 1px solid #643130;
+    position: relative;
+    
+    -webkit-box-shadow: 0px 7px 0px #643130, 0px 6px 15px rgba(0,0,0,.7);
+    -moz-box-shadow: 0px 7px 0px #643130, 0px 6px 15px rgba(0,0,0,.7);
+    box-shadow: 0px 7px 0px #643130, 0px 6px 15px rgba(0,0,0,.7);   
+
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+#RegisterUser .altbtn:active{
+    top: 1px;
+    -webkit-box-shadow: 0px 3px 0px #643130, 0px 6px 15px rgba(0,0,0,.7);
+    -moz-box-shadow: 0px 3px 0px #643130, 0px 6px 15px rgba(0,0,0,.7);
+    box-shadow: 0px 3px 0px #643130, 0px 6px 15px rgba(0,0,0,.7);   
+}
+
+#RegisterUser hr {
+    text-align: center;
+    margin: 0 auto; 
+}
+
+#RegisterUser #content_register p{
+    margin: 0;
+    padding: 0;
+}
+
+#RegisterUser #content_wrapper {
+    padding: 5px 20px;
+}
+
+
+#RegisterUser #menu-container {
+    overflow: hidden;
+    padding: 0 0.3em;
+    margin: 0;
+    position: fixed;
+    display: block;
+    /*width: 12em;*/
+    text-align: center;
+}
+
+#RegisterUser menu {
+    padding: 0;
+    margin: 0;
+}
+
+#RegisterUser menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#RegisterUser menu li {
+    margin: 0;
+    padding: 0;
+}
+
+#RegisterUser menu a{
+    text-decoration: none;
+    display: block;
+    color: #fff;
+    font: 110% "helvetica neue", helvetica, arial, sans-serif;
+    padding: 0.5em 0.3em;
+    margin: 0 0 0.5em;
+    
+    background-color: #228B22;
+    background-image: -webkit-gradient(linear, left top,left bottom, color-stop(0, #176117),color-stop(1, #228B22));
+    background-image: -o-linear-gradient(bottom, #176117 0%, #228B22 100%);
+    background-image: -moz-linear-gradient(bottom, #176117 0%, #228B22 100%);
+    background-image: -webkit-linear-gradient(bottom, #176117 0%, #228B22 100%);
+    background-image: -ms-linear-gradient(bottom, #176117 0%, #228B22 100%);
+    background-image: linear-gradient(to bottom, #176117 0%, #228B22 100%);  
+    border: 1px solid #176117;
+    
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    
+    -moz-box-shadow: inset 0 0 0 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+    box-shadow: inset 0 0 0 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333333;
+        
+    text-align: center;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
+}
+
+#RegisterUser menu a:hover,
+#RegisterUser menu a:focus{
+    outline: 0;
+    
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+    
+    background-image: -webkit-gradient(linear, left top,left bottom, color-stop(0, #71D971), color-stop(1, #228B22));
+    background-image: -o-linear-gradient(bottom, #71D971 0%, #228B22 100%);
+    background-image: -moz-linear-gradient(bottom, #71D971 0%, #228B22 100%);
+    background-image: -webkit-linear-gradient(bottom, #71D971 0%, #228B22 100%);
+    background-image: -ms-linear-gradient(bottom, #71D971 0%, #228B22 100%);
+    background-image: linear-gradient(to bottom, #71D971 0%, #228B22 100%);
+}
+
+#RegisterUser #upload_photo button {
+    margin: 1.5em auto 1em;       
+    font-size: 125%;
+    padding: 0.7em 2em;
+}
+    
+#RegisterUser #upload_photo button,
+#RegisterUser #upload_photo .altbtn {
+    padding: 0.7em 2em;
+}
+    
+#RegisterUser #upload_photo .altbtn:visited,
+#RegisterUser #upload_photo .altbtn:hover{
+    color: white;
+}
+    
+#RegisterUser #upload_photo input[type=file] {
+    text-align: center;
+    margin: 1em auto 0.5em;
+}
+    
+#RegisterUser #upload_photo {
+    width: 97%;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+    padding: 0 0.5em 1em;
+}
+
+#upload_photo_msg {
+    padding: 5% 0;
+    margin: 2% 0 1%;
+    color: #228B22;
+}
+
+#RegisterUser #upload_photo span {
+    display: block;
+    margin: 1% 0;
+    font-size: 115%;
+}
+
+#RegisterUser #upload_photo #uploadimg {
+    margin: 0 auto;
+    padding: 5%;
+    width: 15em;
+    font-size: 110%;
+}
+
+#RegisterUser #upload_photo a,
+#RegisterUser #upload_photo a:hover,
+#RegisterUser #upload_photo a:focus,
+#RegisterUser #upload_photo a:visited{
+    color: #228B22;
+    text-decoration: none;
+    font-size: 105%;
+}
+
+#RegisterUser #upload_photo_left,
+#RegisterUser #upload_photo_right{
+    float: left;
+    width: 47%;
+    padding: 5px;
+    overflow: visible;
+    margin: 0 auto;  
+    text-align: center;
+}
+
+#RegisterUser #upload_photo_right #message_Error {
+    display: none;
+}
+
+#RegisterUser #upload_photo_right h4{
+    margin: 15% auto 10%;
+}
+
+#RegisterUser #upload_photo img {
+    padding: 2px;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}

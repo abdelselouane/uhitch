@@ -33,9 +33,9 @@ class Eventservices_model extends User_Model {
     
     function mapElements($file) {
         
-        //echo '<pre>'; print_r($this->input->post()); echo '</pre>';exit;
+        echo '<pre>'; print_r($this->input->post()); echo '</pre>';exit;
         
-        $this->eventName    = ucfirst($this->input->post('Name'));
+        /*$this->eventName    = ucfirst($this->input->post('Name'));
         $this->location     = ucfirst($this->input->post('event-address')); 
         $this->eventId      = substr(str_shuffle(MD5(microtime())), 0, 45);
         
@@ -51,7 +51,7 @@ class Eventservices_model extends User_Model {
         $this->lat          = ( $this->input->post('eventLat') == '' ) ? NULL : $this->input->post('eventLat');
         $this->lon          = ( $this->input->post('eventLon') == '' ) ? NULL : $this->input->post('eventLon'); 
 
-        $this->comments     = $this->input->post('Comments');
+        $this->comments     = $this->input->post('Comments');*/
     }
 
     function insertionToDb() {

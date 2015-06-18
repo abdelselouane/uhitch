@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class EventServices_model extends User_Model {
+class Eventservices_model extends User_Model {
     public $db;
     public $userName;
     public $userId;
@@ -33,7 +33,7 @@ class EventServices_model extends User_Model {
     
     function mapElements($file) {
         
-    echo '<pre>'; print_r($this->input->post()); echo '</pre>';exit;
+        //echo '<pre>'; print_r($this->input->post()); echo '</pre>';exit;
         
         $this->eventName    = ucfirst($this->input->post('Name'));
         $this->location     = ucfirst($this->input->post('event-address')); 
@@ -48,8 +48,8 @@ class EventServices_model extends User_Model {
         $this->city         = ucfirst($this->input->post('event-city')); 
         $this->state        = ucfirst($this->input->post('event-state'));
         $this->zip          = $this->input->post('event-zip');
-        $this->lat          = ( $this->input->post('eventLat') !== '' ) ? NULL : $this->input->post('eventLat');
-        $this->lon          = ( $this->input->post('eventLon') !== '' ) ? NULL : $this->input->post('eventLon'); 
+        $this->lat          = ( $this->input->post('eventLat') == '' ) ? NULL : $this->input->post('eventLat');
+        $this->lon          = ( $this->input->post('eventLon') == '' ) ? NULL : $this->input->post('eventLon'); 
 
         $this->comments     = $this->input->post('Comments');
     }

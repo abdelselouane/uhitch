@@ -83,38 +83,38 @@ class Main extends My_BaseController {
     function allevent() {
         $this->title = 'Uhitch | Admin All Event';
         $this->setScripts('adminEvents');
-        $this->load->model('EventServices_model');
-        $this->events = $this->EventServices_model->retrieveEventAdmin();
+        $this->load->model('eventservices_model');
+        $this->events = $this->eventservices_model->retrieveEventAdmin();
         
         //echo '<pre>'; print_r($this->events); echo '</pre>'; exit;
         $this->display('admin/events');
     }
     
     function approveEvent($id) { 
-        $this->load->model('EventServices_model');
-        $this->EventServices_model->approveEventAdmin($id);
+        $this->load->model('eventservices_model');
+        $this->eventservices_model->approveEventAdmin($id);
     }
     
     function disapproveEvent($id) { 
-        $this->load->model('EventServices_model');
-        $this->EventServices_model->disapproveEventAdmin($id);
+        $this->load->model('eventservices_model');
+        $this->eventservices_model->disapproveEventAdmin($id);
     }
     
     function upcoming() {
         $this->title = 'Uhitch | Upcoming Events';
       
         $this->load->helper("url");
-        $this->load->model('EventServices_model');
+        $this->load->model('eventservices_model');
         $this->load->library('pagination');
 
         $school = $this->user->school;
-        $coord  = $this->EventServices_model->retrieveSchoolCoord($school);
+        $coord  = $this->eventservices_model->retrieveSchoolCoord($school);
         
        //echo '<pre>'; print_r($coord); echo '</pre>';//exit;
         
         $config = array();
         $config['base_url'] = site_url().'/main/upcoming';
-        $config['events']   = $this->EventServices_model->eventRecordsCount($coord);
+        $config['events']   = $this->eventservices_model->eventRecordsCount($coord);
         $config['total_rows'] = count($config['events']);
         
        //echo '<pre>'; print_r($config); echo '</pre>';exit;
@@ -133,7 +133,7 @@ class Main extends My_BaseController {
 
             $pages = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-            $this->page['results'] = $this->EventServices_model
+            $this->page['results'] = $this->eventservices_model
                     ->retrieveAllEvents($config["per_page"], $pages);
 
             $this->page['links'] = $this->pagination->create_links();
@@ -320,7 +320,7 @@ class Main extends My_BaseController {
     }
 
     function eventsubmission() {
-        $this->load->model('EventServices_model');
+        $this->load->model('eventservices_model');
 
         $config['file_name'] = substr(str_shuffle(MD5(microtime())), 0, 45);
         
@@ -345,7 +345,7 @@ class Main extends My_BaseController {
             
             $img = $data["upload_data"]["file_name"];
             
-            $this->EventServices_model->registerEvent($img);
+            $this->eventservices_model->registerEvent($img);
             $this->display('events/success');
         } 
     }

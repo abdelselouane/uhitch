@@ -16,7 +16,7 @@ class EventServices_model extends User_Model {
     public $eventTime;
     public $eventDate;
     public $eventFilename;
-            
+        
     function __construct() {
         parent::__construct();
         

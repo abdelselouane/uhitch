@@ -98,7 +98,7 @@ class retrievedata_model extends User_Model {
      function retrieveVehicle() {
          
          $query = "SELECT VehicleId, Make, Model, Year, Color "
-                 . "FROM Vehicle "
+                 . "FROM vehicle "
                  . "WHERE DriverId = '$this->userid'";
          
          $vehicledata = $this->db->retrieveData($query);

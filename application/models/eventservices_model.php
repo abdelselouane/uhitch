@@ -107,7 +107,7 @@ class Eventservices_model extends User_Model {
         
         //$query = $this->searchEventByRadiusQuery($lat, $lon);
         $query = $this->getEventsNearby($lat, $lon);
-        //echo '<pre>'; print_r($query); echo '</pre>'; //exit;
+        //echo '<pre>'; print_r($query); echo '</pre>'; exit;
         
         $found = $this->db->retrieveRows($query);
         //echo '<pre>'; print_r($found); echo '</pre>';exit;

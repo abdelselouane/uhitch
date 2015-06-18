@@ -110,7 +110,7 @@ class Main extends My_BaseController {
         $school = $this->user->school;
         $coord  = $this->eventservices_model->retrieveSchoolCoord($school);
         
-       //echo '<pre>'; print_r($coord); echo '</pre>';//exit;
+        //echo '<pre>'; print_r($coord); echo '</pre>'; exit;
         
         $config = array();
         $config['base_url'] = site_url().'/main/upcoming';

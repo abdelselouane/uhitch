@@ -54,7 +54,7 @@
                         </div>
                         
                     <?php endforeach; ?>
-                    <p class="paginate m-FontSize"><?php echo $this->page['links'];?></p>
+                    <p class="paginate m-FontSize"><?= isset($this->page['links']) ? $this->page['links'] : '';?></p>
                 <?php else : ?>
                     <div id="no-events">
                         <span class="m-FontSize">There aren&#39;t any events within this area at this time</span>

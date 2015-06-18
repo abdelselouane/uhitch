@@ -48,8 +48,8 @@ class EventServices_model extends User_Model {
         $this->city         = ucfirst($this->input->post('event-city')); 
         $this->state        = ucfirst($this->input->post('event-state'));
         $this->zip          = $this->input->post('event-zip');
-        $this->lat          = !$this->input->post('eventLat') ? NULL : $this->input->post('eventLat');
-        $this->lon          = !$this->input->post('eventLon') ? NULL : $this->input->post('eventLon'); 
+        $this->lat          = ( $this->input->post('eventLat') !== '' ) ? NULL : $this->input->post('eventLat');
+        $this->lon          = ( $this->input->post('eventLon') !== '' )? NULL : $this->input->post('eventLon'); 
 
         $this->comments     = $this->input->post('Comments');
     }

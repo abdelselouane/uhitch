@@ -56,7 +56,7 @@ foreach($ride as $key => $value){
             <label>Distance:</label>
             <p><?= isset($ride['Distance']) ? $ride['Distance'].' Miles' : 'Driver Full Name ?';?></p>
             <label>Depart At:</label>
-            <p><?= ( isset($ride['DepartDate']) && isset($ride['DepartTime']) ) ? date('M d, Y H:i a', strtotime($ride['DepartDate']. $ride['DepartTime'])) : 'Depart Date Time ?';?></p>
+            <p><?= ( isset($ride['DepartDate']) && isset($ride['DepartTime']) ) ? date('M d, Y g:i a', strtotime($ride['DepartDate']. $ride['DepartTime'])) : 'Depart Date Time ?';?></p>
             <label>Total expected passengers:</label>
             <p><?= isset($ride['Passengers']) ? $ride['Passengers'] : 'Passengers ?';?></p>
         </div>

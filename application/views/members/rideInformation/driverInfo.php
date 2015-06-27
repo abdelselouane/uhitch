@@ -26,8 +26,8 @@
             </a>
         </span>
         <div id="hitchBtn-container">
-            <a class="button" href="#">Request Ride</a>
-            <a class="button" href="<?=site_url('main/messages');?>">Send Message</a>
+            <a class="button" href="<?=site_url('main/requestride?q='.$ride['Ride_ID']);?>">Request Ride</a>
+            <a class="button" href="<?=site_url('main/messages?q='.$ride['Driver_ID']);?>">Send Message</a>
         </div>
     </div>
 </div> 

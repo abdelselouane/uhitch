@@ -8,6 +8,7 @@ class postride_model extends User_Model {
     public $destination;
     public $notes;
     public $price;
+    public $rideCost;
     public $passengers;
     public $mileage;
     
@@ -37,7 +38,7 @@ class postride_model extends User_Model {
 //        if( !$this->validDriver() )
 //            { return FALSE; }
         $post = $this->input->post();
-       // echo '<pre>'; print_r($post); echo '</pre>'; exit;
+        //echo '<pre>'; print_r($post); echo '</pre>'; exit;
         
         $this->rideInformation();
         $this->rideSettings();
@@ -54,6 +55,7 @@ class postride_model extends User_Model {
         $this->notes        =   $this->input->post('ridenotes');
         $this->passengers   =   $this->input->post('passengers');
         $this->price        =   str_replace('$', '', $this->input->post('price'));
+        $this->rideCost     =   str_replace('$', '', $this->input->post('ride_cost'));
         $this->mileage      =   $this->input->post('mileage');
         $this->distance     =   $this->input->post('mileage');
     }
@@ -83,7 +85,7 @@ class postride_model extends User_Model {
     public function insertRides() {
         $query = "INSERT INTO ride (Name, Departs, Lat_Dep, Lon_Dep, Arrival, "
                         . "Lat_Arr, Lon_Arr, Distance, Driver_ID, Notes, "
-                        . "Passengers, Price, Vehicle_ID, DepartTime, "
+                        . "Passengers, Price, Ride_Cost, Vehicle_ID, DepartTime, "
                         . "Driver_Name, Ride_ID, DepartDate, DepartShort, "
                         . "ArriveShort) "
                 . "VALUES('$this->destination', '$this->departure', "
@@ -92,6 +94,7 @@ class postride_model extends User_Model {
                         . "'$this->arriveLon', '$this->mileage', "
                         . "'$this->userId', '$this->notes', "
                         . "'$this->passengers', '$this->price', "
+                        . "'$this->rideCost', "
                         . "'$this->vehicleId', '$this->time', "
                         . "'$this->driver', '$this->rideId', '$this->date', "
                         . "'$this->departShort', '$this->arrivalShort' "

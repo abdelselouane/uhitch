@@ -1,3 +1,5 @@
+<!--?php echo '<pre>'; print_r($data); echo '</pre>';?-->
+
 <h3>Personal Information</h3>
 <div class="section">
     <label>First Name</label>
@@ -46,7 +48,7 @@
 </div>
 <div class="section">
     <label>Zip Code</label>
-    <input type="text" id="lastname" 
+    <input type="text" id="zipcode" 
            value="<?php echo $data->zip;?>" 
            placeholder="Zip"/>
 </div>

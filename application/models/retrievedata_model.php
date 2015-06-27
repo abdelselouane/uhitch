@@ -134,12 +134,12 @@ class retrievedata_model extends User_Model {
      }
      
      function retrieveAdditionalData() {
-         $query =  "SELECT "
-                 . "u.Middle_Name, u.Phone_Number, u.Address, "
+         $query =  "SELECT *"
+                 /*. "u.Middle_Name, u.Phone_Number, u.Address, "
                  . "u.City, u.State, u.Zip_Code, u.Bio, u.Major, "
                  . "u.Classification, u.Greek, u.Living, u.Activities, "
                  . "u.Sports, u.Organizations, u.Music, u.Driver, "
-                 . "v.Make, v.Model, v.Year, v.Color "
+                 . "v.Make, v.Model, v.Year, v.Color "*/
                  . "FROM user as u "
                  . "JOIN vehicle as v "
                  . "ON u.UserID=v.DriverId "
@@ -158,6 +158,7 @@ class retrievedata_model extends User_Model {
         $address2 = $this->input->post('address2');
         $city  = $this->input->post('city');
         $state = $this->input->post('state');
+        $zipcode = $this->input->post('zipcode');
 
         $fullname = $fname.' '.$lname;
         
@@ -172,7 +173,8 @@ class retrievedata_model extends User_Model {
                     ."Phone_Number='$phone', "
                     ."Address='$location', "
                     ."City='$city', "
-                    ."State='$state' "
+                    ."State='$state', "
+                    ."Zip_Code='$zipcode' "
                 ."WHERE UserID='$this->userid' ";
         
         $this->db->execute($query);
@@ -187,17 +189,19 @@ class retrievedata_model extends User_Model {
      }
      
      function changeVehicleData() {
-        $year  = $this->input->post('vehicle_year');
-        $make  = $this->input->post('vehicle_make');
-        $model = $this->input->post('vehicle_model');
-        $color = $this->input->post('vehicle_color');
+         
+         // echo '<pre>'; print_r($this->input->post()); echo '</pre>'; exit;
+        $year  = $this->input->post('year');
+        $make  = $this->input->post('make');
+        $model = $this->input->post('model');
+        $color = $this->input->post('color');
          
         $query = "UPDATE `vehicle` SET "
-                    . "Model='$this->model', "
-                    . "Year='$this->year', "
-                    . "Color='$this->color', "
-                    . "Make='$this->make' "
-                . "WHERE VehicleId='$this->userid'";
+                    . "Model='$model', "
+                    . "Year='$year', "
+                    . "Color='$color', "
+                    . "Make='$make' "
+                . "WHERE DriverId='$this->userid'";
         
         $this->db->execute($query);
         
@@ -205,6 +209,9 @@ class retrievedata_model extends User_Model {
      }
      
      function changeSchoolData() {
+         
+        // echo '<pre>'; print_r($this->input->post()); echo '</pre>'; exit;
+         
          $school = $this->input->post('school');
          $class = $this->input->post('classification');
          $major = $this->input->post('major');
@@ -215,7 +222,7 @@ class retrievedata_model extends User_Model {
                     . "Classification='$class', "
                     . "Major='$major', "
                     . "Greek='$greek' "
-                . "WHERE VehicleId='$this->userid'";
+                . "WHERE UserID='$this->userid'";
         
         $this->db->execute($query);
         
@@ -240,7 +247,8 @@ class retrievedata_model extends User_Model {
                     . "r.Ride_ID, r.Name, r.DepartShort, r.Lat_Dep, "
                     . "r.Lon_Dep, r.DepartTime, r.DepartDate, r.ArriveShort, "
                     . "r.Lat_Arr, r.Lon_Arr, r.Distance, r.Driver_Name, "
-                    . "r.Passengers, r.Driver_ID, r.Price, r.Notes, "
+                    . "r.Passengers, r.Driver_ID, r.Price, r.Ride_Cost, r.Notes, "
+                    . "r.Passenger1_ID, r.Passenger2_ID, r.Passenger3_ID, r.Passenger4_ID, r.Passenger5_ID, "
                     . "u.Full_Name, u.Email_Address, u.School_Name, "
                     . "u.Driver_Count, u.Driver_Rating, u.Photo, "
                     . "d.Make, d.Model, d.Year, d.Color "
@@ -271,6 +279,7 @@ class retrievedata_model extends User_Model {
                     . "Active='0' "
                  . "WHERE UserID='$this->userid' ";
          
+         //echo $query;exit;
          $this->db->execute($query);
      }
 }

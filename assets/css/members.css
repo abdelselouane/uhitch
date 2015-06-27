@@ -498,7 +498,7 @@
 #page #postRide #rideInfo {
     float: left;
     width: 48%;
-    text-align: center;
+    text-align: left;
     padding: 0;
     overflow: hidden;
 }
@@ -518,7 +518,7 @@
 }
 
 #page #postRide #rideInfo .ride_input {
-    width: 90%;
+   /* width: 90%; */
 }
 
 #page #postRide #rideInfo .ride_notes {
@@ -538,7 +538,7 @@
 }
 
 #page #postRide #rideInfo .destination {
-    width: 15em;
+    /*width: 15em;*/
 }
 
 #page #postRide #rideInfo .right,
@@ -570,7 +570,9 @@
     height: 10%;
 }
 
-#page #postRide #rideInfo input[type=text]#price {
+#page #postRide #rideInfo input[type=text]#passengers,
+#page #postRide #rideInfo input[type=text]#ride_cost,
+#page #postRide #rideInfo input[type=text]#price{
     width: 25%
 }
 
@@ -599,15 +601,22 @@
 }
 
 #page #postRide #rideInfo label {
-    margin: 0 auto;
     padding: 0.3em 0;
     font-size: 110%;
     text-align: left;
     width: 18em;
 }
 
+#page #postRide #rideInfo label.pricing {
+    padding: 0.3em 0;
+    font-size: 110%;
+    text-align: left;
+    width: 70%;
+    float: left;
+}
+
 #page #postRide #rideInfo textArea {
-    width: 18em;
+    width: 100%;
     padding: 0.5em 0.3em;
     font-size: 110%;
     margin: 0 auto;
@@ -1836,4 +1845,186 @@
     border: 1px solid #55838f !important;
     position: relative;
     margin: -1px;
+}
+
+/** ****************************** 
+                MISC
+********************************** **/
+
+.prm-btn, 
+.psn-box{
+    margin: 0 5px;
+    border: 1px solid green;
+    color: green;
+    padding: 10px;
+    -moz-box-shadow:    1px 1px 1px 1px #ccc;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow:         1px 1px 1px 1px #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.prm-btn:active,
+.prm-btn:focus,
+.prm-btn:hover{
+    border: 1px solid green;
+    color: #fff;
+    background-color: green;
+}
+
+.psn-input{
+  margin-left: 5px !important;   
+  width: 40px !important;
+  padding: 8px 12px !important;
+}
+
+.passenger-ui{
+    height: auto;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.passenger-ui ul{
+    list-style: none;
+    width: 100%;
+}
+
+.passenger-ui ul>li{
+    width: 100%;
+}
+
+label.error{
+    font-size: 12px !important;
+    border: 0 !important;
+    color: #a94442 !important;
+    text-align: left !important;
+    width: 100% !important;
+}
+
+label.valid{
+    color: green !important;
+}
+
+#postRide input.error{
+    border: 1px solid #a94442 !important;
+}
+
+#requestride{
+    margin-top: 120px;
+    width: 45em;
+    margin: 1% auto 2%;
+    padding: 1em;
+    background-color: #F4F4F4;
+    box-shadow: 0 0 1.5px black;
+    -webkit-box-shadow: 0 0 1.5px black;
+    -moz-box-shadow: 0 0 1.5px black;
+}
+
+#requestride figure{
+    float: left;
+    border: 1px #ccc;
+    width: 12em;
+    height: 12em;
+    padding: 0;
+    margin: 0 0.5em 2em;
+    background-color: #fff;
+    box-shadow: 0 0 1.5px black;
+    -webkit-box-shadow: 0 0 1.5px black;
+    -moz-box-shadow: 0 0 1.5px black;
+}
+
+#requestride figure img{
+    width: 100%;
+    height: 100%;
+}
+
+#requestride div.left{
+    float: left;
+    width: 50%;
+}
+
+#requestride div.right{
+    float: left;
+    margin: 0 20px;
+}
+
+#requestride .v-color{
+    margin:5px;
+    border: 1px solid #fff;
+    padding: 5px 15px;
+    -moz-box-shadow:    1px 1px 1px 1px #ccc;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow:         1px 1px 1px 1px #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#requestride form button.active{
+    width: 100%;
+    margin: 0 5px;
+    border: 1px solid green;
+    color: #fff;
+    background-color: green;
+    padding: 10px;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#requestride form button.active:hover,
+#requestride form button.active:active,
+#requestride form button.active:focus{
+    border: 2px solid green;
+    color: green;
+    background-color: #d6e9c6;
+}
+
+#requestride form button.occupied{
+    width: 100%;
+    margin: 0 5px;
+}
+
+#requestride .cost-info .right,
+#requestride .cost-info .left{
+    width: 45%;
+    margin: 20px 10px;
+}
+
+#requestride .cost-info{
+    text-align: center;
+}
+
+#requestride .cost-info h5{
+    border-bottom: 1px solid;
+    padding-bottom: 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+#requestride .cost-info p.active{
+    font-size: 50px;
+    margin: 10px auto;
+    color: green;
+}
+
+#select_form select{
+  margin-top: 5px;
+  height: 40px;
+}
+
+#requestride .cost-info p.result-text{
+    font-size: 20px;
+    margin: 10px auto;
+    color: green;
+}
+
+#requestride .cost-info p.occupied{
+    font-size: 50px;
+    margin: 10px auto;
+    color: #ccc;
 }

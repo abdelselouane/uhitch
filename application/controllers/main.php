@@ -74,6 +74,25 @@ class Main extends My_BaseController {
         $this->display('postride');
     }
     
+    function requestride() {
+        
+        $rideId = $this->input->get('q');
+        if( !empty($rideId) ) {
+            
+            $this->load->model('retrievedata_model');
+            $info = $this->retrievedata_model->retrieveRideInformation($rideId);
+            
+            if( !empty($info) && isset($info) ) {
+                
+                $this->ride = $info;
+                $this->map = FALSE;
+                $this->setScripts('requestride');
+                $this->display('requestride');
+                
+            } else { $this->issue404Error(); }
+        } else { $this->issue404Error(); }
+    }
+    
     function newevent() {
         $this->title = 'Uhitch | Create New Event';
         $this->setScripts('event');
@@ -419,10 +438,15 @@ class Main extends My_BaseController {
             
     function setAdditionalData() {
         $data = $this->retrieveAdditionalData();
+        
+        //echo '<pre>'; print_r( $data ); echo '</pre>';exit;
 
         $this->vehicleData($data);
         
+        $this->user->fullName   = $data['Full_Name'];
+        $this->user->firstName  = $data['First_Name'];
         $this->user->middleName = $data['Middle_Name'];
+        $this->user->lastName   = $data['Last_Name'];
         $this->user->phone      = $data['Phone_Number'];
         $this->user->address    = $data['Address'];
         $this->user->city       = $data['City'];

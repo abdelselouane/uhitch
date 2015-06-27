@@ -63,7 +63,7 @@ function handleSelectFiltration() {
         var vehicle_make = document.getElementById("vehicle_make");
         if(value != ''){
             
-            var url = 'https://api.edmunds.com/api/vehicle/v2/makes?year='+value+'&fmt=json&api_key=y6wkw9h54sqzfd2zxh96ux7x';
+            var url = 'https://api.edmunds.com/api/vehicle/v2/makes?year='+value+'&fmt=json&api_key=29vmhtd5d2yefj8ucsk75sqr';
             
             $.ajax({
                 url : url,
@@ -116,7 +116,7 @@ function handleSelectFiltration() {
         
         if(value != ''){
             
-            var url = 'https://api.edmunds.com/api/vehicle/v2/'+value+'?year='+year+'&fmt=json&api_key=y6wkw9h54sqzfd2zxh96ux7x';
+            var url = 'https://api.edmunds.com/api/vehicle/v2/'+value+'?year='+year+'&fmt=json&api_key=29vmhtd5d2yefj8ucsk75sqr';
             
             $.ajax({
                 url : url,

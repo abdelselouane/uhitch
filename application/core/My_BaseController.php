@@ -119,7 +119,9 @@ class My_BaseController extends CI_Controller {
         $scripts = array();
         
         $postRide   = base_url()."assets/js/PostRides.js";
+        $requestRide   = base_url()."assets/js/requestride.js";
         $jqueryUI   = "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js";
+        $jqueryValidate   = base_url()."assets/js/jquery.validate.js";
         $mapAPI     = "http://maps.google.com/maps/api/js?sensor=false";
         $bootstrapValidator     =  base_url()."assets/js/bootstrapValidator.min.js";
         $signUp     = base_url()."assets/js/SignUpUser.js";
@@ -189,7 +191,10 @@ class My_BaseController extends CI_Controller {
                 array_push($scripts, $members);
                 break;
             case 'postride':
-                array_push($scripts, $postRide, $jqueryUI);
+                array_push($scripts, $postRide, $jqueryUI, $jqueryValidate);
+                break;
+            case 'requestride':
+                array_push($scripts, $requestRide, $jqueryUI, $jqueryValidate);
                 break;
             case 'hitch':
                 array_push($scripts, $hitch);

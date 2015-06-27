@@ -64,6 +64,100 @@ $(window).load(function() {
             calcRoute();
         });
     });
+    
+    
+    var $passenger = 0;
+    $('.prm-btn').click(function(){
+        
+        var $id = $( this ).attr('id');
+        var $psn = $('#passengers-disabled');
+        var $psnVl = $psn.val();
+        
+        if($psnVl == '') $psnVl = 0;
+        
+        $passenger = parseInt($psnVl);
+        
+        if($id == 'passenger-plus' ){
+            /* MAX NUMBER IS 5 passengers per trip */
+            if( parseInt($passenger) >= 0 && parseInt($passenger) < 5 ){
+                $psn.val($passenger += 1);
+                $('.passenger-ui').append('<span class="psn-box">'+$passenger+'</span>');
+            }
+        }else{
+            /* MIN NUMBER IS 0 passengers per trip */
+            if( $passenger > 0){
+                $psn.val($passenger -= 1);
+                $('.passenger-ui span:last-child').remove();
+            }
+        }
+        
+        $('#passengers').val($passenger);
+        return false;
+        //console.log( $psn.val() );
+        
+    });
+    
+    $('#post-btn').click(function(event){
+        event.preventDefault();
+        //console.log('submit form'); //return false;
+        
+        $('#ride_form').submit();
+    });
+    
+    $('#ride_form').validate({
+        rules: {
+            destination: {
+                required: true
+            },
+            date: {
+                required: true
+            },
+            time: {
+                required: true
+            },
+            departure: {
+                required: true
+            },
+            arrival: {
+                required: true
+            },
+            price_disabled: {
+                required: true
+            },
+            ridecost_disabled: {
+                required: true
+            },
+            passengers_disabled: {
+                required: true
+            }/*,
+            mileage: {
+                required: true
+            },
+            departShort: {
+                required: true
+            },
+            departLat: {
+                required: true
+            },
+            departLon: {
+                required: true
+            },
+            arriveShort: {
+                required: true
+            },
+            arriveLat: {
+                required: true
+            }*/
+
+        },
+        highlight: function (element) {
+            $(element).removeClass('success').addClass('error');
+        },
+        success: function (element) {
+            element.text('OK!').addClass('valid')
+                .closest('.control-group').removeClass('error').addClass('success');
+        }
+    });
      
 });
 
@@ -127,21 +221,63 @@ function setCoordinates() {
 
 function setMileage(value) {
     var mileage = value.distance.value;
-    var suggestPrice = 0;
+    var suggestPrice = 0.0;
+    var rideCost = 0.0;
     
     mileage *= 0.000621371192;
     //console.log(mileage);
+    
     $('#mileage').val(Math.round(mileage));
          
-    if(mileage <= 100) {
+    if(mileage < 100) {
         suggestPrice = mileage * 0.21;
-    } else {
-        var temp = mileage - 100;
-        suggestPrice = 0.21 * 100;
-        suggestPrice += 0.19 * temp;
+    } else if(mileage >= 100) {
+        suggestPrice = mileage * 0.21;
+    } else if(mileage >= 200) {
+        suggestPrice = mileage * 0.07;
     }
     
-    $('.priceValue').val('$' + Math.round(suggestPrice));
+    if( mileage<20 ){
+        rideCost = mileage * 0.7;
+    } else if(mileage<30){
+        rideCost = mileage * 0.6;
+    } else if(mileage<60){
+        rideCost = mileage * 0.5;
+    } else if(mileage<70){
+        rideCost = mileage * 0.44;
+    } else if(mileage<80){
+        rideCost = mileage * 0.39;
+    } else if(mileage<90){
+        rideCost = mileage * 0.35;
+    } else if(mileage<100){
+        rideCost = mileage * 0.32;
+    } else if(mileage<110){
+        rideCost = mileage * 0.30;
+    } else if(mileage<120){
+        rideCost = mileage * 0.28;
+    } else if(mileage<130){
+        rideCost = mileage * 0.27;
+    } else if(mileage<150){
+        rideCost = mileage * 0.25;
+    } else if(mileage<160){
+        rideCost = mileage * 0.24;
+    } else if(mileage<170){
+        rideCost = mileage * 0.23;
+    } else if(mileage<230){
+        rideCost = mileage * 0.22;
+    } else if(mileage<290){
+        rideCost = mileage * 0.21;
+    } else if(mileage>=230){
+        rideCost = mileage * 0.20;
+    }
+
+    //console.log(Math.round(suggestPrice));
+    //console.log(Math.round(rideCost));
+    $('#ridecost-disabled').val('$' + Math.round(rideCost));
+    $('#price-disabled').val('$' + Math.round(suggestPrice));
+    
+    $('#ride_cost').val('$' + Math.round(rideCost));
+    $('#price').val('$' + Math.round(suggestPrice));
 }
 
 function applyHtmlInput() {

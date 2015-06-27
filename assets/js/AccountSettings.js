@@ -18,59 +18,56 @@ function changeUserInfo() {
         e.preventDefault();
         
         var command = $(this).val();
+        //console.log(command);
         captureData();
+        //console.log(personal);
         submitChanges(command);
     });
 }
 
+function base_url(segment){
+   // get the segments
+   pathArray = window.location.pathname.split( '/' );
+   // find where the segment is located
+   indexOfSegment = pathArray.indexOf(segment);
+   // make base_url be the origin plus the path to the segment
+   return window.location.origin + pathArray.slice(0,indexOfSegment).join('/') + '/';
+}
+
+
+function setJsonData() {
+    base = base_url('index.php');
+    var url = base + 'assets/majors.json'; 
+   /* $.getJSON(base + 'assets/vehicles.json', function(data) {
+        vehicleJson = data;
+    });*/
+    
+    //console.log(url);
+    
+    $.getJSON(url, function(data) {
+        majorJson = data;
+    });
+}
+
 function submitChanges(value) {
+    
+    base = base_url('index.php');
     url = base + 'index.php/';
     url += 'rest/handleAjax/' + value;
+    
+    //console.log(url); //return false;
     
     switch(value) {
         case 'personal':
             ajaxCall(personal, url);
             break;
         case 'vehicle':
-            verifyVehicleData();
+            verifyData(value, url);
             break;
         case 'school':
-            verifySchoolData();
+            verifyData(value, url);
             break;
     }  
-}
-
-function verifySchoolData() {
-    status = true;
-    
-    $('.vehicle select').each(function(index, value) {
-        var data = $(value).val();
-        
-        if(!data) {
-            alert('Missing Remaining School Data');
-            status = false;
-            return false; 
-        }
-    });
-    
-    if(status === true)
-        { ajaxCall(school, url); }
-}
-
-function verifyVehicleData() {
-    status = true; 
-    
-    $('.vehicle select').each(function(index, value) {
-        var data = $(value).val();
-        
-        if(!data) {
-            alert('Missing Remaining Vehicle Data');
-            return false; 
-        }
-    });
-    
-    if(status === true) 
-        { ajaxCall(vehicle, url); }
 }
 
 function ajaxCall(data, url) {
@@ -81,9 +78,39 @@ function ajaxCall(data, url) {
         dataType: 'text',  
         success: function(client) {
             alert('Changes Have Been Submitted');
+            //console.log(client);
         }
     });
 } 
+
+function verifyData(selector, url) {
+    status = 1;
+    
+    $('.'+selector).each(function(index, value) {
+        var data = $(this).val();
+        if(data == '') {
+            alert('Missing Remaining School Data');
+            status = 0;
+            return false; 
+        }
+    });
+    
+    var obj = '';
+    
+    switch(selector) {
+        case 'vehicle':
+             obj = vehicle;
+            break;
+        case 'school':
+             obj = school;
+            break;
+    }  
+    
+    if(status != 0){
+        //console.log(url);
+        ajaxCall(obj, url); 
+    }
+}
 
 function modifyData(command) {
     var target = $('.personal input[type=text]');
@@ -113,7 +140,7 @@ function changeVehicleInfo() {
         var vehicle_make = document.getElementById("vehicle_make");
         if(value != ''){
             
-            var url = 'https://api.edmunds.com/api/vehicle/v2/makes?year='+value+'&fmt=json&api_key=y6wkw9h54sqzfd2zxh96ux7x';
+            var url = 'https://api.edmunds.com/api/vehicle/v2/makes?year='+value+'&fmt=json&api_key=29vmhtd5d2yefj8ucsk75sqr';
             
             $.ajax({
                 url : url,
@@ -157,7 +184,7 @@ function changeVehicleInfo() {
         
         if(value != ''){
             
-            var url = 'https://api.edmunds.com/api/vehicle/v2/'+value+'?year='+year+'&fmt=json&api_key=y6wkw9h54sqzfd2zxh96ux7x';
+            var url = 'https://api.edmunds.com/api/vehicle/v2/'+value+'?year='+year+'&fmt=json&api_key=29vmhtd5d2yefj8ucsk75sqr';
             
             $.ajax({
                 url : url,
@@ -187,15 +214,6 @@ function changeVehicleInfo() {
     });
 }
 
-function setJsonData() {
-    $.getJSON(base + 'assets/vehicles.json', function(data) {
-        vehicleJson = data;
-    });
-    
-    $.getJSON(base + 'assets/majors.json', function(data) {
-        majorJson = data;
-    });
-}
 
 function populateMake(value) {
     var id = '#vehicle_make';
@@ -239,6 +257,7 @@ function resetTable(id, text) {
 function handleMajorFilter() {
     $('#category').on('change', function() {
         var value = $(this).val();
+        //console.log(value);
         filterMajors(value);
     });
 }
@@ -246,7 +265,7 @@ function handleMajorFilter() {
 function filterMajors(value) {  
     var id = '#major';
     resetTable(id, 'Select Major');
-    
+    //return false;
     for(var i in majorJson) {
         if(value === majorJson[i].Category) {
             for(var j in majorJson[i].Major) {
@@ -267,7 +286,8 @@ function captureData() {
         address: $('#address').val(),
         address2: $('#address2').val(),
         city:  $('#city').val(),
-        state: $('#state').val()
+        state: $('#state').val(),
+        zipcode: $('#zipcode').val()
     };
     
     vehicle = {
@@ -306,13 +326,14 @@ function deActivation() {
 }
 
 function removeAccount() {
-    url = base + 'index.php/';
-    url += 'rest/removeAccount';
+    url = base_url('index.php');
+    url += 'index.php/rest/removeAccount';
     
+    //console.log(url); //return false;
     $.ajax({
         url : url,
         type: 'POST',
-        dataType: 'text',  
+        /*dataType: 'text', */ 
         success: function(client) {
             console.log(client);
             window.location.reload();

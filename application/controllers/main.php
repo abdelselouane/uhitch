@@ -446,6 +446,7 @@ class Main extends My_BaseController {
         $this->user->fullName   = $data['Full_Name'];
         $this->user->firstName  = $data['First_Name'];
         $this->user->middleName = $data['Middle_Name'];
+        $this->user->gender     = $data['Gender'];
         $this->user->lastName   = $data['Last_Name'];
         $this->user->phone      = $data['Phone_Number'];
         $this->user->address    = $data['Address'];

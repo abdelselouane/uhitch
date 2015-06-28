@@ -406,7 +406,7 @@
 
 #page #postRide #rideMap {
     float: left;
-    width: 52%;
+    width: 50%;
     height: 40em;
     margin: 1% 0;
     padding: 0;
@@ -495,11 +495,11 @@
     to   { opacity: 1; }
 }
 
-#page #postRide #rideInfo {
+#page #postRide #rideInfo{
     float: left;
     width: 48%;
     text-align: left;
-    padding: 0;
+    padding: 1em;
     overflow: hidden;
 }
 
@@ -508,13 +508,13 @@
 }
 
 #page #postRide #rideInfo .destination label {
-    margin: 0 auto;
-    border: 1px solid;
+    /*margin: 0 auto;
+    border: 1px solid;*/
 }
 
 #page #postRide #rideInfo .destination,
 #page #postRide #rideInfo .ride_input {
-    margin: 0.5em auto;
+    /*margin: 0.5em auto;*/
 }
 
 #page #postRide #rideInfo .ride_input {
@@ -579,8 +579,8 @@
 #page #postRide #rideInfo input[type=text] {
     font-size: 110%;
     padding: 0.5em 0.3em;
-    width: 85%;
-    margin: 0.5em 0;
+    width: 100%;
+    /*margin: 0.5em 0;*/
 }
 
 #page #postRide #rideInfo input[type=text].city {
@@ -601,8 +601,6 @@
 }
 
 #page #postRide #rideInfo label {
-    padding: 0.3em 0;
-    font-size: 110%;
     text-align: left;
     width: 18em;
 }
@@ -611,7 +609,7 @@
     padding: 0.3em 0;
     font-size: 110%;
     text-align: left;
-    width: 70%;
+    width: 85%;
     float: left;
 }
 
@@ -823,15 +821,26 @@
     vertical-align: middle;
 }
 
+#page #members label{
+    margin: 0;
+    text-align: left;
+    width: 54%;
+}
+
+#page #members h3.title{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
 
 #page #members select {
-    font-family: ‘Times New Roman’, Times, serif;
-    font-size: 125%;
+    font-size: 110%;
+    height: 38px;
     display: block;
     margin: 0.6em auto;
     line-height: 1;
     text-align: center;
-    width: 13em;
+    width: 55%;
     /*border: 0;*/
     border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -1393,7 +1402,7 @@
     text-shadow: none !important;
 }
 #page #events select {
-    font-size: 110%;
+    /*font-size: 110%;*/
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -1534,7 +1543,7 @@
 #menu-container h3 {
     margin: 0.5em 0.3em;
 }
-.section {
+/*.section {
     display: block;
     overflow: hidden;
     margin: 1em auto;
@@ -1553,10 +1562,13 @@
     display: inline-block !important;
     vertical-align: top;
 }
-.section input[type=text] {
+.section input[type=text]{
     width: 30% !important;
     border: 1px solid ;
     margin: 0 !important;
+}
+.section select{
+    background-color: #fff;
 }
 .section label {
     width: 7em;
@@ -1572,6 +1584,7 @@
     margin: 0em auto 2em;
     padding: 1em 0;
 }
+*/
 #events .normal {
     margin: 0 !important;
     padding: 0;
@@ -1681,11 +1694,11 @@
 .paginate b {
     color: #000000 !important;
 }
-#input-time{width: 115px !important;}
+#input-time,
 #input-date{
-    width: 155px !important;
+   /* width: 155px !important;*/
     padding: 0.3em 0.3em !important;
-    margin: 0.4em 0 0 !important;
+   /* margin: 0.4em 0 0 !important;*/
     font-size: 105% !important;
 }
 #input-date::-webkit-calendar-picker-indicator{
@@ -1856,6 +1869,7 @@
     margin: 0 5px;
     border: 1px solid green;
     color: green;
+    background-color: #fff;
     padding: 10px;
     -moz-box-shadow:    1px 1px 1px 1px #ccc;
     -webkit-box-shadow: 1px 1px 1px 1px #ccc;
@@ -1908,6 +1922,24 @@ label.valid{
 
 #postRide input.error{
     border: 1px solid #a94442 !important;
+}
+
+#postRide input.pricing-input{
+  width: 15% !important;
+  margin: 0 0 !important;
+}
+
+#postride .input-group-addon {
+  padding: 16px 12px;
+
+}
+#rideInfo{
+    width: 30em;
+    margin: 1% 1% 2%;
+    padding: 1em;
+    background-color: #F4F4F4;
+    box-shadow: 0 0 1.5px black;
+    -webkit-box-shadow: 0 0 1.5px black;
 }
 
 #requestride{
@@ -2028,3 +2060,4 @@ label.valid{
     margin: 10px auto;
     color: #ccc;
 }
+

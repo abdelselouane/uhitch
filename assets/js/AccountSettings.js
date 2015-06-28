@@ -281,6 +281,7 @@ function captureData() {
         fname: $('#firstname').val(),
         mname: $('#middlename').val(),
         lname: $('#lastname').val(),
+        gender: $('#gender').val(),
         email: $('#email').val(),
         phone: $('#phone').val(),
         address: $('#address').val(),

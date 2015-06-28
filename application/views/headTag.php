@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/splash.css'>
 <!-- Bootstrap and Font-awesome StyleSheet -->
 <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo base_url();?>assets/css/bootstrap-datetimepicker.css" rel="stylesheet">
 <link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
 <!--/*** END NEW CSS ***/-->
 

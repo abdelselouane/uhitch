@@ -1,5 +1,4 @@
 <div id='rideInfo'>
-    <h1>Post Ride</h1>
     <?php 
         $today = date("Y-m-d");
         $form_rides = array (
@@ -8,46 +7,57 @@
         );
         echo form_open('main/submitRides', $form_rides);
     ?>
-    <div class="destination">
+    <div class="form-group destination">
+        <label>Ride Name:</label>
         <input placeholder="Destination Name" name="destination" type="text" required />   
     </div>
-    <div class="left">
-        <h3>Departure Date</h3>
-        <input id="input-date" type="date" name="date" required>
+    <div class="form-group">
+        <label>Departure Date:</label>
+        <div class='input-group date' id='datetimepicker1'>
+            <input id="input-date" name="date" type='text' class="form-control" required/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
     </div>
-    <div class="right">
-        <h3>Departure Time</h3>
-        <input id="input-time" type="time" name="time" required>
+    <div class="form-group">
+        <label>Departure Time:</label>
+        <div class='input-group date' id='datetimepicker2'>
+            <input type='text' id="input-time"  name="time" class="form-control" required/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+            </span>
+        </div>
     </div>
-    <div class="ride_input">
-        <h3>Departure</h3>
+    <div class="form-group ride_input">
+        <label>Departure:</label>
         <input placeholder="Departure Address" name="departure" type="text" 
-               class="ride_location" id="start" value="<?php echo $data->school;?>" required />
+               class="form-control ride_location" id="start" value="<?php echo $data->school;?>" required />
     </div>
-    <div class="ride_input">
-        <h3>Arrival</h3>
+    <div class="form-group ride_input">
+        <label>Arrival:</label>
         <input placeholder="Arrival Address" name="arrival" 
-               class="ride_location" id="end" type="text" required />
+               class="form-control ride_location" id="end" type="text" required />
     </div>
-    <div class="">
-        <h3>Passengers</h3>
-        <input id="passengers-disabled" maxlength="2" name="passengers-disabled" value="0" type="text" class="psn-input" required="required" disabled/>
+    <div class="form-group">
+        <label>Passengers:</label>
+        <input id="passengers_disabled" maxlength="1" name="passengers_disabled" value="0" type="text" class="psn-input" required="required" disabled/>
         <a id="passenger-plus" class="prm-btn"><i class="fa fa-plus"></i></a> 
         <a id="passenger-minus" class="prm-btn"><i class="fa fa-minus"></i></a>
         <div class="passenger-ui">
             <span class="psn-box">YOU</span>
         </div>
     </div>
-    <div class="alert alert-danger">
+    <div class="form-group alert alert-danger">
         <label class="pricing">Price / Seat</label>
-        <input id="price-disabled" class="" value="$0" maxlength="6" name="price-disabled" type="text" disabled/>
+        <input id="price_disabled" class="pricing-input" value="$0" maxlength="6" name="price_disabled" type="text" disabled/>
         <hr>
         <label class="pricing">Ride Cost</label>
-        <input id="ridecost-disabled" class="" value="$0" maxlength="6" name="ride_cost-disabled" type="text" disabled/>
+        <input id="ridecost_disabled" class="pricing-input" value="$0" maxlength="6" name="ridecost_disabled" type="text" disabled/>
     </div>
-    <div class="ride_notes">
+    <div class="form-group ride_notes">
         <label>Ride Notes:</label>
-        <textarea rows="2" cols="10" name="ridenotes"></textarea>
+        <textarea rows="2" cols="10" class="form-control" name="ridenotes"></textarea>
     </div>
     <input type="hidden" id="price" name="price" />
     <input type="hidden" id="ride_cost" name="ride_cost" />

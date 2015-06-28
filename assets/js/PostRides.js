@@ -70,7 +70,7 @@ $(window).load(function() {
     $('.prm-btn').click(function(){
         
         var $id = $( this ).attr('id');
-        var $psn = $('#passengers-disabled');
+        var $psn = $('#passengers_disabled');
         var $psnVl = $psn.val();
         
         if($psnVl == '') $psnVl = 0;
@@ -120,43 +120,42 @@ $(window).load(function() {
             },
             arrival: {
                 required: true
-            },
-            price_disabled: {
-                required: true
-            },
-            ridecost_disabled: {
-                required: true
-            },
-            passengers_disabled: {
-                required: true
-            }/*,
-            mileage: {
-                required: true
-            },
-            departShort: {
-                required: true
-            },
-            departLat: {
-                required: true
-            },
-            departLon: {
-                required: true
-            },
-            arriveShort: {
-                required: true
-            },
-            arriveLat: {
-                required: true
-            }*/
-
+            }
+        },
+        submitHandler: function(element) {
+            if ( $('#passengers_disabled').val() == 0 ) {
+                alert('Please add the folowing: how many passengers may ride with you? you can use plus/minus button to adjust the number, thank you.');
+                return false;
+            }
+            return true;
         },
         highlight: function (element) {
             $(element).removeClass('success').addClass('error');
-        },
+        }/*,
         success: function (element) {
-            element.text('OK!').addClass('valid')
+            element.addClass('valid')
                 .closest('.control-group').removeClass('error').addClass('success');
-        }
+        }*/
+    });
+    
+    $('#input-date').focus(function(){
+        $('#datetimepicker1').click();
+    });
+    
+    $('#input-time').focus(function(){
+        $('#datetimepicker2').click();
+    });
+    
+    
+    $('#datetimepicker1').datetimepicker({
+        format: 'MM/DD/YYYY',
+        viewMode: 'days',
+        showClear: true,
+        showClose: true
+    });
+    
+    $('#datetimepicker2').datetimepicker({
+        format: 'LT'
     });
      
 });
@@ -227,12 +226,14 @@ function setMileage(value) {
     mileage *= 0.000621371192;
     //console.log(mileage);
     
-    $('#mileage').val(Math.round(mileage));
+    var dbmileage = Math.floor(mileage * 100) / 100;
+    //console.log(dbmileage);
+    $('#mileage').val(dbmileage);
          
     if(mileage < 100) {
-        suggestPrice = mileage * 0.21;
+        suggestPrice = mileage * 0.2;
     } else if(mileage >= 100) {
-        suggestPrice = mileage * 0.21;
+        suggestPrice = mileage * 0.1;
     } else if(mileage >= 200) {
         suggestPrice = mileage * 0.07;
     }
@@ -271,24 +272,29 @@ function setMileage(value) {
         rideCost = mileage * 0.20;
     }
 
-    //console.log(Math.round(suggestPrice));
-    //console.log(Math.round(rideCost));
-    $('#ridecost-disabled').val('$' + Math.round(rideCost));
-    $('#price-disabled').val('$' + Math.round(suggestPrice));
+    suggestPrice    = Math.floor(suggestPrice * 100) / 100;
+    rideCost        = Math.floor(rideCost * 100) / 100;
     
-    $('#ride_cost').val('$' + Math.round(rideCost));
-    $('#price').val('$' + Math.round(suggestPrice));
+    //console.log(suggestPrice);
+    //console.log(rideCost);
+    
+    $('#ridecost_disabled').val('$' + rideCost);
+    $('#price_disabled').val('$' + suggestPrice);
+    
+    $('#ride_cost').val('$' + rideCost);
+    $('#price').val('$' + suggestPrice);
+    //$('#price').val('$' + Math.round(suggestPrice));
 }
 
 function applyHtmlInput() {
-    $('#input-date').on('click', function() {
+    /*$('#input-date').on('click', function() {
         $(this).prop("type", "text");
     });
     $('#input-date').datepicker({
         minDate: new Date(),
         inline: true,
         dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    }); 
+    }); */
 }
 
 function getLatLngEnd(addr){

@@ -99,7 +99,7 @@ class postride_model extends User_Model {
                         . "'$this->driver', '$this->rideId', '$this->date', "
                         . "'$this->departShort', '$this->arrivalShort' "
                 . ")";
-    
+        //echo $query; exit;
         $this->db->execute($query);
         return TRUE;
     }

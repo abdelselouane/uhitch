@@ -152,7 +152,7 @@ class retrievedata_model extends User_Model {
         $fname = $this->input->post('fname');
         $mname = $this->input->post('mname');
         $lname = $this->input->post('lname');
-        //$email = $this->input->post('email');
+        $gender = $this->input->post('gender');
         $phone = $this->input->post('phone');
         $address  = $this->input->post('address');
         $address2 = $this->input->post('address2');
@@ -169,7 +169,7 @@ class retrievedata_model extends User_Model {
                     ."First_Name='$fname', "
                     ."Middle_Name='$mname', "
                     ."Last_Name='$lname', "
-                    //."Email_Address='$email', "
+                    ."Gender='$gender', "
                     ."Phone_Number='$phone', "
                     ."Address='$location', "
                     ."City='$city', "

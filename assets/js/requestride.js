@@ -6,9 +6,9 @@ $( document ).ready(function(){
         var $price  = $( '#price' ).val();
         
         var result = $seat * $price;
-        
-        $('#result').val(result);
-        $('.result-text').text('Your Total is $'+result+'.00');
+        var dbresult = Math.floor(result * 100) / 100;
+        $('#result').val(dbresult);
+        $('.result-text').text('Your Total is $'+dbresult);
         //console.log(result);
         
     });

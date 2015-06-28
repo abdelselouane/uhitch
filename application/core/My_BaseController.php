@@ -118,6 +118,8 @@ class My_BaseController extends CI_Controller {
     protected function setScripts($type) {
         $scripts = array();
         
+        $datetimepicker = base_url()."assets/js/bootstrap-datetimepicker.min.js";
+        $moment   = base_url()."assets/js/moment.min.js";
         $postRide   = base_url()."assets/js/PostRides.js";
         $requestRide   = base_url()."assets/js/requestride.js";
         $jqueryUI   = "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js";
@@ -191,7 +193,7 @@ class My_BaseController extends CI_Controller {
                 array_push($scripts, $members);
                 break;
             case 'postride':
-                array_push($scripts, $postRide, $jqueryUI, $jqueryValidate);
+                array_push($scripts, $postRide, $jqueryUI, $jqueryValidate, $moment, $datetimepicker);
                 break;
             case 'requestride':
                 array_push($scripts, $requestRide, $jqueryUI, $jqueryValidate);

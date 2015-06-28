@@ -39,11 +39,12 @@ nav {
     margin: 0 auto;
     min-width: 900px;
     background-color: #fff !important;
-      position: fixed !important;
-      z-index: 1;
-      width: 100%;
-      margin-top: 20px;
-      border-radius: 0px !important;
+    position: fixed !important;
+    z-index: 1;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 0px !important;
+    z-index: 10000 !important;
 }
 
 nav a {

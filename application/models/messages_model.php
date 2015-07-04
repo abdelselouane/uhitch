@@ -33,11 +33,121 @@ class Messages_Model extends User_Model {
         return get_messages();
     }
     
+    public function getMsgByUserId($userId){
+        $query =  "SELECT * FROM messages WHERE deleted = 0 AND to_userId = '".$userId."'"; 
+        //echo $query;
+        $msgData = $this->db->retrieveRows($query);
+        return $msgData;
+    }
+    
+    public function getUserById($id){
+        $query =  "SELECT * FROM user WHERE UserId = '".$id."' "; 
+        //echo $query;
+        //exit;
+        $msgData = $this->db->retrieveRows($query);
+        return $msgData;
+    }    
+    
+    public function getUsername($value){
+        $query =  "SELECT Full_Name, UserId FROM user WHERE Full_Name like '".$value."%' "; 
+        //echo $query;
+        //exit;
+        $msgData = $this->db->retrieveRows($query);
+        return $msgData;
+    }
+    
+    public function getSentByUserId($userId){
+        $query =  "SELECT * FROM messages WHERE deleted = 0 AND sent = 1 AND from_userId = '".$userId."'"; 
+        //echo $query;
+        $msgData = $this->db->retrieveRows($query);
+        return $msgData;
+    }
+    
+    public function setMessage($post) {
+        $query =  "INSERT INTO messages (to_userName, to_userId, from_userName, from_userId, sent, subject, message) VALUES ('".$post['username']."', '".$post['to_userid']."', '".$post['from_fullname']."', '".$post['from_userid']."', 1, '".$post['subject']."', '".$post['message']."' );";
+        
+        $this->db->execute($query);
+    }
+    
+    public function getImportantByUserId($userId){
+        $query =  "SELECT * FROM messages WHERE important = 1 AND deleted = 0 AND ( to_userId = '".$userId."' OR from_userId = '".$userId."')"; 
+        //echo $query; exit;
+        $msgData = $this->db->retrieveRows($query);
+        return $msgData;
+    }
+    
+    public function getDeletedByUserId($userId){
+        $query =  "SELECT * FROM messages WHERE deleted = 1 AND ( to_userId = '".$userId."' OR from_userId = '".$userId."') "; 
+        //echo $query;
+        $msgData = $this->db->retrieveRows($query);
+        return $msgData;
+    }
+    
+     public function readMessage($id) {
+        $query =  "UPDATE `messages` SET `read`= 1 WHERE id = ".$id;
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+     public function enableImportant($id) {
+        $query =  "UPDATE `messages` SET `important`= 1 WHERE id = ".$id;
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+     public function disableImportant($id) {
+        $query =  "UPDATE `messages` SET `important`= 0 WHERE id = ".$id;
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+     public function enableDelete($id) {
+        $query =  "UPDATE `messages` SET `deleted`= 1 WHERE id = ".$id;
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+    public function disableDelete($id) {
+        $query =  "UPDATE `messages` SET `deleted`= 0 WHERE id = ".$id;
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+     public function enableAllDelete($ids) {
+        $query =  "UPDATE `messages` SET `deleted`= 1 WHERE id IN (".$ids.") ";
+        //echo $query; //exit;
+        $this->db->execute($query);
+    }
+    
+    public function completeDelete($id) {
+        $query =  "DELETE FROM `messages` WHERE id = ".$id;
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+    public function completeAllDelete($ids) {
+        $query =  "DELETE FROM `messages` WHERE id IN (".$ids.") ";
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+    public function sentDelete($id) {
+        $query =  "UPDATE `messages` SET `sent`= 0 WHERE id = ".$id;
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+    public function sentAllDelete($ids) {
+        $query =  "UPDATE `messages` SET `sent`= 0 WHERE id IN (".$ids.") ";
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
     public function get_messages() { 
        
         $get_messages_query =  "SELECT id, to_userid, from_userid, message, timestamp, from_userName "
                              . "FROM messages "
-                             . "WHERE to_userName = '$this->user' ";        
+                             . "WHERE to_userId = '$this->user' ";        
         
         $message_data = $this->db->retrieveRows($get_messages_query);         
        

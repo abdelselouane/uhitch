@@ -228,12 +228,19 @@ class retrievedata_model extends User_Model {
         
         return TRUE;
      }
+    
+    function retrieveAllEvents() {
+         $query =  "SELECT * FROM `events` WHERE `Reviewed` = 1 AND `EventDate` >= '".date('Y-m-d')."' ";
+         //echo $query; exit;
+         //echo '<pre>'; print_r($this->db->retrieveData($query)); echo '</pre>';exit;
+         return $this->db->retrieveRows($query);
+     }
      
      function retrieveEventInformation($id) {
          $query =  "SELECT "
                     . "e.Name, e.Location, e.City, e.State, e.Zip, "
                     . "e.Lat, e.Lon, e.Comments, e.Photo, e.EventDate, "
-                    . "e.EventTime, e.CreatedByName, e.CreatedById, u.Photo "
+                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, u.Photo "
                  . "FROM events e "
                  . "INNER JOIN user u "
                  . "ON e.CreatedById = u.UserID "
@@ -247,7 +254,7 @@ class retrievedata_model extends User_Model {
                     . "r.Ride_ID, r.Name, r.DepartShort, r.Lat_Dep, "
                     . "r.Lon_Dep, r.DepartTime, r.DepartDate, r.ArriveShort, "
                     . "r.Lat_Arr, r.Lon_Arr, r.Distance, r.Driver_Name, "
-                    . "r.Passengers, r.Driver_ID, r.Price, r.Ride_Cost, r.Notes, "
+                    . "r.Passengers, r.Driver_ID, r.Price, r.Ride_Cost, r.Charge, r.Notes, "
                     . "r.Passenger1_ID, r.Passenger2_ID, r.Passenger3_ID, r.Passenger4_ID, r.Passenger5_ID, "
                     . "u.Full_Name, u.Email_Address, u.School_Name, "
                     . "u.Driver_Count, u.Driver_Rating, u.Photo, "

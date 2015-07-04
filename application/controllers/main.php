@@ -71,6 +71,9 @@ class Main extends My_BaseController {
     function postride() {
         $this->map = TRUE;
         $this->setScripts('postride');
+        $this->load->model('retrievedata_model');
+        $events = $this->retrievedata_model->retrieveAllEvents();
+        $this->data->events = $events;
         $this->display('postride');
     }
     
@@ -190,6 +193,12 @@ class Main extends My_BaseController {
         $this->load->model('retrievedata_model');
         $this->load->model('myuser_model');
         $info = $this->retrievedata_model->retrieveEventInformation($eventId);
+        
+        //check if event has a ride
+        /*if($info['EventId']){
+                $this->retrievedata_model->EventHasRide($info['EventId'], $info['CreatedById']);
+        }*/
+        
         $user = $this->myuser_model->getUserByUserID($info['CreatedById']);
         
         $info['creator'] = $user;
@@ -269,14 +278,169 @@ class Main extends My_BaseController {
         $this->display('settings');
     }
             
-    function messages() {
-        $this->setScripts('sendmessage');
-        $this->load->model('messages_model');
-        $user_messages = $this->messages_model->get_messages();
-        $this->MessageData($user_messages);
+    function messages($tab = '') {
+        
+        $get = $this->input->get();
+        $this->user->get = (isset($get) && $get != '') ? $get['q'] : '';
+        $to_userInfo = $this->getUserById($this->user->get);
+        $this->user->to_username = (is_array($to_userInfo) && count($to_userInfo) > 0 ) ? $to_userInfo[0]['Full_Name'] : '';
+        //echo '<pre>'; print_r($to_userInfo); echo '</pre>'; exit;
+        
+        $userId = $this->user->userid;
+    
+        switch ($tab) {
+            case 'sent':
+                $this->sent($userId);
+                break;
+            case 'important':
+                $this->important($userId);
+                break;
+            case 'deleted':
+                $this->deleted($userId);
+                break;
+            default:
+                $this->inbox($userId);
+                break;
+        }
+        
         $this->display('message');
     }
-
+    
+    function inbox($userId){
+        $this->setScripts('sendmessage');
+        $this->load->model('messages_model');
+        $msgData = $this->messages_model->getMsgByUserId($userId);
+        $this->MessageData($msgData);
+        $this->user->tab = 'inbox';
+    }
+    
+    function sent($userId){
+        $this->setScripts('sendmessage');
+        $this->load->model('messages_model');
+        $msgData = $this->messages_model->getSentByUserId($userId);
+        $this->MessageData($msgData);
+        $this->user->tab = 'sent';
+    }
+    
+    function important($userId){
+        $this->setScripts('sendmessage');
+        $this->load->model('messages_model');
+        $msgData = $this->messages_model->getImportantByUserId($userId);
+        $this->MessageData($msgData);
+        $this->user->tab = 'important';
+    }
+    
+    function deleted($userId){
+        $this->setScripts('sendmessage');
+        $this->load->model('messages_model');
+        $msgData = $this->messages_model->getDeletedByUserId($userId);
+        $this->MessageData($msgData);
+        $this->user->tab = 'deleted';
+    }
+    
+    function getMsgByUserId($tab = ''){
+        redirect('main/messages/'.$tab, 'refresh');
+    }
+    
+    function getUsername($value){
+        $this->load->model('messages_model');
+        $msgData = $this->messages_model->getUsername($value);
+        $out = array_values($msgData);
+        print_r(json_encode($out));
+    }
+    
+    function getUserById($id){
+        $this->load->model('messages_model');
+        $msgData = $this->messages_model->getUserById($id);
+        return $msgData;
+    }
+    
+    
+    function sendMessage(){
+        $this->load->model('messages_model');
+        $post = $this->input->post();
+        if($post != ''){
+            $this->messages_model->setMessage($post);
+            $this->user->msg = 'Your message was sent to <strong>'.$post['username'].'</strong> successfuly.';
+            $this->user->error = 'false';
+            $post = '';
+        }
+        redirect('main/messages/'.$this->user->tab, 'refresh');
+    }
+    
+    function readMessage($id){
+        $this->load->model('messages_model');
+        if(isset($id)){
+            $this->messages_model->readMessage($id);
+        }
+    }
+    
+    function enableImportant($id){
+        $this->load->model('messages_model');
+        if(isset($id)){
+            $this->messages_model->enableImportant($id);
+        }
+        $this->messages('important');
+    }
+    
+    function disableImportant($id){
+        $this->load->model('messages_model');
+        if(isset($id)){
+            $this->messages_model->disableImportant($id);
+        }
+    }
+    
+    function enableDelete($id){
+        $this->load->model('messages_model');
+        if(isset($id)){
+            $this->messages_model->enableDelete($id);
+        }
+    }
+    
+    function disableDelete($id){
+        $this->load->model('messages_model');
+        if(isset($id)){
+            $this->messages_model->disableDelete($id);
+        }
+    }
+    
+    function completeDelete($id){
+        $this->load->model('messages_model');
+        if(isset($id)){
+            $this->messages_model->completeDelete($id);
+        }
+    }
+    
+    function completeAllDelete($ids){
+        $this->load->model('messages_model');
+        $ids = str_replace("_",",",$ids);
+        if(isset($ids)){
+            $this->messages_model->completeAllDelete($ids);
+        }
+    }
+    
+    function sentDelete($id){
+        $this->load->model('messages_model');
+        if(isset($id)){
+            $this->messages_model->sentDelete($id);
+        }
+    }
+    
+    function sentAllDelete($ids){
+        $this->load->model('messages_model');
+        $ids = str_replace("_",",",$ids);
+        if(isset($ids)){
+            $this->messages_model->sentAllDelete($ids);
+        }
+    }
+        
+    function enableAllDelete($ids){
+        $this->load->model('messages_model');
+        $ids = str_replace("_",",",$ids);
+        if(isset($ids)){
+            $this->messages_model->enableAllDelete($ids);
+        }
+    }
     
     function MessageData($data)
     {
@@ -422,7 +586,8 @@ class Main extends My_BaseController {
         $this->user->email  = $this->session->userdata('emailAddress');
         $this->user->school = $this->session->userdata('school');
         $this->user->city   = $this->session->userdata('location');
-        
+        $this->user->userid = $this->session->userdata('userid');
+        $this->user->tab    = 'inbox';
       //  echo '<pre>'; print_r($this->user); echo '</pre>';
     }
 

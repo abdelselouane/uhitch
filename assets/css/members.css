@@ -556,20 +556,6 @@
     font-size: 105%;
 }
 
-#page #postRide #rideInfo select,
-#page #postRide #rideInfo #price{ 
-    padding: 0.3em;
-    font-size: 105%;
-    margin-top: 0.4em;
-}
-
-#page #postRide #rideInfo select {
-    margin: 0.5em 0;
-    font-size: 120%;
-    width: 20%;
-    height: 10%;
-}
-
 #page #postRide #rideInfo input[type=text]#passengers,
 #page #postRide #rideInfo input[type=text]#ride_cost,
 #page #postRide #rideInfo input[type=text]#price{
@@ -626,6 +612,18 @@
     padding: 0.5em 1.5em;
     font-size: 125%;
     -webkit-font-smoothing: antialiased;
+}
+
+#myEventsCarousel {
+    width: 50% !important;
+    position: relative !important;
+    float: left !important;
+}
+
+#myeventCarousel .carousel-caption{
+    border: 1px solid green;
+    opacity: 0.9;
+    background-color: #ececec;
 }
 
 #page #profile {
@@ -851,10 +849,170 @@
     box-shadow:         0px 0px 4px 0px rgba(50, 50, 50, 0.75);
 }
 
+/* MESSAGE */
+/** ***** **/
+
 #page #message #conversation {
     float: right;
     padding: 0;
     width: 65%;
+}
+
+#page #message #conversation ul.main-nav{
+    list-style: none;
+    margin-left: -33px;
+}
+
+#page #message #conversation ul.main-nav>li{
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+#page #message #conversation ul.main-nav>li a{
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+#page #message #conversation ul.main-nav>li a:hover,
+#page #message #conversation ul.main-nav>li a:focus,
+#page #message #conversation ul.main-nav>li a:active{
+   background-color: green;
+   color: #fff;
+}
+
+#page #message #inbox ul{
+    list-style: none;
+    margin-left: -33px;
+}
+
+#page #message #inbox ul>li{
+    display: block;
+    margin: 10px 0;
+}
+
+#page #message #inbox ul>li a{
+    width: 100%;
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+#page #message #inbox ul>li a:hover,
+#page #message #inbox ul>li a:focus,
+#page #message #inbox ul>li a:active{
+   background-color: green;
+   color: #fff;
+}
+
+#page #message #msgListing .smallBox{
+  width: 20px;
+  text-align: left;
+  padding: 10px;
+}
+
+.inbox-nav-active{
+    color: #fff !important;
+    background-color: green !important;
+}
+
+.read-class{
+    color: #ababab;
+}
+
+.star-active{
+    color: green !important;
+}
+.margin-left-20{
+    margin-left: 10px;
+}
+
+.color-green{color: green;}
+
+#page #message #msgListing td>a>i.fa-star{
+    color: #ccc;
+}
+
+#form-container,
+#reply-container{
+    display: none;
+}
+
+#listing-container a.item-msg{
+    cursor: pointer;
+}
+
+#loading-container{
+    display: none;
+    position: absolute;
+    top: 110px;
+    z-index: 1;
+    opacity: 0.5;
+    width: 481px;
+    text-align: center;
+    padding: 100px 0;
+}
+
+#page #message #form-container a.form-btn,
+#page #message #reply-container a.form-btn{
+    display: inline-block;
+    padding: 5px 30px;
+    border: 1px solid green;
+    border-radius: 5px;
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#page #message #form-container a.form-btn:hover,
+#page #message #form-container a.form-btn:focus,
+#page #message #form-container a.form-btn:active,
+#page #message #reply-container a.form-btn:hover,
+#page #message #reply-container a.form-btn:focus,
+#page #message #reply-container a.form-btn:active{
+   background-color: green;
+   color: #fff;
+}
+
+#page #message #auto-complete{
+    display: none;
+    z-index: 1000;
+    padding: 10px 0 !important;
+    margin-left: 0 !important;
+    position: absolute;
+    background-color: #fff;
+    width: 470px;
+    list-style: none;
+    border: 1px solid green;
+    border-radius: 5px;
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+#page #message #auto-complete li{
+    display: block !important;
+    margin: 0 !important;
+    text-align: left;
+    margin-left: -30px;
+    padding: 5px 10px;
+    border-bottom: 1px solid green;
+    cursor: pointer;
+}
+
+#page #message #auto-complete li:hover{
+    background-color: #ececec;
 }
 
 #page #message span {

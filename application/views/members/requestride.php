@@ -97,6 +97,7 @@ foreach($ride as $key => $value){
     </div>
     <div class="clear"></div>
     <div class="cost-info">
+        <?php if( $ride['Charge'] == 'seat' || $ride['Charge'] == 'both' ){?>
         <div class="form-group alert <?= ($empty_seats != 0) ? 'alert-success' : 'alert-danger' ?>">
             <h5>How many seats you would like to reserve?</h5>
             <p class="<?= ($empty_seats != 0) ? 'active' : 'occupied' ?>"><?= isset($ride['Price']) ? '$'.$ride['Price'].' / Seat' : ''?></p>
@@ -119,23 +120,24 @@ foreach($ride as $key => $value){
                     <input type="hidden" id="result" name="result">
                 </div>
                 <button type="submit" class="btn btn-default <?= ($empty_seats != 0) ? 'active' : 'occupied' ?>" <?= ($empty_seats != 0) ? '' : 'disabled' ?>>
-                    <?= ($empty_seats != 0) ? 'RESERVE NOW' : '<i class="fa fa-minus-circle"></i> NOT AVAILABLE' ?></button>
+                    <?= ($empty_seats != 0) ? 'RESERVE NOW' : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE' ?></button>
             </form>
         </div>
+        <?php } ?>
         <div class="clear"></div>
-        <div style="margin-left: 20px;" class="form-group left alert <?= ($empty_seats != 0) ? 'alert-success' : 'alert-danger' ?>">
+        <div style="margin-left: 20px;" class="form-group left alert <?=  ($empty_seats != 0) ? ( ($ride['Charge'] == 'seat' || $ride['Charge'] == 'both') ? 'alert-success' : 'alert-danger') : 'alert-danger' ?>">
             <h5>Reserve One Only</h5>
-            <p class="<?= ($empty_seats != 0) ? 'active' : 'occupied' ?>"><?= isset($ride['Price']) ? '$'.$ride['Price'] : ''?></p>
+            <p class="<?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'seat')  ? 'active' : 'occupied' ) : 'occupied' ?>"><?= isset($ride['Price']) ? '$'.$ride['Price'] : ''?></p>
             <form>
-                <button type="submit" class="btn btn-default <?= ($empty_seats != 0) ? 'active' : 'occupied' ?>" <?= ($empty_seats != 0) ? '' : 'disabled' ?>>
-                    <?= ($empty_seats != 0) ? 'Reserve Only One Seat' : '<i class="fa fa-minus-circle"></i> NOT AVAILABLE' ?></button>
+                <button type="submit" class="btn btn-default <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'seat')  ? 'active' : 'occupied' ) : 'occupied'?>" <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'seat') ? '' : 'disabled') : 'disabled' ?>>
+                <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'seat') ? 'Reserve All Available Seats' : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE' ) : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE'?></button>
             </form>
         </div>
-        <div class="form-group right alert <?= ($empty_seats > 1) ? 'alert-success' : 'alert-danger' ?>">
+        <div class="form-group right alert <?=  ($empty_seats != 0) ? ( ($ride['Charge'] == 'trip' || $ride['Charge'] == 'both') ? 'alert-success' : 'alert-danger') : 'alert-danger' ?>">
             <h5>Reserve All Available</h5>
-            <p class="<?= ($empty_seats > 1) ? 'active' : 'occupied' ?>"><?= isset($ride['Ride_Cost']) ? '$'.$ride['Ride_Cost'] : ''?></p>
+            <p class="<?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'trip')  ? 'active' : 'occupied' ) : 'occupied' ?>"><?= isset($ride['Ride_Cost']) ? '$'.$ride['Ride_Cost'] : ''?></p>
             <form>
-                <button type="submit" class="btn btn-default <?= ($empty_seats > 1) ? 'active' : 'occupied' ?>" <?= ($empty_seats > 1) ? '' : 'disabled' ?>><?= ($empty_seats > 1) ? 'Reserve All Available Seats' : '<i class="fa fa-minus-circle"></i> NOT AVAILABLE' ?></button>
+                <button type="submit" class="btn btn-default <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'trip')  ? 'active' : 'occupied' ) : 'occupied'?>" <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'trip') ? '' : 'disabled') : 'disabled' ?>><?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'trip') ? 'Reserve All Available Seats' : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE' ) : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE'?></button>
             </form>
         </div>
     </div>

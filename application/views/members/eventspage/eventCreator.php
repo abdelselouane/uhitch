@@ -2,8 +2,6 @@
     
     //$my_session = $this->session->all_userdata();
 
-    //echo '<pre>'; print_r($ride['creator']); echo '</pre>';
-
     $imagepath = file_exists("assets/photos/users/".$ride['creator']['Photo']) ? "assets/photos/users/".$ride['creator']['Photo'] :   "assets/photos/default.png";
      
     $imageUrl = base_url($imagepath);
@@ -25,8 +23,10 @@
             </a>
         </span>
         <div id="hitchBtn-container">
-            <a class="button" href="#">Request Ride</a>
-            <a class="button" href="<?= site_url('/main/messages')?>">Send Message</a>
+            <?php if(isset($ride['EventId']) && $ride['EventId'] != ''){?>
+            <a class="button" href="<?=site_url('main/requestride?q='.$ride['EventId']);?>">Request Ride</a>
+            <?php } ?>
+            <a class="button" href="<?=site_url('main/messages?q='.$ride['creator']['UserID']);?>">Send Message</a>
         </div>
     </div>
 </div>

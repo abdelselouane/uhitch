@@ -58,6 +58,8 @@ class postride_model extends User_Model {
         $this->rideCost     =   str_replace('$', '', $this->input->post('ride_cost'));
         $this->mileage      =   $this->input->post('mileage');
         $this->distance     =   $this->input->post('mileage');
+        $this->charge       =   $this->input->post('charge');
+        $this->eventid      =   $this->input->post('event_id');
     }
     
     protected function rideSettings() {
@@ -85,7 +87,7 @@ class postride_model extends User_Model {
     public function insertRides() {
         $query = "INSERT INTO ride (Name, Departs, Lat_Dep, Lon_Dep, Arrival, "
                         . "Lat_Arr, Lon_Arr, Distance, Driver_ID, Notes, "
-                        . "Passengers, Price, Ride_Cost, Vehicle_ID, DepartTime, "
+                        . "Passengers, Price, Ride_Cost, Charge, Vehicle_ID, DepartTime, Event_ID,"
                         . "Driver_Name, Ride_ID, DepartDate, DepartShort, "
                         . "ArriveShort) "
                 . "VALUES('$this->destination', '$this->departure', "
@@ -95,7 +97,9 @@ class postride_model extends User_Model {
                         . "'$this->userId', '$this->notes', "
                         . "'$this->passengers', '$this->price', "
                         . "'$this->rideCost', "
+                        . "'$this->charge', "
                         . "'$this->vehicleId', '$this->time', "
+                        . "'$this->eventid', "
                         . "'$this->driver', '$this->rideId', '$this->date', "
                         . "'$this->departShort', '$this->arrivalShort' "
                 . ")";

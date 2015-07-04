@@ -120,6 +120,9 @@ $(window).load(function() {
             },
             arrival: {
                 required: true
+            },
+            charge: {
+                required: true
             }
         },
         submitHandler: function(element) {

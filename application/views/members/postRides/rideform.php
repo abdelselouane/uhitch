@@ -55,6 +55,28 @@
         <label class="pricing">Ride Cost</label>
         <input id="ridecost_disabled" class="pricing-input" value="$0" maxlength="6" name="ridecost_disabled" type="text" disabled/>
     </div>
+    <div class="form-group">
+        <label>Charge Method:</label>
+        <select id="charge" name="charge" class="form-control" required>
+            <option value="">Select Charge Method</option>
+            <option value="seat">Charge Per Seat</option>
+            <option value="trip">Charge Per Trip</option>
+            <option value="both">Both</option>
+        </select>
+    </div>
+     <div class="form-group">
+        <label>If Event Ride:</label>
+        <select id="event_id" name="event_id" class="form-control" required>
+            <option value="">Select Event</option>
+            <?php 
+            if(is_array($data->events) && count($data->events)>0){ 
+                foreach($data->events as $key => $value){ ?>
+                    <option value="<?= $value['EventId']?>"><?= $value['Name']?></option>
+            <?php } 
+             }
+            ?>
+        </select>
+    </div>
     <div class="form-group ride_notes">
         <label>Ride Notes:</label>
         <textarea rows="2" cols="10" class="form-control" name="ridenotes"></textarea>

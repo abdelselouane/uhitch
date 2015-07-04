@@ -81,7 +81,7 @@
                     </ul>
                 </li>
                 <li class="center">
-                    <a href="<?php echo site_url('main/messages');?>" class="center">
+                    <a href="<?php echo site_url('main/messages/inbox');?>" class="center">
                         <i class="fa fa-envelope icon-font"></i>
                         <p class="center">&nbsp;Messages</p>
                     </a>

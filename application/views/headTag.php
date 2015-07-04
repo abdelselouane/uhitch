@@ -1,3 +1,4 @@
+<meta http-equiv="cache-control" content="no-cache" />
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/layout.css'>
 <link href='http://fonts.googleapis.com/css?family=Graduate' rel='stylesheet' type='text/css'>
 
@@ -18,6 +19,10 @@
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/header.css'>
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/members.css'>
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/registeruser.css'>
+<link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/jquery.dataTables.css'>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery-1.11.1.min.js"></script>
 
 <?php 
     if(isset($map)) {

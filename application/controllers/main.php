@@ -72,6 +72,16 @@ class Main extends My_BaseController {
         $this->map = TRUE;
         $this->setScripts('postride');
         $this->load->model('retrievedata_model');
+        
+        $get = $this->input->get();
+        
+        if(isset($get)){
+            $rideId = $this->input->get('q');
+            $info = $this->retrievedata_model->retrieveRideInformation($rideId);
+            $this->data->ride = $info;
+            //echo '<pre>'; print_r($info); echo '</pre>'; exit;
+        }
+        
         $events = $this->retrievedata_model->retrieveAllEvents();
         $this->data->events = $events;
         $this->display('postride');
@@ -277,6 +287,30 @@ class Main extends My_BaseController {
         $this->setScripts('settings');
         $this->display('settings');
     }
+    
+     function ridepanel() {
+        $this->title = 'Uhitch | Ride Panel';
+        $this->setScripts('ridepanel');
+        $this->load->model('retrievedata_model');
+        $rideData = $this->retrievedata_model->getAllRidesByUserId($this->user->userid);
+        $this->setRideData($rideData);
+         //echo '<pre>'; print_r($rideData); echo '</pre>'; exit;
+        $this->display('ridepanel');
+    }
+    
+    function getRideById($id){
+        
+        if($id != ''){
+            $this->load->model('retrievedata_model');
+            $rideData = $this->retrievedata_model->getRideById($id);
+           // $out = array_values($rideData);
+            print_r(json_encode($rideData));
+            //print_r($rideData); 
+            //exit;
+        } else {
+            $this->ridepanel();
+        }
+    }
             
     function messages($tab = '') {
         
@@ -442,6 +476,11 @@ class Main extends My_BaseController {
         }
     }
     
+    function setRideData($data)
+    {
+        $this->user->ride_data  = $data;
+    }
+    
     function MessageData($data)
     {
         $this->user->message_inbox  = $data;
@@ -480,6 +519,26 @@ class Main extends My_BaseController {
         $redirect = isset($result) ? $result : FALSE;
         
         redirect('/main/ridesubmitted?sent='.$redirect);
+    }
+    
+    function updateRide() {
+        $this->load->model('postride_model');
+        
+        $post = $this->input->post();
+        //echo '<pre>'; print_r($post); echo '</pre>'; exit;
+        
+        $result = $this->postride_model->updateRide();
+        
+        $redirect = isset($result) ? $result : FALSE;
+        
+        redirect('/main/rideupdated?updated='.$redirect);
+    }
+    
+    function rideupdated() {
+        $result = $_GET['updated'];
+        if($result) { 
+            $this->display('postRides/updatesuccess'); 
+        }
     }
     
     function ridesubmitted() {

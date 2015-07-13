@@ -248,14 +248,28 @@ class retrievedata_model extends User_Model {
          
          return $this->db->retrieveData($query);
      }
+    
+    function getAllRidesByUserId($id){
+        
+        $query =  "SELECT * FROM ride WHERE Driver_ID='$id' ";
+        // echo $query; exit;
+         return $this->db->retrieveRows($query);
+    
+    }
+    
+    function getRideById($id){
+        $query =  "SELECT * FROM ride WHERE id=".$id;
+        // echo $query; exit;
+        return $this->db->retrieveData($query);
+    }
      
      function retrieveRideInformation($id) {
          $query =  "SELECT "
-                    . "r.Ride_ID, r.Name, r.DepartShort, r.Lat_Dep, "
-                    . "r.Lon_Dep, r.DepartTime, r.DepartDate, r.ArriveShort, "
+                    . "r.Ride_ID, r.Name, r.Departs, r.DepartShort, r.Lat_Dep, "
+                    . "r.Lon_Dep, r.DepartTime, r.DepartDate, r.Arrival, r.ArriveShort, "
                     . "r.Lat_Arr, r.Lon_Arr, r.Distance, r.Driver_Name, "
                     . "r.Passengers, r.Driver_ID, r.Price, r.Ride_Cost, r.Charge, r.Notes, "
-                    . "r.Passenger1_ID, r.Passenger2_ID, r.Passenger3_ID, r.Passenger4_ID, r.Passenger5_ID, "
+                    . "r.Passenger1_ID, r.Passenger2_ID, r.Passenger3_ID, r.Passenger4_ID, r.Passenger5_ID, r.Event_ID, r.Notes,"
                     . "u.Full_Name, u.Email_Address, u.School_Name, "
                     . "u.Driver_Count, u.Driver_Rating, u.Photo, "
                     . "d.Make, d.Model, d.Year, d.Color "

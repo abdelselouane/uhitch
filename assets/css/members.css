@@ -849,6 +849,55 @@
     box-shadow:         0px 0px 4px 0px rgba(50, 50, 50, 0.75);
 }
 
+/* Ride Panel */
+
+#page #ridepanel{
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #F4F4F4;
+    padding: 1em;
+    text-align: center;
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+}
+
+#page #ridepanel .modal {
+  top: 20% !important;
+}
+
+#page #ridepanel #rideResult .left,
+#page #ridepanel #rideResult .right{
+    position: relative;
+    float: left;
+    width: 45%;
+    text-align: left;
+    padding: 10px;
+    margin: 10px;
+}
+
+#page #ridepanel #rideListing a.item-action{
+    border: 1px solid green;
+    border-radius: 4px;
+    padding: 5px 7px;
+    margin: 0 5px;
+    background-color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+#page #ridepanel #rideListing a.item-action:hover{
+    background-color: green;
+    color: #fff;
+}
+
 /* MESSAGE */
 /** ***** **/
 

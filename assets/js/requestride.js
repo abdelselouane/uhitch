@@ -10,7 +10,7 @@ $( document ).ready(function(){
         $('#result').val(dbresult);
         $('.result-text').text('Your Total is $'+dbresult);
         //console.log(result);
-        
+        $('#quantity').val($seat);
     });
 
 });

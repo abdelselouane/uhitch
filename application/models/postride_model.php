@@ -50,6 +50,38 @@ class postride_model extends User_Model {
         return $status;
     }
     
+    function updateRide() {
+//        if( !$this->validDriver() )
+//            { return FALSE; }
+        $post = $this->input->post();
+        //echo '<pre>'; print_r($post); echo '</pre>'; 
+        
+         $query = "UPDATE `ride` SET `Name`='".$post['destination']."',
+                                `Departs`='".$post['departure']."',
+                                `DepartShort`='".$post['departShort']."',
+                                `Lat_Dep`='".$post['departLat']."',
+                                `Lon_Dep`='".$post['departLon']."',
+                                `DepartTime`='".$post['time']."',
+                                `DepartDate`='".date('Y-m-d', strtotime($post['date']))."',
+                                `Arrival`='".$post['arrival']."',
+                                `ArriveShort`='".$post['arriveShort']."',
+                                `Lat_Arr`='".$post['arriveLat']."',
+                                `Lon_Arr`='".$post['arriveLon']."',
+                                `Distance`='".$post['mileage']."',
+                                `Notes`='".$post['ridenotes']."',
+                                `Passengers`='".$post['passengers']."',
+                                `Price`='".str_replace('$', '', $post['price'])."',
+                                `Ride_Cost`='".str_replace('$', '', $post['ride_cost'])."',
+                                `Charge`='".$post['charge']."',
+                                `Event_ID`='".$post['event_id']."',
+                                `Updated`='".date('Y-m-d H:i:s')."'
+                                WHERE `Ride_ID`='".$post['ride_id']."'";
+        //echo $query;exit;
+        $this->db->execute($query);
+        return TRUE;
+
+    }
+    
     protected function rideInformation() {
         $this->destination  =   $this->input->post('destination');
         $this->notes        =   $this->input->post('ridenotes');

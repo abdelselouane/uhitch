@@ -101,7 +101,7 @@ foreach($ride as $key => $value){
         <div class="form-group alert <?= ($empty_seats != 0) ? 'alert-success' : 'alert-danger' ?>">
             <h5>How many seats you would like to reserve?</h5>
             <p class="<?= ($empty_seats != 0) ? 'active' : 'occupied' ?>"><?= isset($ride['Price']) ? '$'.$ride['Price'].' / Seat' : ''?></p>
-            <form id="select_form" name="select_form" >
+            <form id="select_form" name="select_form" action="https://www.paypal.com/cgi-bin/webscr" method="get" target="_top">
                 <div class="form-group left">
                     <select class="form-control" id="select_seats" name="select_seats">
                         <option value="">How many Seats?</option>
@@ -119,6 +119,11 @@ foreach($ride as $key => $value){
                     <input type="hidden" id="price" name="price" value="<?= isset($ride['Price']) ? $ride['Price'] : ''?>">
                     <input type="hidden" id="result" name="result">
                 </div>
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="F4PB5PXTCY33S">
+                <input type="hidden" id="quantity" name="quantity" value="1">
+                <input type="hidden" id="item_name" name="item_name" value="TRAVELING BY <?= isset($ride['Charge']) ? strtoupper($ride['Charge']) : ''?>">
+                <input type="hidden" id="amount" name="amount" value="<?= isset($ride['Price']) ? $ride['Price'] : ''?>">
                 <button type="submit" class="btn btn-default <?= ($empty_seats != 0) ? 'active' : 'occupied' ?>" <?= ($empty_seats != 0) ? '' : 'disabled' ?>>
                     <?= ($empty_seats != 0) ? 'RESERVE NOW' : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE' ?></button>
             </form>
@@ -128,7 +133,11 @@ foreach($ride as $key => $value){
         <div style="margin-left: 20px;" class="form-group left alert <?=  ($empty_seats != 0) ? ( ($ride['Charge'] == 'seat' || $ride['Charge'] == 'both') ? 'alert-success' : 'alert-danger') : 'alert-danger' ?>">
             <h5>Reserve One Only</h5>
             <p class="<?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'seat')  ? 'active' : 'occupied' ) : 'occupied' ?>"><?= isset($ride['Price']) ? '$'.$ride['Price'] : ''?></p>
-            <form>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="get" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="F4PB5PXTCY33S">
+                <input type="hidden" id="item_name" name="item_name" value="TRAVELING BY <?= isset($ride['Charge']) ? strtoupper($ride['Charge']) : ''?>">
+                <input type="hidden" id="amount" name="amount" value="<?= isset($ride['Price']) ? $ride['Price'] : ''?>">
                 <button type="submit" class="btn btn-default <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'seat')  ? 'active' : 'occupied' ) : 'occupied'?>" <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'seat') ? '' : 'disabled') : 'disabled' ?>>
                 <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'seat') ? 'Reserve All Available Seats' : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE' ) : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE'?></button>
             </form>
@@ -136,10 +145,23 @@ foreach($ride as $key => $value){
         <div class="form-group right alert <?=  ($empty_seats != 0) ? ( ($ride['Charge'] == 'trip' || $ride['Charge'] == 'both') ? 'alert-success' : 'alert-danger') : 'alert-danger' ?>">
             <h5>Reserve All Available</h5>
             <p class="<?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'trip')  ? 'active' : 'occupied' ) : 'occupied' ?>"><?= isset($ride['Ride_Cost']) ? '$'.$ride['Ride_Cost'] : ''?></p>
-            <form>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="get" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" id="item_name" name="item_name" value="TRAVELING BY <?= isset($ride['Charge']) ? strtoupper($ride['Charge']) : ''?>">
+                <input type="hidden" id="amount" name="amount" value="<?= isset($ride['Ride_Cost']) ? $ride['Ride_Cost'] : ''?>">
+                <input type="hidden" name="hosted_button_id" value="F4PB5PXTCY33S">
                 <button type="submit" class="btn btn-default <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'trip')  ? 'active' : 'occupied' ) : 'occupied'?>" <?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'trip') ? '' : 'disabled') : 'disabled' ?>><?= ($empty_seats != 0) ? ( ($ride['Charge'] == 'both' || $ride['Charge'] == 'trip') ? 'Reserve All Available Seats' : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE' ) : '<i class="fa fa-minus-circle"></i> OPTION NOT AVAILABLE'?></button>
             </form>
         </div>
+        
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="F4PB5PXTCY33S">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+        
     </div>
     <div class="clear"></div>
 </div>

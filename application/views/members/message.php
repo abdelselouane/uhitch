@@ -3,6 +3,7 @@
     <?php //echo '<pre>'; print_r($data); echo '</pre>';?>
     <div id="page">
         <section id="message">
+            <h2 class="green center">My Messages</h2>
             <input type="hidden" name="userid" id="userid" value="<?= (isset($data->userid)) ? $data->userid : '';?>">
             <div id="inbox">
                 <ul class="main-nav">

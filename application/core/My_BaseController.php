@@ -148,7 +148,7 @@ class My_BaseController extends CI_Controller {
         
         switch($type) {
             case 'adminEvents':
-                array_push($scripts, $jqueryUI, $adminEvents);
+                array_push($scripts, $jqueryUI, $jqueryDataTables, $adminEvents);
                 break;
             case 'sendmessage':
                 //array_push($scripts, $jqueryUI, $sendmessage);
@@ -178,8 +178,7 @@ class My_BaseController extends CI_Controller {
                 break;
             case 'event':
                 $library = "http://maps.googleapis.com/maps/api/js?libraries=places";
-                array_push($scripts, $bootstrapValidator);
-                array_push($scripts, $jqueryUI);
+                array_push($scripts, $jqueryUI, $jqueryValidate, $moment, $datetimepicker);
                 array_push($scripts, $event);
                 array_push($scripts, $library);
                 break;
@@ -207,8 +206,8 @@ class My_BaseController extends CI_Controller {
             case 'hitch':
                 array_push($scripts, $hitch);
                 break;
-            case 'upcoming':
-                array_push($scripts, $upcoming);
+            case 'upcomingEvents':
+                array_push($scripts, $jqueryUI, $jqueryDataTables, $upcoming);
                 break;
             default :
                 break;

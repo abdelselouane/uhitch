@@ -240,11 +240,33 @@ class retrievedata_model extends User_Model {
          $query =  "SELECT "
                     . "e.Name, e.Location, e.City, e.State, e.Zip, "
                     . "e.Lat, e.Lon, e.Comments, e.Photo, e.EventDate, "
-                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, u.Photo "
+                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, u.Photo, "
+                    . "r.Ride_ID as RideId "
                  . "FROM events e "
                  . "INNER JOIN user u "
                  . "ON e.CreatedById = u.UserID "
+                 . "LEFT JOIN ride r "
+                 . "ON e.EventId = r.Event_ID "
                  . "WHERE e.EventId = '$id' ";
+         
+         return $this->db->retrieveData($query);
+     }
+    
+    function getEventById($id) {
+         $query =  "SELECT "
+                    . "e.Name, e.Location, e.City, e.State, e.Zip, "
+                    . "e.Lat, e.Lon, e.Comments, e.Photo, e.EventDate, "
+                    . "e.EventTime, e.EventId, e.CreatedByName as UserName, e.CreatedById as UserId, u.Photo as UserPhoto, "
+                    . "r.Ride_ID as RideId "
+                 . "FROM events e "
+                 . "INNER JOIN user u "
+                 . "ON e.CreatedById = u.UserID "
+                 . "LEFT JOIN ride r "
+                 . "ON e.EventId = r.Event_ID "
+                 . "WHERE e.EventId = '$id' ";
+         
+         //echo $query; 
+         //exit;
          
          return $this->db->retrieveData($query);
      }
@@ -255,6 +277,12 @@ class retrievedata_model extends User_Model {
         // echo $query; exit;
          return $this->db->retrieveRows($query);
     
+    }
+    
+    function getAllTripsByUserId($id){
+         $query =  "SELECT * FROM ride WHERE Passenger1_ID='$id' OR Passenger2_ID='$id' OR Passenger3_ID='$id' OR Passenger4_ID='$id' OR Passenger5_ID='$id'";
+         //echo $query; exit;
+        return $this->db->retrieveRows($query);
     }
     
     function getRideById($id){

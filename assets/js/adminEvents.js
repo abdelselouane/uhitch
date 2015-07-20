@@ -1,4 +1,8 @@
 $( document ).ready(function(){
+    
+    $('#eventsListing').DataTable({
+        ordering:  false,
+    });
 
     $('.approve-btn').click(function(){
         $url = $( this ).attr('data-url');

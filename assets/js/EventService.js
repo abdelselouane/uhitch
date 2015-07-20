@@ -7,8 +7,72 @@ var eventForm = {
 
 $(document).ready(function() {
     applyAutoCompletion();
-    applyHtmlInput();
+    //applyHtmlInput();
     //submitEventForm();
+    
+     $('#submit-btn').click(function(event){
+        event.preventDefault();
+        //console.log('submit form'); //return false;
+        
+        $('#submit_event').submit();
+    });
+    
+    $('#submit_event').validate({
+        rules: {
+            Name: {
+                required: true
+            },
+            event_address: {
+                required: true
+            },
+            event_city: {
+                required: true
+            },
+            event_state: {
+                required: true
+            },
+            event_zip: {
+                required: true
+            },
+            userfile: {
+                required: true
+            }
+        },
+        submitHandler: function(element) {
+            if ( $('#passengers_disabled').val() == 0 ) {
+                alert('Please add the folowing: how many passengers may ride with you? you can use plus/minus button to adjust the number, thank you.');
+                return false;
+            }
+            return true;
+        },
+        highlight: function (element) {
+            $(element).removeClass('success').addClass('error');
+        }/*,
+        success: function (element) {
+            element.addClass('valid')
+                .closest('.control-group').removeClass('error').addClass('success');
+        }*/
+    });
+    
+    $('#event-date').focus(function(){
+        $('#datetimepicker1').click();
+    });
+    
+    $('#event-time').focus(function(){
+        $('#datetimepicker2').click();
+    });
+    
+    
+    $('#datetimepicker1').datetimepicker({
+        format: 'MM/DD/YYYY',
+        viewMode: 'days',
+        showClear: true,
+        showClose: true
+    });
+    
+    $('#datetimepicker2').datetimepicker({
+        format: 'LT'
+    });
 
 });
 

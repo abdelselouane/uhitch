@@ -1,8 +1,9 @@
 <div class="container-fluid" style="margin-top:150px">
-    <div class="row">
+    <div id="allevent" class="row">
         <div class="col-sm-12 col-md-12">
             <h2 class="green center">Events Panel</h2>
-            <table class="table table-striped">
+            <table id="eventsListing" class="display">
+                <thead>
                 <tr>
                     <th>Photo</th>
                     <th>Name</th>
@@ -12,19 +13,20 @@
                     <th class="center">Approved</th>
                     <th class="center">Action</th>
                 </tr>
-                
+                </thead>
+                <tbody>
                 <?
                     if(!empty($events)){
                         foreach( $events as $key => $value ){
                         ?>
                             <tr>
-                                <th><img src="<?= base_url().'assets/photos/events/'.$value['Photo']?>" width="100px" height="auto"></th>
-                                <td><?= $value['Name']?></td>
-                                <td>
+                                <td class="text-left"><img src="<?= base_url().'assets/photos/events/'.$value['Photo']?>" width="100px" height="auto"></td>
+                                <td class="text-left"><?= $value['Name']?></td>
+                                <td class="text-left">
                                     <?= $value['Location']?><br>
                                     <?= $value['City'].', '.$value['State'].', '.$value['Zip']?>
                                 </td>
-                                <td><?= date ( 'd/m/Y', strtotime($value['CreatedDate']) ); ?></td>
+                                <td class="text-left"><?= date ( 'd/m/Y', strtotime($value['CreatedDate']) ); ?></td>
                                 <td class="center <?= ( $value['Reviewed'] != 1) ? 'alert alert-danger' : 'alert alert-success' ?>"><?= date ( 'd/m/Y', strtotime($value['EventDate']) ).' '.$value['EventTime'] ?></td>
                                 <td class="center <?= ( $value['Reviewed'] != 1) ? 'alert alert-danger' : 'alert alert-success' ?>">
                                     <? 
@@ -46,7 +48,7 @@
                         <?}
                     }
                 ?>
-                
+                </tbody>
             </table>
         </div>
     </div>

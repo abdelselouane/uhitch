@@ -134,50 +134,71 @@ class Main extends My_BaseController {
     
     function upcoming() {
         $this->title = 'Uhitch | Upcoming Events';
-      
-        $this->load->helper("url");
+        $this->setScripts('upcomingEvents');
+        $this->load->helper(array("url", "My_helper"));
         $this->load->model('eventservices_model');
-        $this->load->library('pagination');
 
-        $school = $this->user->school;
-        $coord  = $this->eventservices_model->retrieveSchoolCoord($school);
-        
-        //echo '<pre>'; print_r($coord); echo '</pre>'; exit;
-        
         $config = array();
-        $config['base_url'] = site_url().'/main/upcoming';
-        $config['events']   = $this->eventservices_model->eventRecordsCount($coord);
-        $config['total_rows'] = count($config['events']);
+        $post = $this->input->post();
+        
+        if(isset($post) && $post != ''){
+            //echo '<pre>'; print_r($post['Name']); echo '</pre>'; exit;
+            
+            $query = "";
+            $empty = 'FALSE';
+            
+            if($post['Name'] != ''){
+                $empty = 'TRUE';
+                $query .= " Name LIKE '%".$post['Name']."%'";
+            }
+            if($post['City'] != ''){
+                $empty = 'TRUE';
+                $query .= " OR City LIKE '%".$post['City']."%'";
+            }
+            if($post['Location'] != ''){
+                $empty = 'TRUE';
+                $query .= " OR Location LIKE '%".$post['Location']."%'";
+            }
+            if($post['State'] != ''){
+                $empty = 'TRUE';
+                $query .= " OR State = '".$post['State']."'";
+            }
+            
+            if($empty == 'TRUE'){
+                $query .= " AND Reviewed = 1";
+            }
+            
+            $config['events'] = $this->eventservices_model->searchForEvents($query);
+        }else{
+            $school = $this->user->school;
+            $coord  = $this->eventservices_model->retrieveSchoolCoord($school);
+            $config['events']   = $this->eventservices_model->eventRecordsCount($coord);
+        }
         
        //echo '<pre>'; print_r($config); echo '</pre>';exit;
-        
-        if($config['total_rows'] > 0) {
-            $config['per_page'] = 10; 
-            $config["uri_segment"] = 3;
 
-            $config['cur_tag_open'] = '<b>';
-            $config['cur_tag_close'] = '</b>';
-
-            $choice = $config["total_rows"] / $config["per_page"];
-            $config["num_links"] = round($choice);
-
-            $this->pagination->initialize($config);
-
-            $pages = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
-            $this->page['results'] = $this->eventservices_model
-                    ->retrieveAllEvents($config["per_page"], $pages);
-
-            $this->page['links'] = $this->pagination->create_links();
-
-            $this->map = TRUE;
-            //$this->setScripts('upcoming');
-        }
         $this->page['results'] = $config;
+        $this->page['results']['states'] = getStates();
         //echo '<pre>'; print_r($config); echo '</pre>';//exit;
         
         $this->display('upcomingEvents');
-    } 
+    }
+    
+    function getEventById($id){
+        
+        if($id != ''){
+            
+           // echo $id; exit;
+            
+            $this->load->model('retrievedata_model');
+            $info = $this->retrievedata_model->getEventById($id);
+            //echo '<pre>'; print_r($info); echo '</pre>'; exit;
+            print_r(json_encode($info));
+            //exit;
+        } else {
+            $this->upcoming();
+        }
+    }
         
     function hitchARide() {
         $rideId = $this->input->get('q');
@@ -289,13 +310,23 @@ class Main extends My_BaseController {
     }
     
      function ridepanel() {
-        $this->title = 'Uhitch | Ride Panel';
+        $this->title = 'Uhitch | Rides Panel';
         $this->setScripts('ridepanel');
         $this->load->model('retrievedata_model');
         $rideData = $this->retrievedata_model->getAllRidesByUserId($this->user->userid);
         $this->setRideData($rideData);
          //echo '<pre>'; print_r($rideData); echo '</pre>'; exit;
         $this->display('ridepanel');
+    }
+    
+    function trippanel() {
+        $this->title = 'Uhitch | Trips Panel';
+        $this->setScripts('ridepanel');
+        $this->load->model('retrievedata_model');
+        $tripData = $this->retrievedata_model->getAllTripsByUserId($this->user->userid);
+        $this->setRideData($tripData);
+         //echo '<pre>'; print_r($tripData); echo '</pre>'; exit;
+        $this->display('trippanel');
     }
     
     function getRideById($id){

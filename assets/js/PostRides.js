@@ -121,7 +121,10 @@ $(window).load(function() {
             arrival: {
                 required: true
             },
-            charge: {
+            event_date: {
+                required: true
+            },
+            event_time: {
                 required: true
             }
         },

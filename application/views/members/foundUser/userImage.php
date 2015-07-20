@@ -17,5 +17,5 @@
     <span>Location: <?php echo $location;?></span>
     <span>Last Login: <?php echo $login;?></span>
     <span>Member Since: <?php echo $member;?></span> 
-    <a class="button" href="<?=site_url('main/messages');?>">Send Message</a>
+    <a class="button" href="<?=site_url('main/messages?q='.$page['UserID']);?>">Send Message</a>
 </div>

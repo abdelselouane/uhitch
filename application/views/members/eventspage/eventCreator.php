@@ -23,9 +23,9 @@
             </a>
         </span>
         <div id="hitchBtn-container">
-            <!--?php if(isset($ride['EventId']) && $ride['EventId'] != ''){?>
-            <!--a class="button" href="<!--?=site_url('main/requestride?q='.$ride['EventId']);?>">Request Ride</a-->
-            <!--?php } ?-->
+            <?php if(isset($ride['RideId']) && $ride['RideId'] != 'null'){?>
+            <a class="button" href="<?=site_url('main/requestride?q='.$ride['RideId']);?>">Request Ride</a>
+            <?php } ?>
             <a class="button" href="<?=site_url('main/messages?q='.$ride['creator']['UserID']);?>">Send Message</a>
         </div>
     </div>

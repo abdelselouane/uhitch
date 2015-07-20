@@ -1,3 +1,4 @@
+<?php //echo '<pre>'; print_r($page); echo '</pre>'; exit;?>
 <div id="page_content">
     <div id="page">
         <section id="profile">

@@ -36,18 +36,18 @@ class Eventservices_model extends User_Model {
         //echo '<pre>'; print_r($this->input->post()); echo '</pre>';exit;
         
         $this->eventName    = ucfirst($this->input->post('Name'));
-        $this->location     = ucfirst($this->input->post('event-address')); 
+        $this->location     = ucfirst($this->input->post('event_address')); 
         $this->eventId      = substr(str_shuffle(MD5(microtime())), 0, 45);
         
-        $this->eventDate    = date('Y-m-d', strtotime($this->input->post('event-date')));
-        $this->eventTime    = $this->input->post('event-time');
+        $this->eventDate    = date('Y-m-d', strtotime($this->input->post('event_date')));
+        $this->eventTime    = $this->input->post('event_time');
         
         
         $this->eventFilename = isset($file) ? $file : NULL;
         
-        $this->city         = ucfirst($this->input->post('event-city')); 
-        $this->state        = ucfirst($this->input->post('event-state'));
-        $this->zip          = $this->input->post('event-zip');
+        $this->city         = ucfirst($this->input->post('event_city')); 
+        $this->state        = ucfirst($this->input->post('event_state'));
+        $this->zip          = $this->input->post('event_zip');
         $this->lat          = ( $this->input->post('eventLat') == '' ) ? NULL : $this->input->post('eventLat');
         $this->lon          = ( $this->input->post('eventLon') == '' ) ? NULL : $this->input->post('eventLon'); 
 
@@ -147,6 +147,11 @@ class Eventservices_model extends User_Model {
         $data = $this->db->retrieveRows($query);
         
         return json_encode($data[0]);
+    }
+    
+    function searchForEvents($request) {
+        $query = "SELECT * FROM events WHERE 1 ".$request;
+        return $this->db->retrieveRows($query);
     }
     
     function retrieveEventAdmin() {

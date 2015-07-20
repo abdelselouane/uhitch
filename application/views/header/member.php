@@ -93,6 +93,7 @@
                     </a>
                     <ul class="submenu width-150px">
                         <li class="sbm"><a href="<?php echo site_url('main/ridepanel');?>">My Rides</a></li>
+                        <li class="sbm"><a href="<?php echo site_url('main/trippanel');?>">My Trips</a></li>
                         <li class="sbm"><a href="<?php echo site_url('main/settings');?>">Settings</a></li>
                         <li class="sbm"><a href="<?php echo site_url('main/logout'); ?>">Log Out</a></li>
                     </ul>

@@ -107,6 +107,15 @@ class Main extends My_BaseController {
     }
     
     function newevent() {
+        
+        $eventId = $this->input->get('q');
+        if( !empty($eventId) ) {
+            
+            $this->load->model('retrievedata_model');
+            $info = $this->retrievedata_model->getEventById($eventId);
+            //echo '<pre>'; print_r($info); echo '</pre>';
+            $this->event = !empty($info) ? $info : '';
+        }
         $this->title = 'Uhitch | Create New Event';
         $this->setScripts('event');
         $this->display('newEvent');
@@ -329,6 +338,16 @@ class Main extends My_BaseController {
         $this->display('trippanel');
     }
     
+    function eventpanel() {
+        $this->title = 'Uhitch | Events Panel';
+        $this->setScripts('eventpanel');
+        $this->load->model('retrievedata_model');
+        $eventData = $this->retrievedata_model->getAllEventsByUserId($this->user->userid);
+        $this->setEventData($eventData);
+        // echo '<pre>'; print_r($eventData); echo '</pre>'; exit;
+        $this->display('eventpanel');
+    }
+    
     function getRideById($id){
         
         if($id != ''){
@@ -342,7 +361,7 @@ class Main extends My_BaseController {
             $this->ridepanel();
         }
     }
-            
+        
     function messages($tab = '') {
         
         $get = $this->input->get();
@@ -507,6 +526,11 @@ class Main extends My_BaseController {
         }
     }
     
+    function setEventData($data)
+    {
+        $this->user->event_data  = $data;
+    }
+    
     function setRideData($data)
     {
         $this->user->ride_data  = $data;
@@ -594,33 +618,89 @@ class Main extends My_BaseController {
 
     function eventsubmission() {
         $this->load->model('eventservices_model');
+        
+        $post = $this->input->post(); 
+        
+        if(!isset($post) || empty($post)){
+            $config['file_name'] = substr(str_shuffle(MD5(microtime())), 0, 45);
 
-        $config['file_name'] = substr(str_shuffle(MD5(microtime())), 0, 45);
-        
-        // Direct Upload path on server
-        $config['upload_path']      = 'assets/photos/events/';
-        $config['allowed_types']    = 'jpg|png|jpeg';
-        $config['max_size']         = '5000';
-        $config['max_width']        = '1600';
-        $config['max_height']       = '1200';
-        
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config); 
-        
-        if (!$this->upload->do_upload()) {
-            $error = array('error' => $this->upload->display_errors());
+            // Direct Upload path on server
+            $config['upload_path']      = 'assets/photos/events/';
+            $config['allowed_types']    = 'jpg|png|jpeg';
+            $config['max_size']         = '5000';
+            $config['max_width']        = '1600';
+            $config['max_height']       = '1200';
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if (!$this->upload->do_upload()) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->display('events/error');
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+                $img = $data["upload_data"]["file_name"];
+                $this->eventservices_model->registerEvent($img);
+                $this->display('events/success');
+            } 
+        }else{
             
-            //echo '<pre>'; print_r($error); echo '</pre>';exit;
-            
-            $this->display('events/error');
-        } else {
-            $data = array('upload_data' => $this->upload->data());
-            
-            $img = $data["upload_data"]["file_name"];
-            
-            $this->eventservices_model->registerEvent($img);
-            $this->display('events/success');
-        } 
+            $eventId = $post['EventId'];
+            if(isset($_FILES) && !empty($_FILES['name'])){
+                echo '<pre>'; print_r($_FILES); echo '</pre>';exit;
+                
+                $info = $this->eventservices_model->getEventPhotoById($eventId);
+                
+                $url = base_url('assets/photos/events/'.$info[0]['Photo']);
+             
+                if(file_exists($url)){
+                    unlink($url);
+                }
+                
+                $config['file_name'] = substr(str_shuffle(MD5(microtime())), 0, 45);
+
+                // Direct Upload path on server
+                $config['upload_path']      = 'assets/photos/events/';
+                $config['allowed_types']    = 'jpg|png|jpeg';
+                $config['max_size']         = '5000';
+                $config['max_width']        = '1600';
+                $config['max_height']       = '1200';
+
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+
+                if( !$this->upload->do_upload() ){
+                    
+                    //$error = array('error' => $this->upload->display_errors());
+                    $this->error['EventId'] =  $post['EventId'];
+                    $this->error['Error'] =  $this->upload->display_errors();
+                    $this->display('events/error');
+                    
+                }else{ 
+                    
+                     
+                    $data = array('upload_data' => $this->upload->data());
+                    $img = $data["upload_data"]["file_name"];
+                    //echo '<pre>'; print_r($data); echo '</pre>'; 
+                   
+                    $post = $this->input->post();
+                    $post['updatefile'] = $img;
+                    
+                    $this->eventservices_model->updateEventById($post);
+                    $this->display('events/success');
+                   
+                } 
+                
+                
+                //echo '<pre>'; print_r($info); echo '</pre>'; exit;
+                
+            }else{
+               
+                $this->eventservices_model->updateEventById($post);
+                $this->success['Message'] = 'Your event is successfuly updated.';
+                $this->display('events/success');
+            }
+            //$this->display('events/success');
+        }
     }
           
     function logout() {

@@ -42,12 +42,29 @@
                 if( $( this ).next().css('display') == 'none' )
                 { 
                    // console.log($( this ).next());
-                    $( this ).next().css('display', 'block');//slideDown();
+                    $( this ).next().slideDown();//css('display', 'block');//slideDown();
                 }else{
                      $( this ).next().slideUp();
                 }
             });
             
+            var mouse_is_inside = false;
+            
+            $('.submenu').hover(function(){ 
+                mouse_is_inside=true; 
+            }, function(){ 
+                mouse_is_inside=false; 
+            });
+
+            $("body").mouseup(function(){ 
+                if(! mouse_is_inside) $('.submenu').slideUp();
+            });
+            
+            $('#search-btn-submit').click(function(event){
+                event.preventDefault();
+                $('#search_form').submit();
+            
+            });
         });
     </script>
 

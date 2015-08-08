@@ -25,11 +25,9 @@
                                         <td class="text-left"><?= $value['ArriveShort']?></td>
                                         <td class="text-left"><?= date('m/d/Y H:i a', strtotime($value['DepartDate'].' '.$value['DepartTime']))?></td>
                                         <td><!-- Button trigger modal -->
-                                            <a class="item-action info" data-id="<?=$value['id']?>" data-toggle="modal" data-target="#myModal">
-                                              Details
-                                            </a>
-                                            <a class="item-action">Cancel</a>
-                                            <a href="<?= base_url().'index.php/main/postride?q='.$value['Ride_ID']?>" class="item-action">Update</a>
+                                            <a class="item-action info" data-id="<?=$value['id']?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-list"></i></a>
+                                            <a href="<?= base_url().'index.php/main/postride?q='.$value['Ride_ID']?>" class="item-action"><i class="fa fa-refresh"></i></a>
+                                            <a class="item-action"><i class="fa fa-trash"></i></a>
                                         </td>
                                       </tr>
                                   <? 
@@ -62,7 +60,6 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                       </div>
                     </div>
                   </div>

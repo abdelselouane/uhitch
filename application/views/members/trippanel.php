@@ -25,10 +25,8 @@
                                         <td class="text-left"><?= $value['ArriveShort']?></td>
                                         <td class="text-left"><?= date('m/d/Y H:i a', strtotime($value['DepartDate'].' '.$value['DepartTime']))?></td>
                                         <td><!-- Button trigger modal -->
-                                            <a class="item-action info" data-id="<?=$value['id']?>" data-toggle="modal" data-target="#myModal">
-                                              Details
-                                            </a>
-                                            <a class="item-action">Cancel</a>
+                                            <a class="item-action info" data-id="<?=$value['id']?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-list"></i></a>
+                                            <a class="item-action"><i class="fa fa-trash"></i></a>
                                         </td>
                                       </tr>
                                   <? 

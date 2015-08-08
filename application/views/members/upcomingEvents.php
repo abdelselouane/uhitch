@@ -54,7 +54,7 @@
                         <th>Event Name</th>
                         <th>Address</th>
                         <th>At</th>
-                        <th class="text-center">Action</th>
+                        <th class="text-center">Details</th>
                       </tr>
                     </thead>
                   <tbody>
@@ -71,9 +71,7 @@
                                 <td class="text-left"><?= $value['Location'].'<br>'.$value['City'].', '.$value['State'].', '.$value['Zip']?></td>
                                 <td class="text-left"><?= date('m/d/Y', strtotime($value['EventDate'])).'<br>'.$value['EventTime']?></td>
                                 <td><!-- Button trigger modal -->
-                                    <a class="item-action info" data-id="<?=$value['EventId']?>" data-toggle="modal" data-target="#myModal">
-                                      Details
-                                    </a>
+                                    <a class="item-action info" data-id="<?=$value['EventId']?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-list"></i></a>
                                 </td>
                               </tr>
                           <? 

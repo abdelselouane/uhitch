@@ -138,7 +138,7 @@ class Eventservices_model extends User_Model {
     
     function retrieveEventInfo($id) {
         $query = "SELECT "
-                    . "Name, Address, City, State, Photo, Comments, "
+                    . "Name, Location, City, State, Photo, Comments, "
                     . "EventDate, EventTime, Lat, Lon, CreatedByName,"
                     . "CreatedById "
                 . "FROM events "
@@ -147,6 +147,50 @@ class Eventservices_model extends User_Model {
         $data = $this->db->retrieveRows($query);
         
         return json_encode($data[0]);
+    }
+    
+    function getEventById($id) {
+        $query = "SELECT "
+                    . "Name, Location, City, State, Photo, Comments, "
+                    . "EventDate, EventTime, Lat, Lon, CreatedByName,"
+                    . "CreatedById "
+                . "FROM events "
+                . "WHERE EventId='$id' ";
+        
+        //echo $query; exit;
+        
+        return $this->db->retrieveRows($query);
+    }
+    
+    function getEventPhotoById($id) {
+        $query = "SELECT Photo "
+                . "FROM events "
+                . "WHERE EventId='$id' ";
+        
+        //echo $query; exit;
+        
+        return $this->db->retrieveRows($query);
+    }
+    
+    function updateEventById($post) {
+        //$post = $this->input->post();
+        // echo '<pre>'; print_r($post); echo '</pre>'; exit;
+        $query = "UPDATE events 
+                    SET Reviewed = 0,
+                        Name = '".$post['Name']."',
+                        Lat = ".$post['eventLat'].",
+                        Lon = ".$post['eventLon'].",
+                        Location = '".$post['event_address']."',
+                        City = '".$post['event_city']."',
+                        State = '".$post['event_state']."',
+                        Zip = '".$post['event_zip']."',
+                        Photo = '".$post['updatefile']."',
+                        EventDate = '".date('Y-m-d', strtotime($post['event_date']))."',
+                        EventTime = '".$post['event_time']."',
+                        Comments = '".$post['Comments']."'
+                    WHERE EventId='".$post['EventId']."' ";
+        //echo $query; exit;
+        $this->db->execute($query);
     }
     
     function searchForEvents($request) {

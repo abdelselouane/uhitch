@@ -144,6 +144,7 @@ class My_BaseController extends CI_Controller {
         $message    = base_url()."assets/js/Message.js";
         $sendmessage = base_url()."assets/js/SendMessages.js";
         $ridepanel = base_url()."assets/js/ridepanel.js";
+        $eventpanel = base_url()."assets/js/eventpanel.js";
         $adminEvents = base_url()."assets/js/adminEvents.js";
         
         switch($type) {
@@ -156,6 +157,9 @@ class My_BaseController extends CI_Controller {
                 break;
             case 'ridepanel':
                 array_push($scripts, $jqueryUI, $jqueryValidate, $jqueryDataTables, $ridepanel);
+                break;
+            case 'eventpanel':
+                array_push($scripts, $jqueryUI, $jqueryValidate, $jqueryDataTables, $eventpanel);
                 break;
             case 'message':
                 array_push($scripts, $message);

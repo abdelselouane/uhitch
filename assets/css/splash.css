@@ -277,12 +277,12 @@ nav span {
 	border-bottom:3px solid #5cb85c;;
 }
 #searchbar{
-  border: 1px solid #5cb85c;
-  padding: 5px;
-  margin: 0 55px;
-  width: 300px;
-  text-align: center;
-  background-color: #eeeeee;
+    position: relative;
+    right: 0;
+    background-color: #fff;
+    padding: 20px;
+    width: 500px;
+    text-align: left;
 }
 /*****************/
 
@@ -466,31 +466,43 @@ footer{
 /*** SUBMENU ***/
 
 .submenu{
-  position: absolute;
-  list-style: none;
-  background: #fff;
-  border: 1px solid #4cae4c;
-  margin-top: -3px;
-  width: auto;
-  display: none;
+    position: absolute;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #4cae4c;
+    margin-top: -3px;
+    width: auto;
+    display: none;
+    right: 15px;
+    font-size:12px;
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
 }
 
 .submenu li.sbm{
   margin-left: -40px;
   text-align: left;
-  padding: 10px 20px !important;
+  padding: 0 !important;
+  border-bottom: 1px solid #efefef;
 }
 
 .submenu li.sbm > a{
-  color: #777;
-  text-decoration: none;
+    color: #777;
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+    padding: 10px 15px;
 }
 
-.submenu li.sbm > a:hover,
-.submenu li.sbm > a:active, 
-.submenu li.sbm > a:focus
-{
-    color: #000;
+.submenu li.sbm:hover {
+    background-color: green;
+}
+
+.submenu li.sbm:hover > a{
+    color: #fff;
+    text-decoration: none;
+    border:0;
 }
 
 .width-200px{

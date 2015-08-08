@@ -271,6 +271,24 @@ class retrievedata_model extends User_Model {
          return $this->db->retrieveData($query);
      }
     
+    function getAllEventsByUserId($id){
+        $query =  "SELECT "
+                    . "e.Name, e.Location, e.City, e.State, e.Zip, "
+                    . "e.Lat, e.Lon, e.Comments, e.Photo, e.EventDate, "
+                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, "
+                    . "r.Ride_ID as RideId "
+                 . "FROM events e "
+                 . "INNER JOIN user u "
+                 . "ON e.CreatedById = u.UserID "
+                 . "LEFT JOIN ride r "
+                 . "ON e.EventId = r.Event_ID "
+                 . "WHERE u.UserID = '$id' GROUP BY EventId";
+        
+        //echo $query; exit;
+         
+         return $this->db->retrieveRows($query);
+    }
+    
     function getAllRidesByUserId($id){
         
         $query =  "SELECT * FROM ride WHERE Driver_ID='$id' ";

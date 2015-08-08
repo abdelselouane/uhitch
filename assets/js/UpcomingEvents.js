@@ -209,7 +209,13 @@ function getEventById(id){
                var rightHtml = '';
                rightHtml +=  '<div class="form-group"><h5> by: '+data.UserName+'</h5><img src='+ userPhoto +'>'+userprofile+'</div>';
                
-              // console.log(html);
+              if(data.RideId != null){
+                    rideurl    = 'hitchARide?q='+data.EventId;
+                    ridepage   = '<p><a target="_blank" href="'+rideurl+'">Checkout the Ride Page <i class="fa fa-long-arrow-right"></i></a></p>';
+                    rightHtml +=  '<div class="form-group"><p class="alert alert-info"> Has Ride: <i class="fa fa-car"></i> YES</p>'+ridepage+'</div>';
+               }else{
+                    rightHtml +=  '<div class="form-group"><p class="alert alert-danger"> Sorry this Event does not have a Ride yet:   <i class="fa fa-car"></i> NO</p></div>';
+               }
                
                $('#eventResult div.left').html(leftHtml);
                $('#eventResult div.right').html(rightHtml);

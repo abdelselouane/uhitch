@@ -17,6 +17,22 @@ $(document).ready(function() {
         $('#submit_event').submit();
     });
     
+     $('#updatePhoto').click(function(event){
+        event.preventDefault();
+        //console.log('submit form'); //return false;
+        if($('.fileContainer').css('display') == 'none'){
+            $('.fileContainer').slideDown();
+            $('.imgFileContainer').slideUp();
+            $('#updatePhoto').text('Keep Old Photo');
+        }else{
+            $('.fileContainer').slideUp();
+            $('.imgFileContainer').slideDown();
+            $('#updatePhoto').text('Update Photo');
+        }
+        //var updatePhoto = $('#fileContainer').is('display');
+         
+    });
+    
     $('#submit_event').validate({
         rules: {
             Name: {
@@ -39,10 +55,14 @@ $(document).ready(function() {
             }
         },
         submitHandler: function(element) {
-            if ( $('#passengers_disabled').val() == 0 ) {
-                alert('Please add the folowing: how many passengers may ride with you? you can use plus/minus button to adjust the number, thank you.');
+            /*if ( $('#eventLat').val() == '' || $('#eventLon').val() == '' ) {
+                var addr = $('#autocomplete').val();
+                addr += ', '+$('#locality').val();
+                addr += ', '+$('#administrative_area_level_1').val();
+                addr += ', '+$('#postal_code').val();
+                getLatLng(addr);
                 return false;
-            }
+            }*/
             return true;
         },
         highlight: function (element) {

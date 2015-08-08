@@ -3,7 +3,7 @@
 if ( ! function_exists('getStates'))
 {
     function getStates()
-    {
+    { 
         
         $states = array('Alabama'=>'AL', 
                        'Alaska'=>'AK', 

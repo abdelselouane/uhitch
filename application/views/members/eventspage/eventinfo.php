@@ -26,27 +26,82 @@
     }
 
     $time = date("g:i a", strtotime($ride['EventTime']) );
+
 ?>
 
 <div class="travelInformation">
-    <h2 class="no-shadow"><?php echo $ride['Name']; ?></h2>
-    <br/>
+    <h3 class="no-shadow header-line text-center green"><?php echo $ride['Name']; ?></h3>
+    <?php 
+        //echo '<pre>'; print_r($ride); echo '</pre>';
+        
+        $imagepath = file_exists("assets/photos/events/".$ride['Photo']) ? "assets/photos/events/".$ride['Photo']:   "assets/photos/events/default.png";
+        $imageUrl = base_url($imagepath);
+    ?>
+    <div class="eventProfile">
+        <img src="<?=$imageUrl?>" class="" width="100%" height="auto;">
+    </div>
+    <hr>
     <div class="split">
-        <h3 class="no-shadow margin-10">Location</h3>
-        <p class="text-left" style="min-height: 0;"><?php echo $ride['Location']; ?></p>
-        <p class="text-left" style="min-height: 0;"><?php echo $ride['City'].', '.$ride['State']; ?></p>
-        <p class="text-left" style="min-height: 0;"><?php echo $ride['Zip']; ?></p>
+        <h3 class="no-shadow header-line green">Date Time</h3>
+        <p class="text-left alert alert-warning" style="min-height: 0;">
+            Date: <?= date('m/d/Y', strtotime($ride['EventDate'])); ?><br>
+            Time: <?= $ride['EventTime']; ?>
+        </p>
     </div>
     <div class="split">
-        <h3 class="no-shadow margin-10">Details</h3>
-        <p class="text-left" style="min-height: 0;">
-            Date:<span class="<?php echo $class;?>"> <?php echo $departs;?></span>
-        </p>
-        <p class="text-left" style="min-height: 0;">
+        <h3 class="no-shadow header-line green">Time Left</h3>
+        <p class="text-left alert alert-warning" style="min-height: 0;">
+            Date:<span class="<?php echo $class;?>"> <?php echo $departs;?></span><br>
             Time: <?php echo $time; ?>
         </p>
     </div>
-    
+    <hr>
+    <div class="split">
+        <h3 class="no-shadow header-line green">Location</h3>
+        <p class="text-left alert alert-warning" style="min-height: 0;">
+            <?php echo $ride['Location']; ?><br>
+            <?php echo $ride['City'].', '.$ride['State'].', '.$ride['Zip']; ?>
+        </p>
+    </div>
+    <div class="split">
+        <h3 class="no-shadow header-line green">Has Rides</h3>
+        <p class="text-left alert <?= ($ride['RideId']!='') ? 'alert-success' : 'alert-danger'?>">
+            <i class="fa fa-car"></i>&nbsp;<?= ($ride['RideId']!='') ? 'YES' : 'NO'?>
+            <br><br>
+            <a class="btn btn-primary" style="display:block" href="<?= base_url('index.php/main/postride?e='.$ride['EventId']);?>">Post a Ride</a>
+        </p>
+    </div>
+    <hr>
+    <div class="clear"></div>
+    <div style="margin-bottom: 20px" >
+        <h3 class="no-shadow header-line green">Website / Social Media</h3>
+        <div class="text-left" style="margin-left: 20px">
+            <?php if(isset($ride['Website']) && !empty($ride['Website'])){ ?>
+                <a href="<?=$ride['Website']?>" class="social-link" ><i class="fa fa-globe" ></i>&nbsp;<?=$ride['Website']?></a>
+            <?php } ?>
+            <?php if(isset($ride['Facebook']) && !empty($ride['Facebook'])){ ?>
+                <a href="<?=$ride['Facebook']?>" class="social-link" ><i class="fa fa-facebook" ></i>&nbsp;<?=$ride['Facebook']?></a>
+            <?php } ?>
+            <?php if(isset($ride['Twitter']) && !empty($ride['Twitter'])){ ?>
+                <a href="<?=$ride['Twitter']?>" class="social-link" ><i class="fa fa-twitter" ></i>&nbsp;<?=$ride['Twitter']?></a>
+            <?php } ?>
+            <?php if(isset($ride['Instagram']) && !empty($ride['Instagram'])){ ?>
+                <a href="<?=$ride['Instagram']?>" class="social-link" ><i class="fa fa-google-plus" ></i>&nbsp;<?=$ride['Instagram']?></a>
+            <?php } ?>
+            <?php if(isset($ride['Googleplus']) && !empty($ride['Googleplus'])){ ?>
+                <a href="<?=$ride['Googleplus']?>" class="social-link" ><i class="fa fa-instagram" ></i>&nbsp;<?=$ride['Googleplus']?></a>
+            <?php } ?>
+        </div>
+    </div>
+    <hr>
+    <div style="margin-bottom: 20px" >
+        <h3 class="no-shadow header-line green">Description</h3>
+        <?php if(isset($ride['Googleplus']) && !empty($ride['Googleplus'])){ ?>
+        <p class="text-left" style="margin-left: 20px;">
+            <?=$ride['Description']?>
+        </p>
+        <?php }else{ echo 'No description has been entered...'; }?>
+    </div>
 </div>
 
 <div class="travelInformation">
@@ -58,10 +113,11 @@
         $comments = trim($ride['Comments']);
         if(empty($comments) || is_null($comments)):
     ?>
-    <h2 class="no-shadow margin-10">No Comment</h2>
+    <hr>
+    <h3 class="no-shadow">No Comment</h3>
     <?php else: ?>
-        <h2 class="no-shadow" style="margin-bottom:0.5em;">Comments</h2>
-        <p id="comment"><?php echo $comments;?></p>
+        <h3 class="no-shadow header-line green" style="margin-bottom:0.5em;">Comments</h3>
+        <p id="comment" class="" style="margin-left: 20px;"><?php echo $comments;?></p>
     <?php endif; ?>
 </div>
 <input hidden id="lat" value="<?php echo $ride['Lat'];?>" />

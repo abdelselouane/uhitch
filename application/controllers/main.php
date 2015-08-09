@@ -1,7 +1,8 @@
 <?php if ( !defined('BASEPATH')) exit('No direct script access allowed');
 
 class Main extends My_BaseController {
-    protected $user, $update;
+    protected $user, $update; 
+    public $flashData;
     
     function __construct() {
         parent::__construct();      
@@ -75,10 +76,19 @@ class Main extends My_BaseController {
         
         $get = $this->input->get();
         
-        if(isset($get)){
+        if(isset($get) && !empty($get)){
             $rideId = $this->input->get('q');
-            $info = $this->retrievedata_model->retrieveRideInformation($rideId);
-            $this->data->ride = $info;
+            if(isset($rideId) && !empty($rideId)){
+                $info = $this->retrievedata_model->retrieveRideInformation($rideId);
+                $this->data->ride = $info;
+            }
+            
+            $eventId = $this->input->get('e');
+            if(isset($eventId) && !empty($eventId)){
+                $info = $this->retrievedata_model->getEventById($eventId);
+                $this->data->myevent = $info;
+            }
+            
             //echo '<pre>'; print_r($info); echo '</pre>'; exit;
         }
         
@@ -144,37 +154,29 @@ class Main extends My_BaseController {
     function upcoming() {
         $this->title = 'Uhitch | Upcoming Events';
         $this->setScripts('upcomingEvents');
-        $this->load->helper(array("url", "My_helper"));
+       // $this->load->helper(array("url", "My_helper"));
         $this->load->model('eventservices_model');
 
         $config = array();
         $post = $this->input->post();
         
-        if(isset($post) && $post != ''){
-            //echo '<pre>'; print_r($post['Name']); echo '</pre>'; exit;
+        if(isset($post) && !empty($post != '')){
+            //echo '<pre>'; print_r($post); echo '</pre>'; //exit;
             
-            $query = "";
+            $query = array();
             $empty = 'FALSE';
             
             if($post['Name'] != ''){
-                $empty = 'TRUE';
-                $query .= " Name LIKE '%".$post['Name']."%'";
-            }
-            if($post['City'] != ''){
-                $empty = 'TRUE';
-                $query .= " OR City LIKE '%".$post['City']."%'";
+                $query[]= " Name LIKE '%".$post['Name']."%'";
             }
             if($post['Location'] != ''){
-                $empty = 'TRUE';
-                $query .= " OR Location LIKE '%".$post['Location']."%'";
+                $query[]= " Location LIKE '%".$post['Location']."%'";
+            }
+            if($post['City'] != ''){
+                $query[]= " City LIKE '%".$post['City']."%'";
             }
             if($post['State'] != ''){
-                $empty = 'TRUE';
-                $query .= " OR State = '".$post['State']."'";
-            }
-            
-            if($empty == 'TRUE'){
-                $query .= " AND Reviewed = 1";
+                $query[]= " State = '".$post['State']."'";
             }
             
             $config['events'] = $this->eventservices_model->searchForEvents($query);
@@ -207,6 +209,56 @@ class Main extends My_BaseController {
         } else {
             $this->upcoming();
         }
+    }
+    
+    function getRidesByEventId($id){
+        
+        if($id != ''){
+            
+           // echo $id; exit;
+            
+            $this->load->model('retrievedata_model');
+            $info = $this->retrievedata_model->getRidesByEventId($id);
+            //echo '<pre>'; print_r($info); echo '</pre>'; exit;
+            print_r(json_encode($info));
+            //exit;
+        } else {
+            $this->eventpanel();
+        }
+    }
+    
+    function removeEvent($id){
+                              
+        if($id != ''){
+            $this->load->model('retrievedata_model');
+            $info = $this->retrievedata_model->getEventById($id);
+            
+            if(is_array($info) && !empty($info)){
+                
+                $this->load->model('eventservices_model');
+                $this->eventservices_model->deleteEventById($id);
+                
+                $fileRoot = 'assets/photos/events/'.$info['Photo'];
+                $url = base_url($fileRoot);
+
+                if( isUrlExists( $url ) ){
+                    unlink($fileRoot);
+                }
+
+                $this->flashData['error'] = false;
+                $this->flashData['msg'] = 'The Event was deleted successfuly.';
+                
+            }else{
+                $this->flashData['error'] = true;
+                $this->flashData['msg'] = 'The Event can not be deleted, no records are matching the provided information, please try again.';
+            }
+        }else{
+          $this->flashData['error'] = true;
+          $this->flashData['msg'] = 'The Event can not be deleted, a missing ID was detected, please try again.';
+        }
+        
+        $this->setFlashData();
+        $this->eventpanel();
     }
         
     function hitchARide() {
@@ -344,7 +396,7 @@ class Main extends My_BaseController {
         $this->load->model('retrievedata_model');
         $eventData = $this->retrievedata_model->getAllEventsByUserId($this->user->userid);
         $this->setEventData($eventData);
-        // echo '<pre>'; print_r($eventData); echo '</pre>'; exit;
+        //echo '<pre>'; print_r($eventData); echo '</pre>'; exit;
         $this->display('eventpanel');
     }
     
@@ -526,6 +578,11 @@ class Main extends My_BaseController {
         }
     }
     
+    function setFlashData()
+    {
+        $this->user->flash_data = $this->flashData;
+    }
+    
     function setEventData($data)
     {
         $this->user->event_data  = $data;
@@ -621,58 +678,65 @@ class Main extends My_BaseController {
         
         $post = $this->input->post(); 
         
-        if(!isset($post) || empty($post)){
+        if(isset($post['EventId']) && empty($post['EventId'])){
+            
+            //echo '<pre>'; print_r($post); echo '</pre>'; exit;
+            
             $config['file_name'] = substr(str_shuffle(MD5(microtime())), 0, 45);
 
             // Direct Upload path on server
             $config['upload_path']      = 'assets/photos/events/';
             $config['allowed_types']    = 'jpg|png|jpeg';
-            $config['max_size']         = '5000';
-            $config['max_width']        = '1600';
-            $config['max_height']       = '1200';
+            $config['max_size']         = '4000';
+            $config['max_width']        = '800';
+            $config['max_height']       = '600';
 
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (!$this->upload->do_upload()) {
-                $error = array('error' => $this->upload->display_errors());
+                //$error = array('error' => $this->upload->display_errors());
+                $this->error['Message'] = $this->upload->display_errors();
                 $this->display('events/error');
             } else {
                 $data = array('upload_data' => $this->upload->data());
                 $img = $data["upload_data"]["file_name"];
                 $this->eventservices_model->registerEvent($img);
+                $this->success['Message'] = 'Your event is successfuly updated.';
                 $this->display('events/success');
             } 
         }else{
             
+            //echo '<pre>'; print_r($post); echo '</pre>';
+            //echo '<pre>'; print_r($_FILES); echo '</pre>';exit;
             $eventId = $post['EventId'];
-            if(isset($_FILES) && !empty($_FILES['name'])){
-                echo '<pre>'; print_r($_FILES); echo '</pre>';exit;
+            if(isset($_FILES['userfile']) && !empty($_FILES['userfile']['name'])){
+                //echo '<pre>'; print_r($_FILES); echo '</pre>';
                 
-                $info = $this->eventservices_model->getEventPhotoById($eventId);
+                $fileRoot = 'assets/photos/events/'.$post['updatefile'];
+                $url = base_url($fileRoot);
                 
-                $url = base_url('assets/photos/events/'.$info[0]['Photo']);
-             
-                if(file_exists($url)){
-                    unlink($url);
+                if( isUrlExists( $url ) ){
+                    unlink($fileRoot);
                 }
+                
+                //echo '<pre>'; print_r($url); echo '</pre>';
+                //exit;
                 
                 $config['file_name'] = substr(str_shuffle(MD5(microtime())), 0, 45);
 
                 // Direct Upload path on server
                 $config['upload_path']      = 'assets/photos/events/';
                 $config['allowed_types']    = 'jpg|png|jpeg';
-                $config['max_size']         = '5000';
-                $config['max_width']        = '1600';
-                $config['max_height']       = '1200';
+                $config['max_size']         = '4000';
+                $config['max_width']        = '800';
+                $config['max_height']       = '600';
 
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);
 
                 if( !$this->upload->do_upload() ){
-                    
-                    //$error = array('error' => $this->upload->display_errors());
-                    $this->error['EventId'] =  $post['EventId'];
-                    $this->error['Error'] =  $this->upload->display_errors();
+
+                    $this->error['Message'] = $this->upload->display_errors();
                     $this->display('events/error');
                     
                 }else{ 
@@ -686,6 +750,7 @@ class Main extends My_BaseController {
                     $post['updatefile'] = $img;
                     
                     $this->eventservices_model->updateEventById($post);
+                    $this->success['Message'] = 'Your event is successfuly updated.';
                     $this->display('events/success');
                    
                 } 

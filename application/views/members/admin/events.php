@@ -1,7 +1,7 @@
 <div class="container-fluid" style="margin-top:150px">
     <div id="allevent" class="row">
         <div class="col-sm-12 col-md-12">
-            <h2 class="green center">Events Panel</h2>
+            <h2 class="green center text-uppercase"><i class="fa fa-calendar"></i>&nbsp;Events Panel</h2>
             <table id="eventsListing" class="display">
                 <thead>
                 <tr>

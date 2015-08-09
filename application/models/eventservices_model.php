@@ -50,20 +50,28 @@ class Eventservices_model extends User_Model {
         $this->zip          = $this->input->post('event_zip');
         $this->lat          = ( $this->input->post('eventLat') == '' ) ? NULL : $this->input->post('eventLat');
         $this->lon          = ( $this->input->post('eventLon') == '' ) ? NULL : $this->input->post('eventLon'); 
-
+        
+        $this->website      = $this->input->post('Website');
+        $this->facebook     = $this->input->post('Facebook');
+        $this->twitter      = $this->input->post('Twitter');
+        $this->instagram    = $this->input->post('Instagram');
+        $this->googleplus   = $this->input->post('Googleplus');
+        $this->description  = $this->input->post('Description');
         $this->comments     = $this->input->post('Comments');
     }
 
     function insertionToDb() {
-        $query = "INSERT INTO events (Name, EventId, Location, City, "
-                    . "State, CreatedByName, CreatedById,"
-                    . "Comments, Lat, Lon, Zip, Photo, EventDate, EventTime ) "
-                    . "VALUES('$this->eventName', '$this->eventId', '$this->location', "
-                    . "'$this->city', '$this->state', '$this->userName', '$this->userId', "
-                    . "'$this->comments',"
-                    . "'$this->lat', '$this->lon', '$this->zip', '$this->eventFilename',"
-                    ." '$this->eventDate', '$this->eventTime' ) ";
+        $query = 'INSERT INTO events (Name, EventId, Location, City, '
+                    . 'State, CreatedByName, CreatedById,'
+                    . 'Comments, Lat, Lon, Zip, Photo, Website, Facebook, Twitter, Instagram, Googleplus, Description, EventDate, EventTime ) '
+                    . 'VALUES("'.$this->eventName.'", "'.$this->eventId.'", "'.$this->location.'", '
+                    . ' "'.$this->city.'", "'.$this->state.'", "'.$this->userName.'", "'.$this->userId.'", '
+                    . ' "'.$this->comments.'", '
+                    . ' "'.$this->lat.'", "'.$this->lon.'", "'.$this->zip.'", "'.$this->eventFilename.'", '
+                    . ' "'.$this->website.'", "'.$this->facebook.'", "'.$this->twitter.'", "'.$this->instagram.'", "'.$this->googleplus.'", "'.$this->description.'", '
+                    . ' "'.$this->eventDate.'", "'.$this->eventTime.'" ) ';
         
+       // echo $query; exit;
         $this->db->execute($query);
     }
     
@@ -175,26 +183,47 @@ class Eventservices_model extends User_Model {
     function updateEventById($post) {
         //$post = $this->input->post();
         // echo '<pre>'; print_r($post); echo '</pre>'; exit;
-        $query = "UPDATE events 
+        $query = 'UPDATE events 
                     SET Reviewed = 0,
-                        Name = '".$post['Name']."',
-                        Lat = ".$post['eventLat'].",
-                        Lon = ".$post['eventLon'].",
-                        Location = '".$post['event_address']."',
-                        City = '".$post['event_city']."',
-                        State = '".$post['event_state']."',
-                        Zip = '".$post['event_zip']."',
-                        Photo = '".$post['updatefile']."',
-                        EventDate = '".date('Y-m-d', strtotime($post['event_date']))."',
-                        EventTime = '".$post['event_time']."',
-                        Comments = '".$post['Comments']."'
-                    WHERE EventId='".$post['EventId']."' ";
+                        Name = "'.$post['Name'].'",
+                        Lat = '.$post['eventLat'].',
+                        Lon = '.$post['eventLon'].',
+                        Location = "'.$post['event_address'].'",
+                        City = "'.$post['event_city'].'",
+                        State = "'.$post['event_state'].'",
+                        Zip = "'.$post['event_zip'].'",
+                        Photo = "'.$post['updatefile'].'",
+                        Website = "'.$post['Website'].'",
+                        Facebook = "'.$post['Facebook'].'",
+                        Twitter = "'.$post['Twitter'].'",
+                        Instagram = "'.$post['Instagram'].'",
+                        Googleplus = "'.$post['Googleplus'].'",
+                        Description = "'.$post['Description'].'",
+                        EventDate = "'.date('Y-m-d', strtotime($post['event_date'])).'",
+                        EventTime = "'.$post['event_time'].'",
+                        Comments = "'.$post['Comments'].'"
+                    WHERE EventId="'.$post['EventId'].'" ';
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+    function deleteEventById($id) {
+        $query = "DELETE FROM events WHERE EventId='".$id."' ";
         //echo $query; exit;
         $this->db->execute($query);
     }
     
     function searchForEvents($request) {
-        $query = "SELECT * FROM events WHERE 1 ".$request;
+        //echo '<pre>'; print_r($request); echo '</pre>'; exit; 
+        $query = "SELECT * FROM events WHERE Reviewed = 1 AND ( ";
+        foreach($request as $key=>$value){
+            if( ($key+1) != count($request))
+                $query .= $value." OR";
+            else 
+                $query .= $value." ";
+        }       
+        $query .= ") ";
+        //echo $query; exit;
         return $this->db->retrieveRows($query);
     }
     

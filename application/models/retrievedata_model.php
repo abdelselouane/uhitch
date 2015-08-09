@@ -239,8 +239,9 @@ class retrievedata_model extends User_Model {
      function retrieveEventInformation($id) {
          $query =  "SELECT "
                     . "e.Name, e.Location, e.City, e.State, e.Zip, "
-                    . "e.Lat, e.Lon, e.Comments, e.Photo, e.EventDate, "
-                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, u.Photo, "
+                    . "e.Lat, e.Lon, e.Photo, e.Website, e.Facebook, e.Twitter, e.Instagram, e.Googleplus, e.Description, "
+                    . "e.Comments, e.EventDate, "
+                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, u.Photo as UserPhoto, "
                     . "r.Ride_ID as RideId "
                  . "FROM events e "
                  . "INNER JOIN user u "
@@ -255,7 +256,8 @@ class retrievedata_model extends User_Model {
     function getEventById($id) {
          $query =  "SELECT "
                     . "e.Name, e.Location, e.City, e.State, e.Zip, "
-                    . "e.Lat, e.Lon, e.Comments, e.Photo, e.EventDate, "
+                    . "e.Lat, e.Lon, e.Photo, e.Website, e.Facebook, e.Twitter, e.Instagram, e.Googleplus, e.Description, "
+                    . "e.Comments, e.EventDate, "
                     . "e.EventTime, e.EventId, e.CreatedByName as UserName, e.CreatedById as UserId, u.Photo as UserPhoto, "
                     . "r.Ride_ID as RideId "
                  . "FROM events e "
@@ -275,7 +277,7 @@ class retrievedata_model extends User_Model {
         $query =  "SELECT "
                     . "e.Name, e.Location, e.City, e.State, e.Zip, "
                     . "e.Lat, e.Lon, e.Comments, e.Photo, e.EventDate, "
-                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, "
+                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, e.Reviewed, "
                     . "r.Ride_ID as RideId "
                  . "FROM events e "
                  . "INNER JOIN user u "
@@ -286,6 +288,12 @@ class retrievedata_model extends User_Model {
         
         //echo $query; exit;
          
+         return $this->db->retrieveRows($query);
+    }
+    
+    function getRidesByEventId($id){
+         $query =  "SELECT * FROM ride WHERE Event_ID='$id' ";
+        // echo $query; exit;
          return $this->db->retrieveRows($query);
     }
     

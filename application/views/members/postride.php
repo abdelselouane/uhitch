@@ -7,35 +7,29 @@
             <div id="rideMap"></div>
             <!-- Carousel
             ================================================== -->
-            <?php //echo '<pre>'; print_r($data->events); echo '</pre>';?>
+<!--            <?php //echo '<pre>'; print_r($data->events); echo '</pre>';?>-->
             <?php if(is_array($data->events) && count($data->events)>0){?>
             <div id="myEventsCarousel" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
               <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
+                  <?php
+                    if(isset($data->events) && count($data->events)>0){
+                        for($i=0; $i < count($data->events); $i++){
+                            if($i==0){
+                                echo '<li data-target="#myEventsCarousel" data-slide-to="0" class="active"></li>';
+                            }else{
+                                echo '<li data-target="#myEventsCarousel" data-slide-to="'.$i.'"></li>';
+                            }
+                        }
+                    }
+                  ?>
               </ol>
               <div class="carousel-inner" role="listbox">
-                <!--div class="item active">
-                  <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
-                  <div class="container">
-                    <div class="carousel-caption">
-                      <h1>Example headline.</h1>
-                      <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                      <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-                    </div>
-                  </div>
-                </div-->
-                  
-                  
-                
-                
                 <?php 
                   $display = 0;                                                      
                                                          
                  foreach ($data->events as $key => $value){
-                  if($display < 3) {   
+                  //if($display < 3) {   
                   
                     $imagepath = file_exists("assets/photos/events/".$value['Photo']) ? "assets/photos/events/".$value['Photo']:   "assets/photos/events/default.png";
      
@@ -44,34 +38,24 @@
                 ?>
                   
                     <div class="item <?= $key == 0 ? 'active' : '' ?>">
-                      <img class="<?= $key == 0 ? 'first-slide' : 'second-slide'?>" src="<?= base_url("assets/photos/events/".$value['Photo']) ?>">
+                      <img class="" style="min-height: 470px;" src="<?= base_url("assets/photos/events/".$value['Photo']) ?>">
                       <div class="container">
                         <div class="carousel-caption">
-                          <h1><?= $value['Name'];?></h1>
-                          <p>address</p>
-                          <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                          <h1 style="color: #fefefe;"><?= $value['Name'];?></h1>
+                          <p><a class="btn btn-primary" target="_blank" href="<?= base_url('index.php/main/eventinfo?q='.$value['EventId'])?>" role="button">GO TO THE EVENT PAGE NOW</a></p>
                         </div>
                       </div>
                     </div>
-                <?php $display++; } }?>
-                  
-                
-                <!--div class="item">
-                  <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
-                  <div class="container">
-                    <div class="carousel-caption">
-                      <h1>One more for good measure.</h1>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                      <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                    </div>
-                  </div>
-                </div-->
+                <?php 
+                     //$display++; }
+                }
+                ?>
               </div>
-              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+              <a class="left carousel-control" href="#myEventsCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+              <a class="right carousel-control" href="#myEventsCarousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
               </a>

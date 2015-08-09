@@ -1,7 +1,7 @@
 <div id="page_content">
     <div id="page">
         <section id="ridepanel">
-            <h2 class="green center">My Rides</h2>
+            <h2 class="green center header-line text-uppercase"><i class="fa fa-dashboard"></i>&nbsp;My Rides</h2>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8">

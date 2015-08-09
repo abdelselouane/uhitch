@@ -57,7 +57,21 @@ if ( ! function_exists('getStates'))
                        'Wisconsin'=>'WI',
                        'Wyoming'=>'WY');
         return $states;
-    }   
+    }
+    
+    function isUrlExists($url=''){
+        
+        if( !empty($url) ){
+            $ch = curl_init($url);    
+            curl_setopt($ch, CURLOPT_NOBODY, true);
+            curl_exec($ch);
+            $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            return $status = ($code == 200) ? true : false ;
+        }
+        
+       // return false;
+    }
 }
 
 

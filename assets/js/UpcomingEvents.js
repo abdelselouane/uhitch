@@ -135,6 +135,7 @@ $(document).ready(function() {
         var id = $( this ).attr('data-id');
         $('#eventResult div.left').empty();
         $('#eventResult div.right').empty();
+        $('#eventResult div.rides-row').empty();
         $('#request').empty();
         $('#loading-container').show(); //return false;
         setTimeout(function(){ 
@@ -209,31 +210,66 @@ function getEventById(id){
                var rightHtml = '';
                rightHtml +=  '<div class="form-group"><h5> by: '+data.UserName+'</h5><img src='+ userPhoto +'>'+userprofile+'</div>';
                
-              if(data.RideId != null){
-                    rideurl    = 'hitchARide?q='+data.EventId;
-                    ridepage   = '<p><a target="_blank" href="'+rideurl+'">Checkout the Ride Page <i class="fa fa-long-arrow-right"></i></a></p>';
-                    rightHtml +=  '<div class="form-group"><p class="alert alert-info"> Has Ride: <i class="fa fa-car"></i> YES</p>'+ridepage+'</div>';
-               }else{
+              if(data.RideId == null){
                     rightHtml +=  '<div class="form-group"><p class="alert alert-danger"> Sorry this Event does not have a Ride yet:   <i class="fa fa-car"></i> NO</p></div>';
                }
                
                $('#eventResult div.left').html(leftHtml);
                $('#eventResult div.right').html(rightHtml);
                
-               rideurl  = (data.RideId != null) ? base + 'index.php/main/requestride?q=' + data.RideId : '';
                if(data.RideId != null){
-                   $('#request').append('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
-                   $('#request').append('<a target="_blank" href="'+rideurl+'" class="btn btn-primary" >Request Ride</a>');
-               }else{
-                    $('#request').append('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
+                   getRidesByEventId(id);
                }
                
+               rideurl  = (data.RideId != null) ? base + 'index.php/main/requestride?q=' + data.RideId : '';
+               if(data.RideId == null){
+                    $('#request').append('<a target="_blank" href="'+base+'index.php/main/postride" class="btn btn-primary" >Post a Ride</a>');
+               }
+               $('#request').append('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
                $('#loading-container').hide();
                
             }
         });
     }
     return false;
+}
+
+function getRidesByEventId(id){
+   
+    if(id){
+        base = base_url('index.php');
+        url = base + 'index.php/';
+        url += 'main/getRidesByEventId/'+ id;
+        $.ajax({
+           type: "post",
+           url: url,
+           contentType: "application/json",
+           success: function( data ) {
+               var data = JSON.parse(data);
+               
+               console.log(data); 
+               
+               
+               var rides = data.length > 1 ? '<i class="fa fa-car"></i> '+data.length+' Rides found for this event.' : '<i class="fa fa-car"></i> '+data.length+' Ride found for this event.';
+               var ridesHtml = '<div class="alert alert-info">'+rides+'</div><table class="table table-hover table-striped">';
+               ridesHtml += '<tr><th>Name</th><th>Where</th><th>When</th><th>Distance</th><th>Charge</th><th class="text-center">View</th></tr>';
+               //console.log(data.length);
+               for(var i = 0; i < data.length; i++){
+                   
+                   var formatDepart = new Date(data[i].DepartDate);
+                   var departDateTime = formatDate(formatDepart);
+                   
+                   var cost = (data[i].Charge == 'trip') ? data[i].Ride_Cost : data[i].Price; 
+                   
+                   ridesHtml += '<tr><td class="text-left">'+data[i].Name+'</td><td class="text-left">'+data[i].ArriveShort+'</td><td class="text-left">'+departDateTime+'</td><td class="text-left">'+data[i].Distance+' Mi</td><td class="text-left">$'+cost+' / '+data[i].Charge+'</td><td><a target="_blank" href="'+base+'index.php/main/hitchARide?q='+data[i].Ride_ID+'"><i class="fa fa-eye"></i></a></td></tr>';
+               
+               }
+               ridesHtml += '</table>';
+               $('#eventResult div.rides-row').html(ridesHtml);
+               return false;;
+           }
+        });
+    }
 }
 
 function formatDate(date) {

@@ -1,4 +1,6 @@
-<?php //echo '<pre>'; print_r($data->ride); echo '</pre>';?>
+<?php //echo '<pre>'; print_r($data->ride); echo '</pre>'
+    
+    //echo '<pre>'; print_r($data->myevent); echo '</pre>';?>
 <div id='rideInfo'>
     <?php 
         $today = date("Y-m-d");
@@ -42,7 +44,7 @@
     <div class="form-group ride_input">
         <label>Arrival:</label>
         <input placeholder="Arrival Address" name="arrival" 
-               class="form-control ride_location" id="end" type="text" value="<?= isset($data->ride) ? $data->ride['Arrival'] : ''?>" required />
+               class="form-control ride_location" id="end" type="text" value="<?= isset($data->ride) ? $data->ride['Arrival'] : ''?><?= isset($data->myevent) ? $data->myevent['Location'].', '.$data->myevent['City'].', '.$data->myevent['State'].', '.$data->myevent['Zip'] : ''?>" required />
     </div>
     <div class="form-group">
         <label>Passengers:</label>
@@ -80,7 +82,7 @@
             <?php 
             if(is_array($data->events) && count($data->events)>0){ 
                 foreach($data->events as $key => $value){ ?>
-                    <option value="<?= $value['EventId']?>" <?= isset($data->ride) && $data->ride['Event_ID'] == $value['EventId'] ? 'selected' : '' ?>><?= $value['Name']?></option>
+                    <option value="<?= $value['EventId']?>" <?= isset($data->ride) && $data->ride['Event_ID'] == $value['EventId'] ? 'selected' : '' ?> <?= isset($data->myevent) && $data->myevent['EventId'] == $value['EventId'] ? 'selected' : '' ?>><?= $value['Name']?></option>
             <?php } 
              }
             ?>

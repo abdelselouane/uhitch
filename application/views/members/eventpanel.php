@@ -1,19 +1,29 @@
 <div id="page_content">
     <div id="page">
         <section id="upcoming-events">
-            <h2 class="green center">My Events</h2>
+            <h2 class="green center text-uppercase"><i class="fa fa-film"></i>&nbsp;My Events</h2>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-10">
-                            <?php  //echo '<pre>'; print_r($data->event_data); echo '</pre>'; ?>
+                            <?php  
+                                 //echo '<pre>'; print_r($data->event_data); echo '</pre>'; //exit; 
+
+                                 if( isset($data->flash_data) && !empty($data->flash_data) ){ 
+                                     //echo '<pre>'; print_r($data->flash_data); echo '</pre>'; 
+                            ?>
+                            <div class="alert <?=  ($data->flash_data['error']) ? 'alert-warning' : 'alert-success' ?> alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <p><strong><?= ($data->flash_data['msg']) ? 'Warning!' : 'Congratulations!'?></strong> <?= ($data->flash_data['msg']) ? $data->flash_data['msg'] : '' ?></p>
+                            </div>
+                            <?php } ?>
                             <table id="eventsListing" class="display">
                                 <thead>
                                   <tr>
                                     <th>Photo</th>
-                                    <th>Name</th>
+                                    <th style="width:120px;">Name</th>
                                     <th>At</th>
                                     <th>Date/Time</th>
                                     <th>Has Ride</th>
+                                    <th>Approved</th>
                                     <th class="text-center">Action</th>
                                   </tr>
                                 </thead>
@@ -29,6 +39,7 @@
                                         <td class="text-left"><?= $value['Location'].'<br>'.$value['City'].', '.$value['State'].', '.$value['Zip']?></td>
                                         <td class="text-left"><?php echo date('m/d/Y', strtotime($value['EventDate'])); echo ' <br>'.$value['EventTime']?></td>
                                          <td class="text-left"><?= ($value['RideId']!='') ? '<span class="alert alert-success"><i class="fa fa-car"></i> YES </span>' : '<span class="alert alert-danger"><i class="fa fa-car"></i> NO </span>'?></td>
+                                        <td class="text-left"><?= ($value['Reviewed']!=0) ? '<span class="alert alert-success"><i class="fa fa-check"></i> YES </span>' : '<span class="alert alert-warning"><i class="fa fa-minus-circle"></i> NO </span>'?></td> 
                                         <td><!-- Button trigger modal -->
                                             <a class="item-action info" data-id="<?=$value['EventId']?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-list"></i></a>
                                             
@@ -69,6 +80,7 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="rides-row"></div>
                                 <div class="cancel-row"></div>
                             </div>
                         </div>

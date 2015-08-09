@@ -5,7 +5,7 @@
 #page #members {
     margin: 0 auto;
     /*border: 1px solid;*/
-    width: 55em;
+    width: auto;
     padding: 0.5em 1em;
     overflow: hidden;
 }
@@ -353,10 +353,10 @@
 }
 
 #page #members #events {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     overflow: hidden;
-    background-color:  #F4F4F4;
+    background-color:  #fff;
     padding: 1em;
     text-align: center;
     box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
@@ -370,10 +370,12 @@
   border-bottom: 1px solid;
 }
 
-#page #members #events input[type=text]{
+#page #members #events input[type=text],
+#page #members #events input[type=email],
+#page #members #events input[type=url]{
     float:none;
     display: block;
-    margin: 3% auto 2%;
+    margin: 10px auto 10px;
     padding: 0.3em 0.5em;
     font-size: 105%;
     width: 55%;
@@ -419,8 +421,16 @@
 
 #page #upcoming-events h2 {
     padding: 0px 0 30px;
-    margin-bottom: 40px;
     border-bottom: 1px solid;
+}
+
+.eventProfile{
+     position: relative;
+     padding: 20px;
+     margin: 20px auto 0 auto;
+     box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
 }
 
 #page #upcoming-events #eventsListing a.item-action {
@@ -465,6 +475,16 @@
     -webkit-box-shadow: none;
     box-shadow: none;
     opacity: .65;
+}
+
+.form-info-span{
+    text-align: left;
+    font-size: 10px;
+    color: #a94442;
+    display: table;
+    margin: 0 auto;
+    position: relative;
+    width: 55%;
 }
 
 #page #upcoming-events .modal {
@@ -574,7 +594,7 @@
     display: block;
     border: 1px solid;
     width: 50%;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 20px 20px 25px;
     background-color: #000;
     border-radius: 5px;
@@ -589,7 +609,7 @@
     font-size: 14px;
     border: 0;
     padding: 10px;
-    margin: 3% auto 2%;
+    margin: 10px auto 10px;
     width: 55%;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -598,6 +618,10 @@
     -moz-box-shadow:    inset 1px 1px 4px #5C5C5C;
     -webkit-box-shadow:  inset 1px 1px 4px #5C5C5C;
     box-shadow:         inset 1px 1px 4px #5C5C5C;
+}
+
+.social-link{
+    display:block; padding: 3px 0;
 }
 
 #page #postRide {
@@ -985,7 +1009,7 @@
 }
 
 #page #message {
-    width: 55em;
+    width: 100%;
     margin: 0 auto;
     padding: 0 1em 3em 1em;
     overflow: hidden;
@@ -1004,7 +1028,7 @@
 #page #message #inbox {
     margin: 0 auto;
     padding: 1em 0.5em;
-    width: 15em;
+    width: 20%;
     float: left;
     border-radius: 10px;
     background-color: #fff;
@@ -1048,7 +1072,7 @@
 }*/
 
 #page #members h3.title{
-    border-bottom: 1px solid #ccc;
+    text-transform: uppercase;
     padding-bottom: 20px;
     margin-bottom: 25px;
 }
@@ -1156,7 +1180,7 @@
 #page #message #conversation {
     float: right;
     padding: 0;
-    width: 65%;
+    width: 78%;
 }
 
 #page #message #conversation ul.main-nav{
@@ -1747,13 +1771,20 @@
     text-align: left;
 }
 #page #rideInformation .travelInformation > p {
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
     text-align: center;
 }
+
+.form-label-55{
+    width: 55% !important;
+    text-align: left !important;
+    margin-bottom: 0px !important;
+}
+
 #page #rideInformation .travelInformation #no-comment {margin: 3% 0 0;}
 #page #rideInformation .travelInformation #comment {text-align: left;}
 #page .travelInformation {
-    background-color: #F4F4F4;
+    background-color: #fff;
     padding: 1em;
     margin-bottom: 1em;   
 }
@@ -1767,7 +1798,6 @@
 #page #rideInformation .travelInformation p {
     min-height: 2em;
     margin: 0;
-    font-size: 1.2em;
 }
 #page #rideInformation .travelInformation h4 {
     display: inline-block;
@@ -1800,9 +1830,14 @@
 
 #page .travelInformation #hitchBtn-container a {
     display: inline-block;
-    width: 35%;
+    width: 80%;
     font-size: 100%;
-    margin: 0 0.5em;
+    margin: 10px auto;
+}
+
+.header-line{
+    border-bottom: 1px solid;
+    padding-bottom: 20px;
 }
 
 #page .travelInformation .driverInfo {

@@ -23,11 +23,11 @@ $(document).ready(function() {
         if($('.fileContainer').css('display') == 'none'){
             $('.fileContainer').slideDown();
             $('.imgFileContainer').slideUp();
-            $('#updatePhoto').text('Keep Old Photo');
+            $('#updatePhoto').html('<i class="fa fa-picture-o"></i>&nbsp;Keep Old Photo');
         }else{
             $('.fileContainer').slideUp();
             $('.imgFileContainer').slideDown();
-            $('#updatePhoto').text('Update Photo');
+            $('#updatePhoto').html('<i class="fa fa-upload"></i>&nbsp;Update Photo');
         }
         //var updatePhoto = $('#fileContainer').is('display');
          

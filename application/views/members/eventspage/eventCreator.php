@@ -8,8 +8,8 @@
 ?>
 
 <div class="travelInformation">
-    <h3 class="no-shadow">
-        Creator: <?php echo $ride['CreatedByName']; ?>
+    <h3 class="no-shadow header-line green">
+        By: <?php echo $ride['CreatedByName']; ?>
     </h3>
     <div class="driverInfo">
         <figure>
@@ -17,16 +17,9 @@
         </figure>
     </div>
     <div class="driverInfo">
-        <span>
-            <a href="userProfile?q=<?php echo $ride['CreatedById'];?>">
-                See Profile
-            </a>
-        </span>
         <div id="hitchBtn-container">
-            <?php if(isset($ride['RideId']) && $ride['RideId'] != 'null'){?>
-            <a class="button" href="<?=site_url('main/requestride?q='.$ride['RideId']);?>">Request Ride</a>
-            <?php } ?>
-            <a class="button" href="<?=site_url('main/messages?q='.$ride['creator']['UserID']);?>">Send Message</a>
+            <a class="btn btn-primary" href="userProfile?q=<?php echo $ride['CreatedById'];?>">See Profile </a><br>
+            <a class="btn btn-primary" href="<?=site_url('main/messages?q='.$ride['creator']['UserID']);?>">Send Message</a><br>
         </div>
     </div>
 </div>

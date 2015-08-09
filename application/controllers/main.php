@@ -160,7 +160,7 @@ class Main extends My_BaseController {
         $config = array();
         $post = $this->input->post();
         
-        if(isset($post) && !empty($post != '')){
+        if(isset($post) && !empty($post)){
             //echo '<pre>'; print_r($post); echo '</pre>'; //exit;
             
             $query = array();

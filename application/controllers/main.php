@@ -124,7 +124,8 @@ class Main extends My_BaseController {
             
             $this->load->model('retrievedata_model');
             $info = $this->retrievedata_model->getEventById($eventId);
-            if(!empty($info) && !empty($this->input->get('admin')) ) $info['admin'] = 1;
+            if(!empty($info) && !empty($this->input->get('admin')) ) 
+                $info['admin'] = 1;
             //echo '<pre>'; print_r($info); echo '</pre>';exit;
             $this->event = !empty($info) ? $info : '';
         }

@@ -257,7 +257,7 @@ class retrievedata_model extends User_Model {
          $query =  "SELECT "
                     . "e.Name, e.Location, e.City, e.State, e.Zip, "
                     . "e.Lat, e.Lon, e.Photo, e.Website, e.Facebook, e.Twitter, e.Instagram, e.Googleplus, e.Description, "
-                    . "e.Comments, e.EventDate, "
+                    . "e.Comments, e.EventDate, e.Reviewed, "
                     . "e.EventTime, e.EventId, e.CreatedByName as UserName, e.CreatedById as UserId, u.Photo as UserPhoto, "
                     . "r.Ride_ID as RideId "
                  . "FROM events e "
@@ -289,6 +289,24 @@ class retrievedata_model extends User_Model {
         //echo $query; exit;
          
          return $this->db->retrieveRows($query);
+    }
+    
+    public function archiveevent($id){
+        $query =  "UPDATE `events` SET `Reviewed`= 2 WHERE EventId = '".$id."' ";
+        //echo $query; exit;
+        $this->db->execute($query);
+    }
+    
+    function revertevent($id){
+         $query =  "UPDATE `events` SET `Reviewed`= 1 WHERE EventId = '".$id."' ";
+         //echo $query; exit;
+         $this->db->execute($query);
+    }
+    
+    function trashevent($id){
+         $query =  "DELETE FROM `events` WHERE id = ".$id." ";
+         //echo $query; exit;
+         $this->db->execute($query);
     }
     
     function getRidesByEventId($id){

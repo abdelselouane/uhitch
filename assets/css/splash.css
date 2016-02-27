@@ -396,6 +396,7 @@ footer{
   width: 100%;
   z-index:100;
   background-color: #fff;
+  clear: both;
 }
 
 #footer-nav{

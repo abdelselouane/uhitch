@@ -70,20 +70,13 @@
                         <p class="center">Home</p>
                     </a>
                 </li>
-                <!--li class="center">
-                     <a href="<!--?php echo site_url('main/profile');?>" class="center">
-                        <i class="fa fa-user icon-font"></i>
-                        <p class="center">Profile</p>
-                    </a>
-                </li-->
                 <li class="center">
                     <a href="#" class="center sbm-expand">
                         <i class="fa fa-calendar icon-font"></i>
                         <p class="center">&nbsp;Events</p>
                     </a>
                     <ul class="submenu width-200px">
-                        <? if(!empty($data) && $data->admin == 1 ) { ?><li class="sbm"><a href="<?php echo site_url('main/allevent'); ?>"><i class="fa fa-film"></i>&nbsp;All Events</a></li><? } ?>
-                        <li class="sbm"><a href="<?php echo site_url('main/newevent'); ?>"><i class="fa fa-glass"></i>&nbsp;Create New Event</a></li>
+                        <li class="sbm"><a href="<?php echo site_url('main/eventpricing'); ?>"><i class="fa fa-glass"></i>&nbsp;Create New Event</a></li>
                         <li class="sbm"><a href="<?php echo site_url('main/upcoming'); ?>"><i class="fa fa-map-marker"></i>&nbsp;Upcoming Events</a></li>
                     </ul>
                 </li>
@@ -156,5 +149,168 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
 </nav>
-
-
+<style type="text/css">
+    .collapser{
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #e3e3e3;
+        border-top: 1px solid #e3e3e3;
+        border-right: 1px solid #e3e3e3;
+        z-index:1;
+    }
+    .collapser:hover,
+    .collapser:focus,
+    .collapser:active{
+        background-color: #fff;
+    }
+    .collapser a>i{
+        font-size: 35px;
+        padding: 10px;
+    }
+    .admin-expand{
+        left:250px;
+        -webkit-transition: left .45s; /* For Safari 3.1 to 6.0 */
+        transition: left .45s;
+    }
+    .admin-collapse{
+        left:0px;
+        -webkit-transition: left .45s; /* For Safari 3.1 to 6.0 */
+        transition: left .45s;
+    }
+    .panel-arrow{
+        float: right;
+        font-size: 20px;
+    }
+    .header-icon{
+        font-size: 20px;
+        padding-right: 10px;
+    }
+    .admin-panel{
+        display:none;
+        position:absolute;
+        width:250px;
+        height:auto;
+        background-color: #f5f5f5;
+        border-top: 1px solid #e3e3e3;
+        border-right: 1px solid #e3e3e3;
+        z-index: 1000;
+    }
+    .admin-panel ul.menu{
+        list-style-type: none;
+        margin-left: -40px;
+        margin-bottom: 0;
+    }
+    .admin-panel ul.menu>li a{
+        width: 100%;
+        display: inline-block;
+        text-align: left;
+        padding: 19px 15px;
+        text-decoration: none;
+        border-bottom: 1px solid #e3e3e3;
+    }
+    .admin-panel ul.menu>li a:hover,
+    .admin-panel ul.menu>li a:focus,
+    .admin-panel ul.menu>li a:active{
+        background-color: #23527c;
+        color:#fff;
+    }
+    .admin-panel ul.sub-menu{
+        display:none;
+        list-style-type: none;
+        margin-left: -40px;
+        margin-bottom: 0;
+    }
+    .admin-panel ul.sub-menu>li a{
+        width: 100%;
+        display: inline-block;
+        text-align: left;
+        padding: 7px 20px;
+        text-decoration: none;
+        border-bottom: 1px solid #e3e3e3;
+        background-color: #fff;
+        color:#23527c;
+        font-size:12px;
+    }
+    .admin-panel ul.sub-menu>li a:hover{
+        background-color: #23527c;
+        border-bottom: 1px solid #23527c;
+    }
+</style>
+<? if(!empty($data) && $data->admin == 1 ) { ?>
+<div class="collapser admin-collapse">
+    <a href="#"><i class="fa fa-gears"></i></a>
+</div>
+<div class="admin-panel">
+    <ul class="menu">
+        <li><a href="#"><i class="fa fa-home header-icon"></i>&nbsp;Home</a></li>
+        <li>
+            <a href="#" class="sub-menu-link sub-menu-collapse">
+                <i class="fa fa-film header-icon"></i>&nbsp;Events Panel<i class="fa fa-angle-right panel-arrow"></i></a>
+            <ul class="sub-menu">
+                <li><a href="<?php echo site_url('main/allevent'); ?>">All Events</a></li>
+                <li><a href="<?php echo site_url('main/eventpricing'); ?>">Create New Event</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="sub-menu-link sub-menu-collapse">
+                <i class="fa fa-road header-icon"></i>&nbsp;Rides Panel<i class="fa fa-angle-right panel-arrow"></i></a>
+            <ul class="sub-menu">
+                <li><a href="#">Sub Link 1</a></li>
+                <li><a href="#">Sub Link 2</a></li>
+                <li><a href="#">Sub Link 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="sub-menu-link sub-menu-collapse">
+                <i class="fa fa-envelope header-icon"></i>&nbsp;Messages Panel<i class="fa fa-angle-right panel-arrow"></i></a>
+            <ul class="sub-menu">
+                <li><a href="#">Sub Link 1</a></li>
+                <li><a href="#">Sub Link 2</a></li>
+                <li><a href="#">Sub Link 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="sub-menu-link sub-menu-collapse">
+                <i class="fa fa-users header-icon"></i>&nbsp;Users Panel<i class="fa fa-angle-right panel-arrow"></i></a>
+            <ul class="sub-menu">
+                <li><a href="#">Sub Link 1</a></li>
+                <li><a href="#">Sub Link 2</a></li>
+                <li><a href="#">Sub Link 3</a></li>
+            </ul>
+        </li>
+        <li><a href="<?php echo site_url('main/logout'); ?>"><i class="fa fa-power-off header-icon"></i>&nbsp;Log Out</a></li>
+    </ul>
+</div>
+<? } ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.collapser').click(function(e){
+            var collapser = $(this);
+            if(collapser.hasClass('admin-expand')){
+                collapser.removeClass('admin-expand').addClass('admin-collapse');
+            }else{
+                collapser.removeClass('admin-collapse').addClass('admin-expand');
+            }
+            $('.admin-panel').toggle( "slide", function(){
+                
+            });
+            e.preventDefault();
+        });
+        $('.admin-panel a.sub-menu-link').click(function(e){
+            var sibling = $(this).siblings();
+            var children = $(this).children();
+            if($(this).hasClass('sub-menu-expand')){
+                $(children[1]).removeClass('fa-angle-down').addClass('fa-angle-right');
+                $(this).removeClass('sub-menu-expand').addClass('sub-menu-collapse');
+                sibling.slideUp();
+            }else{
+                $(children[1]).removeClass('fa-angle-right').addClass('fa-angle-down');
+                $(this).removeClass('sub-menu-collapse').addClass('sub-menu-expand');
+                sibling.slideDown();
+            }
+            e.preventDefault();
+        });
+    });
+</script>

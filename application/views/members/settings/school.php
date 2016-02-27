@@ -1,9 +1,9 @@
 <!--?php echo '<pre>'; print_r($data); echo '</pre>';?-->
 <hr/>
-<h3 class="title">School Information</h3>
+<h3 class="title title-box"><i class="fa fa-briefcase"></i>&nbsp;School Information</h3>
 <div class="section">
-    <label>College Name</label>
-    <input type="text" id="school" class="school"
+    <label class="form-label">College Name:</label>
+    <input type="text" id="school" class="form-control school"
            value="<?php echo $data->school;?>" 
            placeholder="College or University"/>
 </div>
@@ -30,6 +30,7 @@
         array_push($category, "Social Sciences");
     ?>
     <div class="form-group">
+        <label class="form-label">Classification:</label>
         <select id="classification" class="form-control school" size="1">
             <option value="">Select Classification</option>
             <option value="Freshman" <?= ($data->class == 'Freshman') ? 'selected': '';?>>Freshman</option>
@@ -40,6 +41,7 @@
         </select>
     </div>
     <div class="form-group">
+        <label class="form-label">Major Category:</label>
         <select id="category" class="form-control school" size="1">
             <option value="">Select Major Category</option>
             <?php foreach($category as $value) : ?>
@@ -48,14 +50,16 @@
         </select>
     </div>
     <div class="form-group">
+        <label class="form-label">Major:</label>
         <select id="major" class="form-control school" size="1">
             <option value="">Select Major</option>
             <?= ($data->major) ? '<option value="'.$data->major.'" selected>'.$data->major.'</option>': '';?>
         </select>
     </div>
     <div class="form-group">
+        <label class="form-label">Greek Life:</label>
         <select id="greek" class="form-control school" size="1">
-            <option value="">Greek Life</option>
+            <option value="">Select Greek Life</option>
             <option value="None" <?= ($data->greek == '') ? 'selected': '';?>>None</option>
             <option value="Alpha Epsilon Pi" <?= ($data->greek == 'Alpha Epsilon Pi') ? 'selected': '';?>>Alpha Epsilon Pi</option>
             <option value="Alpha Gamma Rho" <?= ($data->greek == 'Alpha Gamma Rho') ? 'selected': '';?>>Alpha Gamma Rho</option>
@@ -88,6 +92,5 @@
             <option value="Zeta Tau Alpha" <?= ($data->greek == 'Zeta Tau Alpha') ? 'selected': '';?>>Zeta Tau Alpha</option> 
         </select>
     </div>
-    <button class="settings button" 
-        value="school">Update School</button>
+    <button class="settings btn btn-primary btn-center" value="school">Update School</button>
 </div>

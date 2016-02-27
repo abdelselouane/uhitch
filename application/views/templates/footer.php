@@ -24,7 +24,7 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
-
+    <script src="<?php echo base_url();?>assets/js/toastr.min.js"></script>
     <?php if(isset($scripts)): ?>
         <?php foreach($scripts as $script): ?>
             <script src='<?php echo $script;?>'></script>
@@ -33,6 +33,25 @@
 
     <script type="text/javascript">  
         $( document ).ready(function(){
+            
+             toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+             
             //alert('ok');
             $('.sbm-expand').click(function(){//alert('ok');
                    

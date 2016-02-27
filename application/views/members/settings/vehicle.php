@@ -1,9 +1,10 @@
 <!--?php echo '<pre>'; print_r($data); echo '</pre>';?-->
 <hr/>
-<h3 class="title">Vehicle Information</h3>
+<h3 class="title title-box"><i class="fa fa-car"></i>&nbsp;Vehicle Information</h3>
 <div class="section">
     <div id='selectInline'>
         <div class="form-group">
+            <label class="form-label">Vehicle Year:</label>
             <select id='vehicle_year' class="form-control vehicle" size="1">
                 <option value="">Select Year</option>
                 <?php for($i = date('Y'); $i >= 1990; $i--) : ?>
@@ -12,18 +13,21 @@
             </select>
         </div>
         <div class="form-group">
+            <label class="form-label">Vehicle Make:</label>
             <select id='vehicle_make' class="form-control vehicle" size="1">
                 <option value="">Select Make</option>
                 <?= ($data->make) ? '<option value="'.$data->make.'" selected>'.$data->make.'</option>': '';?>
             </select>
         </div>
         <div class="form-group">
+            <label class="form-label">Vehicle Model:</label>
             <select id='vehicle_model' class="form-control vehicle" size="1">
                 <option value="">Select Model</option>
                 <?= ($data->model) ? '<option value="'.$data->model.'" selected>'.$data->model.'</option>': '';?>
             </select>
         </div>
         <div class="form-group">
+            <label class="form-label">Vehicle Color:</label>
             <select id='vehicle_color' class="form-control vehicle" size="1">
                 <option value="">Select Color</option>
                 <option value="White" <?= ($data->color == 'White') ? 'selected': '';?>>White</option>
@@ -43,5 +47,4 @@
         </div>
     </div>
 </div>
-<button class="settings button" 
-    value="vehicle">Update Vehicle</button>
+<button class="settings btn btn-primary btn-center" value="vehicle">Update Vehicle</button>

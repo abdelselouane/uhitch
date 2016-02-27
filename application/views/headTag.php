@@ -20,14 +20,13 @@
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/members.css'>
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/registeruser.css'>
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/jquery.dataTables.css'>
+<link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/normalize.css'>
+<link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/pricing-table.css'>
 
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="<?php echo base_url();?>assets/css/toastr.css" rel="stylesheet" type="text/css" />
+<!-- END PAGE LEVEL PLUGINS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/jquery-1.11.1.min.js"></script>
-
-<?php 
-    if(isset($map)) {
-        if($map) {
-            echo '<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>';
-        }
-    }
-?>
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo8npBXxNBre8fZ8Bsz1B0KrjS8U5f4Yk" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/gmaps.js"></script>

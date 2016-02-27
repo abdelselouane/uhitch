@@ -43,7 +43,7 @@
                                         <td><!-- Button trigger modal -->
                                             <a class="item-action info" data-id="<?=$value['EventId']?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-list"></i></a>
                                             
-                                            <a href="<?= base_url().'index.php/main/newevent?q='.$value['EventId']?>" class="item-action"><i class="fa fa-refresh"></i></a>
+                                            <a href="<?= base_url().'index.php/main/newevent?q='.$value['EventId']?>" class="item-action"><i class="fa fa-edit"></i></a>
                                            <?php  if($value['RideId']==''){ ?>
                                                 <a class="item-action cancel" data-id="<?=$value['EventId']?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></a>
                                             <?php }else{ ?>

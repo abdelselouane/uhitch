@@ -227,6 +227,20 @@ class Eventservices_model extends User_Model {
         return $this->db->retrieveRows($query);
     }
     
+    function searchForEventsByAdmin($request) {
+        //echo '<pre>'; print_r($request); echo '</pre>'; exit; 
+        $query = "SELECT * FROM events WHERE 1 AND ( ";
+        foreach($request as $key=>$value){
+            if( ($key+1) != count($request))
+                $query .= $value." OR";
+            else 
+                $query .= $value." ";
+        }       
+        $query .= ") ";
+        //echo $query; exit;
+        return $this->db->retrieveRows($query);
+    }
+    
     function retrieveEventAdmin() {
         $query = "SELECT * FROM events WHERE 1";
         

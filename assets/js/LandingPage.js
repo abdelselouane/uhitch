@@ -1,4 +1,78 @@
-var map, address, mapLat, mapLon;
+
+var map;
+var mapIcon = '../../assets/imgs/mapIcon.png'; 
+$(document).ready(function(){
+    
+    var baseUrl = $('#baseUrl').val();
+    var url = baseUrl+"index.php/main/getSurroundingRides";
+    
+    $.ajax({
+        url: url,
+        type: "post",
+        success: function (response) {
+           // you will get response from your php page (what you echo or print)                 
+            console.log(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+
+
+    });
+    
+    
+  map = new GMaps({
+    el: '#map',
+    lat: -12.043333,
+    lng: -77.028333
+  });
+  /*map.addMarker({
+    lat: -12.043333,
+    lng: -77.03,
+    icon: mapIcon,
+    title: 'Lima',
+    details: {
+      database_id: 42,
+      author: 'HPNeo'
+    },
+    click: function(e){
+      alert('You clicked in this marker');
+    },
+    mouseover: function(e){
+      console.log('mouseover');
+    }
+  });*/
+  map.addMarkers([{
+        lat: -12.042,
+        lng: -77.028333,
+        icon: mapIcon,
+        title: 'Marker with InfoWindow',
+        infoWindow: {
+          content: '<p>HTML Content</p>'
+        }
+  }, {
+        lat: -12.043333,
+        lng: -77.03,
+        icon: mapIcon,
+        title: 'Marker with InfoWindow',
+        infoWindow: {
+          content: '<p>HTML Content</p>'
+        }
+  },
+    {
+        lat: -12.040,
+        lng: -77.027,
+        icon: mapIcon,
+        title: 'Marker with InfoWindow',
+        infoWindow: {
+          content: '<p>HTML Content</p>'
+        }
+    }
+]);
+  
+});
+
+/*var map, address, mapLat, mapLon;
 var markers = [];
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow();
@@ -214,6 +288,9 @@ $(document).ready(function() {
             modifyTicker(ticker, value);
         });
     });
+    $('#surroundingRideListing').DataTable({
+        ordering:  false,
+    });
 });
 
 function retrieveInformation(id) {
@@ -246,4 +323,5 @@ $(document).ready(function() {
     $('.link-msg').hover(function() {
         
     });
-});
+    
+});*/

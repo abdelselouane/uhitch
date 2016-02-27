@@ -60,18 +60,18 @@
 
 input[type=date]::-webkit-inner-spin-button{-webkit-appearance: none;}
 input[type=text],input[type=password],input[type=email],
-input[type=time],input[type=date],textarea{   
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    outline: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+input[type=time],input[type=date],textarea,select{   
+    -webkit-transition: all 0.30s ease-in-out !important;
+    -moz-transition: all 0.30s ease-in-out !important;
+    -ms-transition: all 0.30s ease-in-out !important;
+    -o-transition: all 0.30s ease-in-out !important;
+    outline: none !important;
+    -webkit-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    border-radius: 5px !important;
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px !important;  
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px !important;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px !important;
 }
 #page #content input[type=text],
 #page #content input[type=password],
@@ -95,10 +95,11 @@ input[type=time],input[type=date],textarea{
 }
 
 input[type=text]:focus,input[type=password]:focus,input[type=email]:focus,
-input[type=time]:focus,input[type=date]:focus,textarea:focus{
-    box-shadow: 0 0 6px #228b22;
-    -moz-box-shadow: 0 0 6px #228b22;
-    -webkit-box-shadow: 0 0 6px #228b22;
+input[type=time]:focus,input[type=date]:focus,textarea:focus,select:focus{
+    border-color: #228b22 !important;
+    box-shadow: 0 0 6px #228b22 !important;
+    -moz-box-shadow: 0 0 6px #228b22 !important;
+    -webkit-box-shadow: 0 0 6px #228b22 !important;
 }
 
 /*Log In*/

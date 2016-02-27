@@ -118,36 +118,40 @@ class My_BaseController extends CI_Controller {
     protected function setScripts($type) {
         $scripts = array();
         
-        $datetimepicker = base_url()."assets/js/bootstrap-datetimepicker.min.js";
-        $moment   = base_url()."assets/js/moment.min.js";
-        $postRide   = base_url()."assets/js/PostRides.js";
-        $requestRide   = base_url()."assets/js/requestride.js";
-        $jqueryUI   = "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js";
-        $jqueryValidate   = base_url()."assets/js/jquery.validate.js";
-        $jqueryDataTables = base_url()."assets/js/jquery.dataTables.js";
-        $mapAPI     = "http://maps.google.com/maps/api/js?sensor=false";
+        $datetimepicker         = base_url()."assets/js/bootstrap-datetimepicker.min.js";
+        $moment                 = base_url()."assets/js/moment.min.js";
+        $postRide               = base_url()."assets/js/PostRides.js";
+        $requestRide            = base_url()."assets/js/requestride.js";
+        $jqueryUI               = "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js";
+        $jqueryValidate         = base_url()."assets/js/jquery.validate.js";
+        $jqueryDataTables       = base_url()."assets/js/jquery.dataTables.js";
+        $mapAPI                 = "http://maps.google.com/maps/api/js?sensor=false";
         $bootstrapValidator     =  base_url()."assets/js/bootstrapValidator.min.js";
-        $signUp     = base_url()."assets/js/SignUpUser.js";
-        $schoolList = base_url()."assets/js/SchoolList.js";
-        $logIn      = base_url()."assets/js/LogInUser.js";
-        $members    = base_url()."assets/js/LandingPage.js";
-        $forgot     = base_url()."assets/js/ForgotPassword.js";
-        $newPwd     = base_url()."assets/js/ChangePassword.js";
-        $contact    = base_url()."assets/js/ContactUs.js";
-        $register   = base_url()."assets/js/RegisterUser.js";
-        $settings   = base_url()."assets/js/AccountSettings.js";
-        $hitch      = base_url()."assets/js/HitchaRide.js";
-        $event      = base_url()."assets/js/EventService.js";
-        $upcoming   = base_url()."assets/js/UpcomingEvents.js";
-        $search     = base_url()."assets/js/Search.js";
-        $eventInfo  = base_url()."assets/js/EventInfo.js";
-        $message    = base_url()."assets/js/Message.js";
-        $sendmessage = base_url()."assets/js/SendMessages.js";
-        $ridepanel = base_url()."assets/js/ridepanel.js";
-        $eventpanel = base_url()."assets/js/eventpanel.js";
-        $adminEvents = base_url()."assets/js/adminEvents.js";
+        $signUp                 = base_url()."assets/js/SignUpUser.js";
+        $schoolList             = base_url()."assets/js/SchoolList.js";
+        $logIn                  = base_url()."assets/js/LogInUser.js";
+        $members                = base_url()."assets/js/LandingPage.js";
+        $forgot                 = base_url()."assets/js/ForgotPassword.js";
+        $newPwd                 = base_url()."assets/js/ChangePassword.js";
+        $contact                = base_url()."assets/js/ContactUs.js";
+        $register               = base_url()."assets/js/RegisterUser.js";
+        $settings               = base_url()."assets/js/AccountSettings.js";
+        $hitch                  = base_url()."assets/js/HitchaRide.js";
+        $event                  = base_url()."assets/js/EventService.js";
+        $upcoming               = base_url()."assets/js/UpcomingEvents.js";
+        $search                 = base_url()."assets/js/Search.js";
+        $eventInfo              = base_url()."assets/js/EventInfo.js";
+        $message                = base_url()."assets/js/Message.js";
+        $sendmessage            = base_url()."assets/js/SendMessages.js";
+        $ridepanel              = base_url()."assets/js/ridepanel.js";
+        $eventpanel             = base_url()."assets/js/eventpanel.js";
+        $adminEvents            = base_url()."assets/js/adminEvents.js";
+        $profile                = base_url()."assets/js/profile.js";
         
         switch($type) {
+            case 'profile':
+                array_push($scripts, $jqueryUI, $jqueryDataTables, $profile);
+                break;
             case 'adminEvents':
                 array_push($scripts, $jqueryUI, $jqueryDataTables, $adminEvents);
                 break;
@@ -199,7 +203,7 @@ class My_BaseController extends CI_Controller {
                 array_push($scripts, $settings);
                 break;
             case 'landing':
-                array_push($scripts, $members);
+                array_push($scripts, $jqueryUI, $jqueryDataTables, $members);
                 break;
             case 'postride':
                 array_push($scripts, $postRide, $jqueryUI, $jqueryValidate, $moment, $datetimepicker);

@@ -1,7 +1,7 @@
 <div id="page_content">
     <div id="page">
         <section id="members">
-            <?php //echo '<pre>'; print_r($this->event); echo '</pre>';
+            <?php echo '<pre>'; print_r($this->event); echo '</pre>';
                 // Form Settings
                 $form_attr = array(
                     'name' => 'submitevent',
@@ -10,6 +10,12 @@
                 echo form_open_multipart('main/eventsubmission', $form_attr); 
             ?>
             <div id="events">
+                <?php if(isset($this->event['admin']) && $this->event['admin'] == 1 ){?>
+                <input type="hidden" id="admin" name="admin" value="<?=(isset($this->event['admin'])) ? $this->event['admin'] : '';?>">
+                <?php } ?>
+                <?php if(isset($this->event['plan'])){?>
+                <input type="hidden" id="plan" name="plan" value="<?=(isset($this->event['plan'])) ? $this->event['plan'] : '';?>">
+                <?php } ?>
                 <input type="hidden" id="eventLat" value="<?=(isset($this->event['Lat'])) ? $this->event['Lat'] : '';?>" name="eventLat"/>
                 <input type="hidden" id="eventLon" value="<?=(isset($this->event['Lon'])) ? $this->event['Lon'] : '';?>" name="eventLon"/>
                 <h3 class="title green header-line" ><i class="fa fa-pencil"></i>&nbsp;Your Event Form</h3>
@@ -74,40 +80,71 @@
                     <?php } ?>
                 </div>
                 
+                <?php if($this->event['plan']!='basic'){?>
                 <div class="form-group">
                     <label class="form-label-55" for="website"><i class="fa fa-globe"></i>&nbsp;Website: </label>
                     <input type="url" class="form-control" id="website" name="Website" value="<?=(isset($this->event['Website'])) ? $this->event['Website'] : '';?>" placeholder="Enter event website"/>
                 </div>
+                <?php } ?>
                 
                 <div class="form-group">
-                    <label class="form-label-55" for="facebook"><i class="fa fa-facebook"></i>&nbsp;Facebook: </label>
+                    <label class="form-label-55" for="facebook"><i class="fa fa-facebook-square"></i>&nbsp;Facebook: </label>
                     <input type="url" class="form-control" id="facebook" name="Facebook" value="<?=(isset($this->event['Facebook'])) ? $this->event['Facebook'] : '';?>" placeholder="Enter facebook link"/>
                 </div>
                 
+                <?php if($this->event['plan']!='basic'){?>
                 <div class="form-group">
                     <label class="form-label-55" for="twitter"><i class="fa fa-twitter"></i>&nbsp;Twitter: </label>
                     <input type="url" class="form-control" id="twitter" name="Twitter" value="<?=(isset($this->event['Twitter'])) ? $this->event['Twitter'] : '';?>" placeholder="Enter twitter link"/>
                 </div>
+                <?php } ?>
                 
+                <?php if($this->event['plan']!='basic'){?>
+                <div class="form-group">
+                    <label class="form-label-55" for="googleplus"><i class="fa fa-google-plus-square"></i>&nbsp;Google Plus: </label>
+                    <input type="url" class="form-control" id="googleplus" name="Googleplus" value="<?=(isset($this->event['Googleplus'])) ? $this->event['Googleplus'] : '';?>" placeholder="Enter google plus link"/>
+                </div>
+                <?php } ?>
+                
+                <?php if($this->event['plan']!='basic'){?>
+                <div class="form-group">
+                    <label class="form-label-55" for="linkedin"><i class="fa fa-linkedin-square"></i>&nbsp;Linked In: </label>
+                    <input type="url" class="form-control" id="linkedin" name="Linkedin" value="<?=(isset($this->event['Linkedin'])) ? $this->event['Googleplus'] : '';?>" placeholder="Enter linkedin link"/>
+                </div>
+                <?php } ?>
+                
+                <?php if($this->event['plan']!='basic'){?>
                 <div class="form-group">
                     <label class="form-label-55" for="instagram"><i class="fa fa-instagram"></i>&nbsp;Instagram: </label>
                     <input type="url" class="form-control" id="instagram" name="Instagram" value="<?=(isset($this->event['Instagram'])) ? $this->event['Instagram'] : '';?>" placeholder="Enter instagram link"/>
                 </div>
+                <?php } ?>
                 
+                <?php if($this->event['plan']=='professional'){?>
                 <div class="form-group">
-                    <label class="form-label-55" for="googleplus"><i class="fa fa-google-plus"></i>&nbsp;Google Plus: </label>
-                    <input type="url" class="form-control" id="googleplus" name="Googleplus" value="<?=(isset($this->event['Googleplus'])) ? $this->event['Googleplus'] : '';?>" placeholder="Enter google plus link"/>
+                    <label class="form-label-55" for="pinterest"><i class="fa fa-pinterest"></i>&nbsp;Pinterest: </label>
+                    <input type="url" class="form-control" id="pinterest" name="Pinterest" value="<?=(isset($this->event['Pinterest'])) ? $this->event['Googleplus'] : '';?>" placeholder="Enter pinterest link"/>
                 </div>
+                <?php } ?>
+                
+                <?php if($this->event['plan']=='professional'){?>
+                <div class="form-group">
+                    <label class="form-label-55" for="tumblr"><i class="fa fa-tumblr-square"></i>&nbsp;Tumblr: </label>
+                    <input type="url" class="form-control" id="tumblr" name="Tumblr" value="<?=(isset($this->event['Tumblr'])) ? $this->event['Googleplus'] : '';?>" placeholder="Enter tumblr link"/>
+                </div>
+                <?php } ?>
                 
                 <div class="form-group">
                     <label class="form-label-55" for="description"><i class="fa fa-fax"></i>&nbsp;Description:</label>
                     <textarea id="description" cols="" rows="10" class="form-control" name="Description" placeholder="Enter event description"><?=(isset($this->event['Description'])) ? $this->event['Description'] : '';?></textarea>
                 </div>
                 
+                <?php if($this->event['plan']!='basic'){?>
                 <div class="form-group">
                     <label class="form-label-55" for="comments"><i class="fa fa-list"></i>&nbsp;Comments</label>
                     <textarea id="comments" cols="" rows="10" class="form-control" name="Comments" placeholder="Enter your comment"><?=(isset($this->event['Comments'])) ? $this->event['Comments'] : '';?></textarea>
                 </div>
+                <?php } ?>
                 
                 <div class="form-group">
                     <input type="hidden" id="EventId" name="EventId" value="<?= (isset($this->event['EventId'])) ? $this->event['EventId'] : ''  ?>"/>

@@ -2,7 +2,7 @@
     <div id="page">
         <section id="members">
             <div id="ride_message" style="width:100% !important">
-                <h2><?= (isset($this->success)) ? 'YOUR EVENT IS UPDATED' : 'NEW EVENT IS CREATED ' ?></h2>
+                <h2><?= (isset($this->success)) ? 'YOUR EVENT IS UPDATED' : 'NEW EVENT IS CREATED' ?></h2>
                 <?php if(isset($this->success) && !empty($this->success)){ ?>
                 <div class="alert alert-success">
                     <p class="text-uppercase"><i class="fa fa-check"></i> Congratulations</p>
@@ -20,9 +20,18 @@
         </section>
     </div>
 </div>
-
+<?php 
+//echo $this->admin; exit;
+if(isset($this->admin) && !empty($this->admin)){?>
+<script type="text/javascript">
+    setTimeout(function () {
+       window.location.href = "<?php echo site_url('main/allevent')?>"; 
+    }, 5000);
+</script>
+<?php }else{ ?>
 <script type="text/javascript">
     setTimeout(function () {
        window.location.href = "<?php echo site_url('main/eventpanel')?>"; 
     }, 5000);
 </script>
+<?php } ?>

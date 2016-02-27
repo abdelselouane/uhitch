@@ -105,6 +105,6 @@
     <input type="hidden" id="arriveShort" name="arriveShort" value="<?= isset($data->ride) ? $data->ride['ArriveShort'] : '' ?>"/>
     <input type="hidden" id="arriveLat" name="arriveLat" value="<?= isset($data->ride) ? $data->ride['Lat_Arr'] : '' ?>"/>
     <input type="hidden" id="arriveLon" name="arriveLon" value="<?= isset($data->ride) ? $data->ride['Lon_Arr'] : '' ?>"/>
-    <button id="post-btn" class="button"><?= isset($data->ride) ? 'Save Changes' : 'Post Ride' ?></button>
+    <button id="post-btn" class="btn btn-primary" style="width:100%;"><?= isset($data->ride) ? 'Save Changes' : 'Post Ride' ?></button>
     <?php form_close(); ?>
 </div>

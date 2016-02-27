@@ -26,6 +26,7 @@ class Main extends My_BaseController {
     
     function profile() { 
         $this->load->model('retrievedata_model');
+        $this->setScripts('profile');
         
         $profile = $this->retrievedata_model->retrieveProfile();
         $ride    = $this->retrievedata_model->retrieveRides();
@@ -34,6 +35,7 @@ class Main extends My_BaseController {
             $vehicle = $this->retrievedata_model->retrieveVehicle();
             $this->vehicleData($vehicle);
         }
+        
         $this->rideHistory($ride);
         $this->profileData($profile);
   
@@ -46,12 +48,13 @@ class Main extends My_BaseController {
         if(!empty($userid)) {
             $this->load->model('retrievedata_model');
             $this->load->model('myuser_model');
+            $this->setScripts('profile');
            // $this->page = $this->retrievedata_model->retrieveUserInfo($userid);
             $this->page = $this->myuser_model->getUserByUserID($userid);
             
            // echo '<pre>'; print_r($this->page); echo '</pre>'; exit;
             
-            $ride = $this->retrievedata_model->retrieveRides(7, $userid);
+            $ride = $this->retrievedata_model->retrieveRides(50, $userid);
             
             if(isset($this->page)) { 
                 $rideArray = array('rides' => $ride);
@@ -98,7 +101,6 @@ class Main extends My_BaseController {
     }
     
     function requestride() {
-        
         $rideId = $this->input->get('q');
         if( !empty($rideId) ) {
             
@@ -116,39 +118,107 @@ class Main extends My_BaseController {
         } else { $this->issue404Error(); }
     }
     
-    function newevent() {
-        
+    function newevent($plan='') {
         $eventId = $this->input->get('q');
         if( !empty($eventId) ) {
             
             $this->load->model('retrievedata_model');
             $info = $this->retrievedata_model->getEventById($eventId);
-            //echo '<pre>'; print_r($info); echo '</pre>';
+            if(!empty($info) && !empty($this->input->get('admin')) ) $info['admin'] = 1;
+            //echo '<pre>'; print_r($info); echo '</pre>';exit;
             $this->event = !empty($info) ? $info : '';
+        }
+        
+        $this->event['plan'] = 'professional';
+        if(isset($plan) && !empty($plan)){
+            $this->event['plan'] = $plan;
         }
         $this->title = 'Uhitch | Create New Event';
         $this->setScripts('event');
         $this->display('newEvent');
     }
     
+    function eventpricing() {
+        $this->title = 'Uhitch | Create New Event';
+        $this->display('eventpricing');
+    }
+    
     function allevent() {
         $this->title = 'Uhitch | Admin All Event';
         $this->setScripts('adminEvents');
         $this->load->model('eventservices_model');
-        $this->events = $this->eventservices_model->retrieveEventAdmin();
+        $this->load->model('retrievedata_model');
+
+        $config = array();
+        $post = $this->input->post();
+       // echo '<pre>'; print_r($post); echo '</pre>';exit;
+        if(isset($post) && !empty($post)){
+           // echo '<pre>'; print_r($post); echo '</pre>'; //exit;
+            
+            $query = array();
+            $empty = 'FALSE';
+            
+            if($post['Name'] != ''){
+                $query[]= " Name LIKE '%".$post['Name']."%'";
+            }
+            if($post['Location'] != ''){
+                $query[]= " Location LIKE '%".$post['Location']."%'";
+            }
+            if($post['City'] != ''){
+                $query[]= " City LIKE '%".$post['City']."%'";
+            }
+            if($post['State'] != ''){
+                $query[]= " State = '".$post['State']."'";
+            }
+            if($post['Zip'] != ''){
+                $query[]= " Zip = ".$post['Zip'];
+            }
+            if($post['Approve'] != ''){
+                $query[]= " Reviewed = '".$post['Approve']."'";
+            }
+            
+            $config = $this->eventservices_model->searchForEventsByAdmin($query);
+            $this->events['events'] = $config;
+        }else{
+            $this->events['events'] = $this->eventservices_model->retrieveEventAdmin();
+        }
+    
+       // echo '<pre>'; print_r($this->events); echo '</pre>';exit;
+        $eventbyrides = array();
+        if(isset($this->events['events']) && !empty($this->events['events'])){
+            foreach($this->events['events'] as $key => $value){
+                $hasride = $this->retrievedata_model->getRidesByEventId($value['EventId']);
+                $totalrides = 0;
+                if(isset($hasride) && !empty($hasride)){
+                    $totalrides = count($hasride);
+                }
+                $value['hasrides'] = $totalrides;
+                $eventbyrides[] = $value;
+            }
+        }
         
-        //echo '<pre>'; print_r($this->events); echo '</pre>'; exit;
+        $this->events['events'] = $eventbyrides;
+        $this->events['states'] = getStates();
+        
+        //echo '<pre>'; print_r($this->events); echo '</pre>';exit;
+        //exit;
         $this->display('admin/events');
     }
     
     function approveEvent($id) { 
         $this->load->model('eventservices_model');
         $this->eventservices_model->approveEventAdmin($id);
+        $msg['error'] = false;
+        $msg['msg'] = 'This Event was Approved, Loading Please Wait ...';
+        print_r(json_encode($msg));
     }
     
     function disapproveEvent($id) { 
         $this->load->model('eventservices_model');
         $this->eventservices_model->disapproveEventAdmin($id);
+        $msg['error'] = true;
+        $msg['msg'] = 'This Event was Disapproved, Loading Please Wait ...';
+        print_r(json_encode($msg));
     }
     
     function upcoming() {
@@ -396,6 +466,9 @@ class Main extends My_BaseController {
         $this->load->model('retrievedata_model');
         $eventData = $this->retrievedata_model->getAllEventsByUserId($this->user->userid);
         $this->setEventData($eventData);
+        
+        $this->page['results']['states'] = getStates();
+        
         //echo '<pre>'; print_r($eventData); echo '</pre>'; exit;
         $this->display('eventpanel');
     }
@@ -672,24 +745,122 @@ class Main extends My_BaseController {
         
         $this->registeruser_model->registerVehicle();     
     }
+    
+    function deleteevent($id) {
+        if(isset($id) && !empty($id)){
+            $this->load->model('retrievedata_model');
+            $eventrides = $this->retrievedata_model->getRidesByEventId($id);
+            //echo '<pre>'; print_r($eventrides); echo '</pre>'; 
+            $eventinfo = $this->retrievedata_model->getEventById($id);
+            
+            if(isset($eventrides) && !empty($eventrides)){
+                $msg['error'] = true;
+                $msg['msg'] = 'The Event has Rides and can not be removed from the site.';
+            }else{
+                //echo '<pre>'; print_r($eventinfo); echo '</pre>';
+                $eventdate = date('m/d/Y', strtotime($eventinfo['EventDate']));
+                //send message to user the event was deleted;
+                
+                $this->load->model('messages_model');
+                $userinfo = $this->messages_model->getUserById($eventinfo['UserId']);
+                
+                $adminid = $this->session->userdata('userid');
+                $admininfo = $this->messages_model->getUserById($adminid);
+                
+                $messageinfo['username'] = $userinfo[0]['Full_Name'];
+                $messageinfo['to_userid'] = $userinfo[0]['UserID'];
+                $messageinfo['from_fullname'] = $admininfo[0]['Full_Name'];
+                $messageinfo['from_userid'] = $admininfo[0]['UserID'];
+                $messageinfo['subject'] = 'Event Removal - Admin Action - ';
+                
+                $messageinfo['message'] = 'The event '.$eventinfo['Name'].', '.$eventinfo['Location'].', '.$eventinfo['City'].', '.$eventinfo['State'].', '.$eventinfo['Zip'].', on '.date('m/d/Y', strtotime($eventinfo['EventDate'])).' at '.$eventinfo['EventTime'].' was removed - please contact admin to get more details about this action or reply to this message.';
+                
+                if($eventinfo['Reviewed'] != 2){
+                    $this->messages_model->setMessage($messageinfo);
+                    $this->eventarchive($eventinfo['EventId']);
+                    $msg['error'] = false;
+                    $msg['msg'] = 'The Event is temporarly removed from the site, Loading Please Wait ...';
+                }else{
+                    $msg['error'] = true;
+                    $msg['msg'] = 'This Event was already set as temporary removed from the site, Loading Please Wait ...';
+                }
+            }
+            print_r(json_encode($msg));
+        }
+        
+    }
+    
+    function eventarchive($id){
+        if($id){
+            $this->load->model('retrievedata_model');
+            $this->retrievedata_model->archiveevent($id);
+            return true;
+        }
+        return false;
+    }
+    
+    function eventrevert($id){
+        if($id){
+            //echo $id; exit;
+            $this->load->model('retrievedata_model');
+            $this->load->model('messages_model');
+            /** Event info **/
+            $eventinfo = $this->retrievedata_model->getEventById($id);
+            $eventdate = date('m/d/Y', strtotime($eventinfo['EventDate']));
+            /** User info **/
+            $userinfo = $this->messages_model->getUserById($eventinfo['UserId']);
+            /** Admin info **/
+            $adminid = $this->session->userdata('userid');
+            $admininfo = $this->messages_model->getUserById($adminid);
+            /** Set Message info **/
+            $messageinfo['username'] = $userinfo[0]['Full_Name'];
+            $messageinfo['to_userid'] = $userinfo[0]['UserID'];
+            $messageinfo['from_fullname'] = $admininfo[0]['Full_Name'];
+            $messageinfo['from_userid'] = $admininfo[0]['UserID'];
+            $messageinfo['subject'] = 'Event Removal - Admin Action - ';
+            $messageinfo['message'] = 'The event '.$eventinfo['Name'].', '.$eventinfo['Location'].', '.$eventinfo['City'].', '.$eventinfo['State'].', '.$eventinfo['Zip'].', on '.date('m/d/Y', strtotime($eventinfo['EventDate'])).' at '.$eventinfo['EventTime'].' was reverted back to the site - please contact admin to get more details about this action or reply to this message.';
+            /** Send Message **/
+            $this->messages_model->setMessage($messageinfo);
+            /** Revert Event Back  **/
+            $this->retrievedata_model->revertevent($id);
+            //$this->allevent();
+            //echo site_url().'/main/allevent';exit;
+            $msg['error'] = false;
+            $msg['msg'] = 'The Event is reverted back to the site, Loading Please Wait ...';
+            print_r(json_encode($msg));
+        }
+        return false;
+    }
+    
+    function trashevent($id){
+        if($id){
+            $this->load->model('retrievedata_model');
+            $this->retrievedata_model->trashevent($id);
+            $msg['error'] = false;
+            $msg['msg'] = 'The Event is completely removed from the site, Loading Please Wait ...';
+            print_r(json_encode($msg));
+        }
+        return false;
+    }
 
     function eventsubmission() {
         $this->load->model('eventservices_model');
         
         $post = $this->input->post(); 
-        
+        echo '<pre>'; print_r($post); echo '</pre>'; exit;
+        if(isset($post['admin']) &&  $post['admin'] == 1){
+            $this->admin = 1;
+        }
         if(isset($post['EventId']) && empty($post['EventId'])){
-            
-            //echo '<pre>'; print_r($post); echo '</pre>'; exit;
             
             $config['file_name'] = substr(str_shuffle(MD5(microtime())), 0, 45);
 
             // Direct Upload path on server
             $config['upload_path']      = 'assets/photos/events/';
             $config['allowed_types']    = 'jpg|png|jpeg';
-            $config['max_size']         = '4000';
-            $config['max_width']        = '800';
-            $config['max_height']       = '600';
+            $config['max_size']         = '10000';
+            $config['max_width']        = '2400';
+            $config['max_height']       = '1600';
 
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
@@ -706,7 +877,7 @@ class Main extends My_BaseController {
             } 
         }else{
             
-            //echo '<pre>'; print_r($post); echo '</pre>';
+            //echo '<pre>'; print_r($post); echo '</pre>';exit;
             //echo '<pre>'; print_r($_FILES); echo '</pre>';exit;
             $eventId = $post['EventId'];
             if(isset($_FILES['userfile']) && !empty($_FILES['userfile']['name'])){
@@ -727,9 +898,9 @@ class Main extends My_BaseController {
                 // Direct Upload path on server
                 $config['upload_path']      = 'assets/photos/events/';
                 $config['allowed_types']    = 'jpg|png|jpeg';
-                $config['max_size']         = '4000';
-                $config['max_width']        = '800';
-                $config['max_height']       = '600';
+                $config['max_size']         = '10000';
+                $config['max_width']        = '2400';
+                $config['max_height']       = '1800';
 
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);
@@ -778,6 +949,17 @@ class Main extends My_BaseController {
             $this->load->model('retrievedata_model');
             $this->ticker = $this->retrievedata_model->applyRideTicker();
         }   
+    }
+    
+    function getSurroundingRides() {
+        $this->load->model('retrievedata_model');
+        $rides = $this->retrievedata_model->applyRideTicker();
+        
+        
+        
+        foreach($rides as $key=>$value){
+            echo '<pre>'; print_r($value); echo '</pre>';
+        }
     }
             
     function calculateLogIn() {

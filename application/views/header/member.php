@@ -152,7 +152,7 @@
 <style type="text/css">
     .collapser{
         width: 60px;
-        height: 60px;
+        height: 62px;
         position: absolute;
         background-color: #f5f5f5;
         border-bottom: 1px solid #e3e3e3;

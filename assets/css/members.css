@@ -1,6 +1,41 @@
 body{
-    background-image: url('../../assets/images/ny_street.jpg');
-    background-size: cover;
+     background-size: cover;
+}
+.body1{
+    background-image: url('../../assets/images/ny_street1.jpg');
+}
+.body2{
+    background-image: url('../../assets/images/ny_street2.jpg');
+}
+.body3{
+    background-image: url('../../assets/images/ny_street3.jpg');
+}
+.body4{
+    background-image: url('../../assets/images/ny_street4.jpg');
+}
+.body5{
+    background-image: url('../../assets/images/ny_street5.jpg');
+}
+.body6{
+    background-image: url('../../assets/images/ny_street6.jpg');
+}
+.body7{
+    background-image: url('../../assets/images/ny_street7.jpg');
+}
+.body8{
+    background-image: url('../../assets/images/ny_street8.jpg');
+}
+.body9{
+    background-image: url('../../assets/images/ny_street9.jpg');
+}
+.body10{
+    background-image: url('../../assets/images/ny_street10.jpg');
+}
+.body11{
+    background-image: url('../../assets/images/ny_street11.jpg');
+}
+.body12{
+    background-image: url('../../assets/images/ny_street12.jpg');
 }
 
 #page h1, h2, h3, h4 {
@@ -13,6 +48,7 @@ body{
     width: auto;
     padding: 0.5em 1em;
     overflow: hidden;
+    opacity: .97;
 }
 
 #page #members #uhitch-map {
@@ -425,9 +461,6 @@ body{
     background-color: #fff;
     padding: 1em;
     text-align: center;
-    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
-    -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
 }
 
 #page #upcoming-events h2 {
@@ -1056,11 +1089,13 @@ tr.green-odd:hover, tr.green-odd:hover i, tr.green-odd:hover a{
     width: 100%;
     margin: 0 auto;
     padding: 0 1em 3em 1em;
+    min-height: 600px;
     overflow: hidden;
    background-color: #fff;
    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
   -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    opacity:.97;
 }
 
 #page #message h2{
@@ -1151,6 +1186,7 @@ tr.green-odd:hover, tr.green-odd:hover i, tr.green-odd:hover a{
   box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
   -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+  opacity: .97;
 }
 
 #allevent h2{
@@ -1168,6 +1204,7 @@ tr.green-odd:hover, tr.green-odd:hover i, tr.green-odd:hover a{
 #page #ridepanel{
     width: 80%;
     margin: 0 auto;
+    min-height:600px;
     overflow: hidden;
     background-color: #fff;
     padding: 0 1em 3em;

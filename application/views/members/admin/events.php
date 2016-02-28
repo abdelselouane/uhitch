@@ -69,7 +69,7 @@
                         foreach( $events['events'] as $key => $value ){
                         ?>
                             <tr>
-                                <td class="text-left"><a href="<?= site_url().'/main/eventinfo?q='.$value['EventId']?>" target="_blank"><img src="<?= base_url().'assets/photos/events/'.$value['Photo']?>" width="100px" height="auto"></a></td>
+                                <td class="text-left"><a href="<?= site_url().'/main/eventinfo?q='.$value['EventId']?>" target="_blank"><img src="<?= base_url().'assets/photos/events/'.$value['Photo']?>" class="img-thumbnail" width="100px" height="auto"></a></td>
                                 <td class="text-left"><a href="<?= site_url().'/main/eventinfo?q='.$value['EventId']?>" target="_blank"><?= $value['Name']?></a></td>
                                 <td class="text-left">
                                     <?= $value['Location']?><br>

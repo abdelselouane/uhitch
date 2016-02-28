@@ -234,6 +234,7 @@ nav span {
     top: -20px;
 	padding-top:10px;
 	padding-bottom:10px;
+    height:90px;
 	background:#fff;
 	border-color:#fff;
     z-index: 100;
@@ -243,7 +244,7 @@ nav span {
     padding: 0px;
 }
 .myNav img.logo{
-    margin-top: -13px;
+    margin-top: -5px;
     width: 200px;
     height: auto;
 }
@@ -271,10 +272,10 @@ nav span {
 .myNav .navbar-nav li a:hover,
 .myNav .navbar-nav li a:focus,
 .myNav .navbar-nav li a:active{
-	border-bottom:3px solid #5cb85c;
+	border-bottom:4px solid #5cb85c;
 }
 .myNav .navbar-nav .active{
-	border-bottom:3px solid #5cb85c;;
+	border-bottom:4px solid #5cb85c;;
 }
 #searchbar{
     position: relative;

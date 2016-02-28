@@ -34,7 +34,7 @@
                                         // echo '<pre>'; print_r($value); echo '</pre>';
                                   ?>
                                      <tr>
-                                        <td class="text-left"><img src="<?= base_url().'assets/photos/events/'.$value['Photo']?>" width="100px" height="auto"></td>
+                                        <td class="text-left"><img src="<?= base_url().'assets/photos/events/'.$value['Photo']?>" class="img-thumbnail" width="100px" height="auto"></td>
                                         <td class="text-left"><?= $value['Name']?></td>
                                         <td class="text-left"><?= $value['Location'].'<br>'.$value['City'].', '.$value['State'].', '.$value['Zip']?></td>
                                         <td class="text-left"><?php echo date('m/d/Y', strtotime($value['EventDate'])); echo ' <br>'.$value['EventTime']?></td>

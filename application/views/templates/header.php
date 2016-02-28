@@ -9,4 +9,11 @@
         ?>
         <title><?php echo $title;?></title> 
     </head>
-    <body>
+    <?php
+        if(isset($this->bg) && !empty($this->bg)){ 
+            $class = $this->bg; 
+        }else{ 
+            $class = 'body1';
+        } 
+    ?>
+    <body class="<?=$class?>" >

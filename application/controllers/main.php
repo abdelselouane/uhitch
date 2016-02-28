@@ -38,7 +38,7 @@ class Main extends My_BaseController {
         
         $this->rideHistory($ride);
         $this->profileData($profile);
-  
+        $this->bg = "body12";
         $this->display('profile');
     }
     
@@ -97,6 +97,7 @@ class Main extends My_BaseController {
         
         $events = $this->retrievedata_model->retrieveAllEvents();
         $this->data->events = $events;
+        $this->bg = "body3";
         $this->display('postride');
     }
     
@@ -136,12 +137,14 @@ class Main extends My_BaseController {
             $this->event['plan'] = $plan;
         }
         $this->title = 'Uhitch | Create New Event';
+        $this->bg = 'body9';
         $this->setScripts('event');
         $this->display('newEvent');
     }
     
     function eventpricing() {
         $this->title = 'Uhitch | Create New Event';
+        $this->bg = 'body5';
         $this->display('eventpricing');
     }
     
@@ -204,6 +207,7 @@ class Main extends My_BaseController {
         
         //echo '<pre>'; print_r($this->events); echo '</pre>';exit;
         //exit;
+        $this->bg = 'body10';
         $this->display('admin/events');
     }
     
@@ -263,7 +267,7 @@ class Main extends My_BaseController {
         $this->page['results'] = $config;
         $this->page['results']['states'] = getStates();
         //echo '<pre>'; print_r($config); echo '</pre>';//exit;
-        
+        $this->bg = 'body10';
         $this->display('upcomingEvents');
     }
     
@@ -449,6 +453,7 @@ class Main extends My_BaseController {
         $rideData = $this->retrievedata_model->getAllRidesByUserId($this->user->userid);
         $this->setRideData($rideData);
          //echo '<pre>'; print_r($rideData); echo '</pre>'; exit;
+        $this->bg = 'body1';
         $this->display('ridepanel');
     }
     
@@ -459,6 +464,7 @@ class Main extends My_BaseController {
         $tripData = $this->retrievedata_model->getAllTripsByUserId($this->user->userid);
         $this->setRideData($tripData);
          //echo '<pre>'; print_r($tripData); echo '</pre>'; exit;
+        $this->bg = "body3";
         $this->display('trippanel');
     }
     
@@ -472,6 +478,7 @@ class Main extends My_BaseController {
         $this->page['results']['states'] = getStates();
         
         //echo '<pre>'; print_r($eventData); echo '</pre>'; exit;
+        $this->bg = "body5";
         $this->display('eventpanel');
     }
     
@@ -513,7 +520,7 @@ class Main extends My_BaseController {
                 $this->inbox($userId);
                 break;
         }
-        
+        $this->bg = 'body7';
         $this->display('message');
     }
     
@@ -980,6 +987,7 @@ class Main extends My_BaseController {
         $this->calculateLogIn();
         
         $this->title = 'Uhitch | '.  $this->user->name;
+        $this->bg = 'body2';
         $this->data  = $this->user;
     }
     

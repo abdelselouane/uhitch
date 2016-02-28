@@ -1,6 +1,8 @@
 <div id="page_content">
     <div id="page">
-        <div id="pricing-table" class="col-md-12">
+        <section id="members" class="col-md-12" style="margin-bottom: 100px !important;">
+        <h3 class="title title-box"><i class="fa fa-camera"></i>&nbsp;Promotional Events</h3><br>
+        <div id="pricing-table">
           <a href="<?php echo site_url('main/newEvent/basic'); ?>" class='package'>
             <div class='name'>Basic</div>
             <div class='price'>$0</div>
@@ -85,6 +87,7 @@
               </li>
             </ul>
             </a>
-          <!--/div-->
+          </div>
+        </section>
     </div>
 </div>   

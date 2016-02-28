@@ -1,3 +1,8 @@
+body{
+    background-image: url('../../assets/images/ny_street.jpg');
+    background-size: cover;
+}
+
 #page h1, h2, h3, h4 {
     color: #4e4e4e;
 }

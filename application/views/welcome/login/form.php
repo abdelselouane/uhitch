@@ -1,4 +1,4 @@
-<section id="login" class="margin-top-100px">
+<section id="login" style="margin-top: 220px; min-height: 400px;">
     <div id="content">
         <?php 
             // Form Settings
@@ -9,43 +9,38 @@
             echo form_open('welcome/logInAttempt', $form_attr); 
         ?>
             <h1>Login</h1>      
-            <hr/><br/>
-            
-            <input hidden id="error" value="<?=$error;?>"/>
-            <div id="message_Error">
+            <hr/>
+            <input type="hidden" id="error" value="<?=$error;?>"/>
+            <div id="message_Error" style="display:none;">
                 <h4>Validation Error</h4>
                 <p>
                     <span id="errormsg"><?=$msg;?></span>
                     Please Try Again
                 </p>
             </div>
-
-            <div id="form_login">         
-                <input class="email_login" 
-                       placeholder="Your Email Address" 
-                       type="text" 
-                       name="login_userName"
-                />
-                <input class="password_login" 
-                       placeholder="Your Password" 
-                       type="password" 
-                       name="login_password"
-                />
-                <input type="checkbox" 
-                       name="remember" 
-                       value="1" 
-                />&nbsp;Keep Me Logged In
-                <br/>
-                <p>
-                    <button id="submit_login" type="submit" class="button">Submit</button>
-                    <label>or</label>
-                    <a class="button" id="loginbtn" href="<?=site_url('welcome/join') ?>">Register</a>
-                </p>
-                <p id="content_forgot">
-                    <a id="loginbtn" href="<?=site_url('welcome/forgotPassword') ?>">
-                        Forgot My Password?
+            <div id="form_login">
+                <div class="form-group">
+                    <input class="form-control" placeholder="Your Email Address" type="text" id="login_username" name="login_userName" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Your Password" type="password" id="login_password" name="login_password" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="remember" name="remember" value="1" />&nbsp;Keep Me Logged In
+                    </label>
+                </div>
+                <button id="submit_login" type="submit" class="btn btn-primary" style="width: 100%">Sign In</button>
+                <div class="checkbox">
+                    <a id="loginbtn" href="<?=site_url('welcome/forgotPassword') ?>" class="green2">
+                         Forgot My Password?
                     </a>
-                </p>
+                </div>
+                <div class="checkbox">
+                    <a id="loginbtn" href="<?=site_url('welcome/join') ?>" class="green2">
+                        Register
+                    </a>
+                </div>
             </div>          
         <?php echo form_close(); ?>
     </div>

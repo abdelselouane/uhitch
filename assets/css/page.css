@@ -3,42 +3,40 @@
     margin: 1em auto;
     padding: 1em;
     border-radius: 5px;
-    border: 2px solid #E5E5E5;
+    border: 2px solid #ec9826;
+    color: #4e4e4e;
+    background-color: rgba(250,248,235,0.9);
 }
 
 #page #content p {
-    display: block;
-    padding: 1% 0;
+
 }
 
 #page #content hr {
-    width: 90%;
-    float: left;
-    margin: 0 0 10px 0;
-    padding: 0;
-    display: block;
-    color: #E5E5E5;
-    background-color: #E5E5E5;  
+    border-top: 2px solid #ec9826;
 }
 
 #page #content h1 {
-    margin: 0;
-    padding: 5px 0;
+    font-size: 20px !important;
+    margin: 0 auto;
+        padding: 7px 0 0;
     letter-spacing: 0.7px;
+    color: #555;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-#page #content #message_Error {
+#message_Error {
     display: none;
     overflow: hidden;
-    border: 2px solid #228b22;
+    color: #faf8eb;
+    border: 2px solid #e93747;
     padding: 0.5em 0.7em;
-    background-color: #bcdcbc;
-    width: 80%;
-    margin: 1% auto;
+    background-color: #e93747;
+    margin: 0px auto 20px auto;
     font-family: Arial, sans-serif;
     text-align: center;
     -webkit-font-smoothing: antialiased;
-    text-shadow: 0px 1px white;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -46,10 +44,14 @@
     -moz-box-shadow:    0px 0px 5px rgba(50, 50, 50, 0.75);
     box-shadow:         0px 0px 5px rgba(50, 50, 50, 0.75);
 }
-#page #content #message_Error h4,
-#page #content #message_Error p { margin: 1% 0; padding: 0; }
-#page #content #message_Error h4 { text-transform: uppercase; }
-#page #message_Error #errormsg { display: block;}
+#message_Error h4,
+#message_Error p { margin: 1% 0; padding: 0; }
+#message_Error h4 { text-transform: uppercase; }
+#message_Error,
+#errormsg { 
+    display: block;
+}
+
 #page #content p a{
     text-decoration: none;
 }
@@ -73,26 +75,6 @@ input[type=time],input[type=date],textarea,select{
     -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px !important;
     -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px !important;
 }
-#page #content input[type=text],
-#page #content input[type=password],
-#page #content input[type=numberß]{
-    margin: 0.6em auto;
-    padding: 0.5em;
-    border: 1px solid #228b22;
-    font-size: 120%;
-    width: 20em;  
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    outline: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-}
 
 input[type=text]:focus,input[type=password]:focus,input[type=email]:focus,
 input[type=time]:focus,input[type=date]:focus,textarea:focus,select:focus{
@@ -104,7 +86,7 @@ input[type=time]:focus,input[type=date]:focus,textarea:focus,select:focus{
 
 /*Log In*/
 #page #content {
-    width: 55%;
+    width: 400px;
     margin: 0 auto;
 }
 
@@ -154,10 +136,10 @@ input[type=time]:focus,input[type=date]:focus,textarea:focus,select:focus{
     text-align: center;
 }
 
-#login #form_login input[type=text], #login #form_login input[type=password]{display: block;}
-#login #form_login, #login #form_login p{text-align: center;}
-#login #form_login p {margin: 0 auto;}
-#login #form_login p label {margin: 0 0.5em;font-size: 110%;}
+#login #form_login input[type=text], #login #form_login input[type=password]{}
+#login #form_login, #login #form_login p{}
+#login #form_login p {}
+#login #form_login p label {}
 #login #form_login p button,
 #login #form_login p a.button{
     margin: 0.5em auto;

@@ -2,12 +2,10 @@ var errorMsg, error;
 
 $(document).ready(function(){
     $('#log_form').submit(function(e){    
-        var email = $(".email_login").val();
-        var password = $(".password_login").val();
-
+        var email = $("#login_username").val();
+        var password = $("#login_password").val();   
         verifyLoginCredential(email, password, e);
     });
-    
     setErrorMsg();
     checkForError();
 });
@@ -26,19 +24,14 @@ function checkForError() {
 }
 
 function verifyLoginCredential(email, password, event) {
-    var reg = /[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/;
-    
+    var reg = /[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/;   
     if(!email || !reg.test(email)) {
         event.preventDefault();
         displayError(errorMsg);
-    }
-    
-    else if(!password || password.length <= 5) {
+    } else if(!password || password.length <= 5) {
         event.preventDefault();
         displayError(errorMsg);
-    }
-    
-    else { $("#log_form").submit(); }    
+    } else { $("#log_form").submit(); }    
 }
 
 function displayError(msg) {

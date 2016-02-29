@@ -1,4 +1,4 @@
-<section id='signIn' class="margin-top-100px">
+<section id='signIn' style="margin-top: 220px; min-height: 400px;">
     <div id="content">
     <?php 
         // Form Settings
@@ -9,62 +9,35 @@
         echo form_open('welcome/signUpUser', $form_attr); 
     ?>
     <h1>Sign Up</h1>      
-    <hr/><br/>
-    <div>     
-        <input placeholder="First Name" 
-               type="text" 
-               name="firstName" 
-               id="fname"
-               size="30" 
-               class="name" 
-               />
-        
-        <input placeholder="Last Name"  
-               type="text"
-               name="lastName" 
-               size="30"
-               id="lname"
-               class="name" 
-               />
-
-        <span class="error" id="fullName"></span>      
-
-        <input placeholder="Current University/College" 
-               type="text" 
-               name="schoolName" 
-               id="school"
-               /> 
-        
-        <span class="error" id="college">Please Enter School Name</span>
-
-        <input placeholder="School Email Address" 
-               type="email" 
-               name="emailAdd" 
-               id="email"
-               />
-        <span class="error" id="schoolEmail"></span>
-        
-        <input placeholder="Choose Password" 
-               type="password" 
-               name="passWord" 
-               aize="50"
-               id="pw1"
-               />
-        
-        <span class="error" id="passwordEnter"></span>
-        
-        <input placeholder="Confirm Password"
-               type="password" 
-               name="passWordConfirm" 
-               size="50"
-               id="pw2"
-               />    
-        
-        <span class="error" id="passwordConfirm"></span>
-
-        <div id="birthday_selection" class="side_input">
-            <p><span>Birthday</span></p>
-            <select name="bMonth" id="month">
+    <hr/>
+    <div class="form-group">
+       <input placeholder="First Name" type="text" name="firstName" id="fname" class="form-control" /> 
+    </div>
+    <div class="form-group">
+        <input placeholder="Last Name" type="text" name="lastName" id="lname" class="form-control" />
+    </div>
+    <span class="error" id="fullName"></span>
+    <div class="form-group">
+        <input placeholder="Current University/College" type="text" name="schoolName" id="school" class="form-control"/> 
+    </div>
+    <span class="error" id="college">Please Enter School Name</span>
+    <div class="form-group">
+        <input placeholder="School Email Address" type="email" name="emailAdd" id="email" class="form-control"/>
+    </div>
+    <span class="error" id="schoolEmail"></span>
+    <div class="form-group">
+        <input placeholder="Choose Password" type="password" name="passWord" id="pw1" class="form-control"/>
+    </div>
+    <span class="error" id="passwordEnter"></span>
+    <div class="form-group">
+       <input placeholder="Confirm Password" type="password" name="passWordConfirm" id="pw2" class="form-control"/>  
+    </div>  
+    <span class="error" id="passwordConfirm"></span>
+    <div class="form-group">
+        <label>Birthday</label>
+        <div id="birthday_selection" class="form-inline">
+            
+            <select name="bMonth" id="month" class="form-control" style="width: 44%;">
                 <option value="">Month</option>
                 <option value="01">January</option>
                 <option value="02">February</option>
@@ -80,7 +53,7 @@
                 <option value="12">December</option>
             </select>
 
-            <select name="bDay" id="day">
+            <select name="bDay" id="day" class="form-control" style="width: 22%;">
                 <option value="">Day</option>
                 <?php 
                     // For loop to display days
@@ -90,7 +63,7 @@
                 ?>
             </select>
 
-            <select name="bYear" id="year">
+            <select name="bYear" id="year" class="form-control" style="width: 30%;">
                 <option value="">Year</option>
                 <?php
                     $date = date("Y");
@@ -100,43 +73,35 @@
                 ?>
             </select>
         </div>
-        
-        <span class="error2" id="userBirthdate">Please Select Your Birthday</span>
-        
-        <br/>
-
-        <div id="gender" class="side_input">
-            <label>Male </label><input type="radio" name="sex" value="Male">
-            <label>Female </label><input type="radio" name="sex" value="Female">
-        </div>
-        
-        <span class="error2" id="userGender"></span>
-        
-        <br/>
-        
-        <div id="vehicle_selection" class="side_input">
-            <p><span>Have a Car?</span></p>
-            <label>Yes </label><input type="radio" name="car" value="yes">
-            <label>No </label><input type="radio" name="car" value="no">
-        </div>
-        
-        <span class="error2" id="userCar"></span>
-        
-        <div id="sign_n_terms">
-            <div>
-                <button type="submit" id="signInbtn" class="button">
-                    SIGN UP
-                </button>
-            </div>
-            <div>
-                <p>
-                    By signing up, you agree to our 
-                    <a href='<?= site_url('terms') ?>'>Terms of Service</a>
-                    and our <a href='<?= site_url('policy') ?>'>Privacy Policy</a>.
-                </p>    
-            </div>
-        </div>
     </div>
+    <span class="error2" id="userBirthdate">Please Select Your Birthday</span>
+    <div class="radio">
+        <label class="radio-inline">
+          <input type="radio" name="sex" value="Male">&nbsp;Male
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="sex" value="Female">&nbsp;Female
+        </label>
+    </div>    
+    <span class="error2" id="userGender"></span>
+        <p><strong>Have a Car?</strong></p>
+    <div class="radio">
+        <label class="radio-inline">
+          <input type="radio" name="car" value="yes">&nbsp;Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="car" value="no">&nbsp;No
+        </label>
+    </div>
+    <span class="error2" id="userCar"></span>
+    <div class="form-group">
+        <p>
+            By signing up, you agree to our 
+            <a href='<?= site_url('terms') ?>' class="green2">Terms of Service</a>
+            and our <a href='<?= site_url('policy') ?>' class="green2">Privacy Policy</a>.
+        </p>    
+    </div>
+    <button type="submit" id="signInbtn" class="btn btn-primary" style="width:100%">SIGN UP</button>
     <?php echo form_close(); ?>
   </div>
 </section>

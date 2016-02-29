@@ -69,6 +69,9 @@ COLOR PALLETE
 .green5{
     color: #a8bd94;
 }
+.green6{ 
+    color: #5cb85c; 
+}
 
 .red1{
     color: #511e31;
@@ -100,6 +103,9 @@ COLOR PALLETE
 }
 .bg-green5{
     background-color: #a8bd94;
+}
+.bg-green6{ 
+    background-color: #5cb85c; 
 }
 
 .bg-red1{
@@ -2197,10 +2203,6 @@ tr.green-odd:hover, tr.green-odd:hover i, tr.green-odd:hover a{
     margin: 0;
     font-size: 110%;
     padding: 0;
-}
-
-#create_password #content hr {
-    margin: 0 auto 1em;
 }
 
 #create_password #content input[type=text] {    

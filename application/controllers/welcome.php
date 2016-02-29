@@ -168,9 +168,7 @@ class Welcome extends My_BaseController {
         // Return True or False
         if($result) {
             $this->display('password/success', 'signIn2');
-        }
-        
-        else {
+        } else {
             $this->error = TRUE;
             $this->logInError('password');
             $this->display('createnew_password');

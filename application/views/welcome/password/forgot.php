@@ -2,7 +2,7 @@
     <div id="content">
         <h1>Forgot Password</h1>
         <hr/>
-        <div id="message_Error">
+        <div id="message_Error" style="display:none;">
             <h4>Email Verification Error</h4>
             <p>The Email Address was Not Recognized<br/>Please Try Again.</p>
         </div>

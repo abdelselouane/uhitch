@@ -1,3 +1,6 @@
+/***********
+END BODY BACKGROUND
+***********/
 body{
      background-size: cover;
 }
@@ -37,6 +40,106 @@ body{
 .body12{
     background-image: url('../../assets/images/ny_street12.jpg');
 }
+/***********
+END BODY BACKGROUND
+***********/
+
+/***********
+COLOR PALLETE
+***********/
+.beige{
+    color: #faf8eb;
+}
+.bg-beige{
+    background-color: #faf8eb;
+}
+
+.green1{
+    color: #045d69;
+}
+.green2{
+    color: #1b807f;
+}
+.green3{
+    color: #3f9788;
+}
+.green4{
+    color: #75b996;
+}
+.green5{
+    color: #a8bd94;
+}
+
+.red1{
+    color: #511e31;
+}
+.red2{
+    color: #952639;
+}
+.red3{
+    color: #a7283b;
+}
+.red4{
+    color: #d32d40;
+}
+.red5{
+    color: #e93747;
+}
+
+.bg-green1{
+    background-color: #045d69;
+}
+.bg-green2{
+    background-color: #1b807f;
+}
+.bg-green3{
+    background-color: #3f9788;
+}
+.bg-green4{
+    background-color: #75b996;
+}
+.bg-green5{
+    background-color: #a8bd94;
+}
+
+.bg-red1{
+    background-color: #511e31;
+}
+.bg-red2{
+    background-color: #952639;
+}
+.bg-red3{
+    background-color: #a7283b;
+}
+.bg-red4{
+    background-color: #d32d40;
+}
+.bg-red5{
+    background-color: #e93747;
+}
+/***********
+END COLOR PALLETE
+***********/
+
+
+/***********
+BOOTSTRAP OVERRIDES
+***********/
+
+.btn-primary {
+    color: #fff!important;
+    background-color: #1b807f!important;
+    border-color: #1b807f!important;
+}
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
+    color: #fff!important;
+    background-color: #045d69!important;
+    border-color: #045d69!important;
+}
+/***********
+END BOOTSTRAP OVERRIDES
+***********/
+
 
 #page h1, h2, h3, h4 {
     color: #4e4e4e;
@@ -48,7 +151,7 @@ body{
     width: auto;
     padding: 0.5em 1em;
     overflow: hidden;
-    opacity: .97;
+     
 }
 
 #page #members #uhitch-map {
@@ -1095,7 +1198,6 @@ tr.green-odd:hover, tr.green-odd:hover i, tr.green-odd:hover a{
    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
   -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
-    opacity:.97;
 }
 
 #page #message h2{
@@ -1186,7 +1288,7 @@ tr.green-odd:hover, tr.green-odd:hover i, tr.green-odd:hover a{
   box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
   -webkit-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
-  opacity: .97;
+   
 }
 
 #allevent h2{
@@ -1306,7 +1408,7 @@ tr.green-odd:hover, tr.green-odd:hover i, tr.green-odd:hover a{
     display: inline-block;
     text-decoration: none;
     padding: 5px 10px;
-    border: 1px solid green;
+    border: 1px solid #1b807f;
     border-radius: 5px;
     box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
     -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
@@ -1316,7 +1418,8 @@ tr.green-odd:hover, tr.green-odd:hover i, tr.green-odd:hover a{
 #page #message #inbox ul>li a:hover,
 #page #message #inbox ul>li a:focus,
 #page #message #inbox ul>li a:active{
-   background-color: green;
+   background-color: #73b895;
+   border-color: #73b895;
    color: #fff;
 }
 
@@ -1328,7 +1431,7 @@ tr.green-odd:hover, tr.green-odd:hover i, tr.green-odd:hover a{
 
 .inbox-nav-active{
     color: #fff !important;
-    background-color: green !important;
+    background-color: #1b807f !important;
 }
 
 .read-class{
@@ -2660,7 +2763,7 @@ label.valid{
     width: 100%;
     height: 500px;
     box-sizing: border-box;
-    border: 3px solid #33c4b6;
+    border: 3px solid #75b996;
     border-radius: 7px;
     display: inline-block;
     margin: 20px auto;

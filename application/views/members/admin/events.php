@@ -2,7 +2,7 @@
     <div id="allevent" class="row">
         <div class="col-sm-12 col-md-12">
             <?php //echo '<pre>'; print_r($events['events']); echo '</pre>';?>
-            <h2 class="green center text-uppercase"><i class="fa fa-calendar"></i>&nbsp;Events Panel</h2>
+            <h2 class="green2 center text-uppercase"><i class="fa fa-calendar"></i>&nbsp;Events Panel</h2>
             <a class="advance-link btn btn-primary">Advanced Search <i class="fa fa-plus"></i></a>
             <a href="<?= site_url().'/main/allevent'?>" class="btn btn-primary">Reload <i class="fa fa-refresh"></i></a>
             <div id="advancesearch">

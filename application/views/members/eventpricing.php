@@ -1,7 +1,7 @@
 <div id="page_content">
     <div id="page">
         <section id="members" class="col-md-12" style="margin-bottom: 100px !important;">
-        <h3 class="title title-box"><i class="fa fa-camera"></i>&nbsp;Promotional Events</h3><br>
+        <h3 class="title green2 title-box"><i class="fa fa-camera"></i>&nbsp;Promotional Events</h3><br>
         <div id="pricing-table">
           <a href="<?php echo site_url('main/newEvent/basic'); ?>" class='package'>
             <div class='name'>Basic</div>

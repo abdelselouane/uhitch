@@ -3,7 +3,7 @@
 ?>
 <div class="row">
     <div class="col-md-10">
-            <h3 class="title green title-box text-center">Surrounding Rides</h3>
+            <h3 class="title green2 title-box text-center">Surrounding Rides</h3>
             <table id="surroundingRideListing" class="display">
                 <thead>
                     <tr>

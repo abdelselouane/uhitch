@@ -12,7 +12,7 @@ $(document).ready(function(){
         el: '#map',
         lat: schoolLat,
         lng: schoolLon,
-        zoom: 13
+        zoom: 5
     });
     
     $.ajax({
@@ -34,6 +34,7 @@ $(document).ready(function(){
                     }
                 }
             }
+            console.log(ridesMap);
             map.addMarkers(ridesMap);
         },
         error: function(jqXHR, textStatus, errorThrown) {

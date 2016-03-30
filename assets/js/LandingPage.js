@@ -19,6 +19,9 @@ $(document).ready(function(){
         url: url,
         type: "post",
         success: function (response) {
+            
+            console.log(response);
+            
             var rides = JSON.parse(response);
             var ridesMap = new Array();
             for(var i=0; i<rides.length; i++){

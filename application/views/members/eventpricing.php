@@ -15,26 +15,30 @@
               </li>
               <li>
                 <strong>1</strong>
-                Social Media Accounts
+                Website Link
               </li>
               <li>
-                <strong>Limited</strong>
-                Public Information
+                <strong>1</strong>
+                Social Media Accounts
               </li>
             </ul>
           </a>
           <a href="<?php echo site_url('main/newEvent/brilliant'); ?>" class='package brilliant'>
             <div class='name'>Brilliant</div>
-            <div class='price'>$49</div>
+            <div class='price'>$25</div>
             <div class='trial'>Recommended</div>
             <hr>
             <ul>
               <li>
-                <strong>5</strong>
+                <strong>3</strong>
                 Event Photos
               </li>
               <li>
-                <strong>5</strong>
+                <strong>1</strong>
+                Website Link
+              </li>
+              <li>
+                <strong>3</strong>
                 Social Media Accounts
               </li>
               <li>
@@ -49,24 +53,24 @@
                 <strong>1</strong>
                 Home page promotion
               </li>
-              <li>
-                <strong>Unlimited</strong>
-                Public Information
-              </li>
             </ul>
           </a>
           <a href="<?php echo site_url('main/newEvent/professional'); ?>" class='package'>
             <div class='name'>Professional</div>
-            <div class='price'>$99</div>
+            <div class='price'>$75</div>
             <div class='trial'>Marketing Plan</div>
             <hr>
             <ul>
               <li>
-                <strong>10</strong>
+                <strong>5</strong>
                 Event Photos
               </li>
               <li>
-                <strong>7</strong>
+                <strong>1</strong>
+                Website Link
+              </li>
+              <li>
+                <strong>5</strong>
                 Social Media Accounts
               </li>
               <li>
@@ -78,12 +82,8 @@
                 Promotional Spots
               </li>
               <li>
-                <strong>3</strong>
+                <strong>1</strong>
                 Home page promotions
-              </li>
-              <li>
-                <strong>Unlimited</strong>
-                Public Information
               </li>
             </ul>
             </a>

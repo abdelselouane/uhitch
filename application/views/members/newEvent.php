@@ -1,11 +1,12 @@
 <div id="page_content">
     <div id="page">
         <section id="members">
-            <?php echo '<pre>'; print_r($this->event); echo '</pre>';
+            <?php //echo '<pre>'; print_r($this->event); echo '</pre>';
                 // Form Settings
                 $form_attr = array(
                     'name' => 'submitevent',
-                    'id'=>'submit_event'
+                    'id'=>'submit_event',
+                    'enctype'=>"multipart/form-data"
                 );   
                 echo form_open_multipart('main/eventsubmission', $form_attr); 
             ?>
@@ -61,31 +62,203 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label-55" for="add_file"><i class="fa fa-folder-open"></i>&nbsp;Upload Event Photo <span class="asterisk">*</span></label>
+                    
+                    <label class="form-label-55">
+                        <i class="fa fa-folder-open"></i>&nbsp;Upload Event Photo <span class="asterisk">*</span>
+                        <?php if(isset($this->event['plan']) && $this->event['plan'] != 'basic'){?>
+                        <a data-plan="<?= $this->event['plan']?>" id="add-more" class="btn btn-success" style="float:right;"><i class="fa fa-plus"></i></a>
+                        <a id="remove-input" class="btn btn-success" style="float:right;  margin-right:5px;"><i class="fa fa-minus"></i></a>
+                        <?php } ?>
+                    </label>
+                    
+                    <div class="imgFileContainer">
+                        
                     <?php if(isset($this->event['Photo'])){ 
                         $imagepath = file_exists("assets/photos/events/".$this->event['Photo']) ? "assets/photos/events/".$this->event['Photo'] : "assets/photos/events/default.png";
                         $imageUrl = base_url($imagepath);
                     ?>
-                    <div class="imgFileContainer">
-                        <img src="<?= $imageUrl ?>" class="img-center" width="300px" height="auto" >
-                        <input type="hidden" id="updatefile" name="updatefile" value="<?= $this->event['Photo'] ?>"/>
-                    </div>
+                        <div class="img-box">
+                            <a href="<?= $imageUrl ?>">
+                                <img src="<?= $imageUrl ?>" class="img-thumbnail">
+                            </a>
+                            <button data-id="" class="btn btn-primary img-update" style="">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <input type="hidden" id="updatefile" name="updatefile" value="<?= $this->event['Photo'] ?>"/>
+                        </div>
                     <?php } ?>
-                    <div class="fileContainer" <?= (isset($this->event['EventId'])) ? 'style="display:none;"' : ''  ?>>
-                        <input id="add_file" type="file" class="form-control" name="userfile" required/>
-                        <span class="form-info-span">ONLY [PNG, JPG, JPEG] 4000MB 800x500</span>
+                        
+                    <?php if(isset($this->event['Photo1'])){ 
+                        $imagepath1 = file_exists("assets/photos/events/".$this->event['Photo1']) ? "assets/photos/events/".$this->event['Photo1'] : "assets/photos/events/default.png";
+                        $imageUrl1 = base_url($imagepath1);
+                    ?>
+                        <div class="img-box">
+                            <a href="<?= $imageUrl1 ?>">
+                                <img src="<?= $imageUrl1 ?>" class="img-thumbnail">
+                            </a>
+                            <button data-id="" class="btn btn-primary img-update">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <input type="hidden" id="updatefile" name="updatefile" value="<?= $this->event['Photo1'] ?>"/>
+                        </div>
+                    <?php } ?>
+                        
+                    <?php if(isset($this->event['Photo2'])){ 
+                        $imagepath2 = file_exists("assets/photos/events/".$this->event['Photo2']) ? "assets/photos/events/".$this->event['Photo2'] : "assets/photos/events/default.png";
+                        $imageUrl2 = base_url($imagepath2);
+                    ?>
+                        <div class="img-box">
+                            <a href="<?= $imageUrl2 ?>">
+                                <img src="<?= $imageUrl2 ?>" class="img-thumbnail">
+                            </a>
+                            <button data-id="" class="btn btn-primary img-update">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <input type="hidden" id="updatefile" name="updatefile" value="<?= $this->event['Photo2'] ?>"/>
+                        </div>
+                    <?php } ?>
+                        <div class="clear"></div>
                     </div>
+                    
+                    <div class="fileContainer" <?= (isset($this->event['EventId'])) ? 'style="display:none;"' : ''  ?>>
+                        <input id="add_file" type="file" class="form-control file-input" name="userfile" required/>
+                    </div>
+                    <span class="form-info-span">ONLY [PNG, JPG, JPEG] 4000MB 800x500</span>
                     <?php if(isset($this->event['Photo'])){ ?>
                         <button id="updatePhoto" class="btn btn-primary text-uppercase" style="width:200px"><i class="fa fa-upload"></i>&nbsp;Upload New Photo</button>
                     <?php } ?>
                 </div>
                 
-                <?php if($this->event['plan']!='basic'){?>
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                        
+                        $('#add-more').on('click', function(){
+                            var self = $(this);
+                            var plan = self.attr('data-plan');
+                            addMore( plan );
+                        });
+                        
+                        $('#remove-input').on('click', function(){
+                            var inputCount = countFileInput();
+                            disRemove();
+                            if(inputCount > 1){
+                                $('.file-input').last().remove();
+                            }
+                        });
+                        
+                        $('#add-more-video').on('click', function(){
+                            var self = $(this);
+                            var plan = self.attr('data-plan');
+                            addMoreVideo( plan );
+                        });
+                        
+                        $('#remove-input-video').on('click', function(){
+                            var inputCount = countFileInputVideo();
+                            disRemoveVideo();
+                            if(inputCount > 1){
+                                $('.video-input').last().remove();
+                            }
+                        });
+                        
+                        var addMore = function( plan ){
+                            var inputCount = countFileInput();
+                            if( plan == 'brilliant' ){
+                                if( inputCount < 3 ){
+                                    generateInput( inputCount );
+                                    disRemove();
+                                }else{
+                                    alert('Sorry, the total files you can upload is 3');
+                                }
+                            }
+                            if( plan == 'professional' ){
+                                if( inputCount < 5 ){
+                                    generateInput( inputCount );
+                                    disRemove();
+                                }else{
+                                    alert('Sorry, the total files you can upload is 5');
+                                }
+                            }
+                        }
+                        
+                        var addMoreVideo = function( plan ){
+                            var inputCount = countFileInputVideo();
+                            if( plan == 'professional' ){
+                                if( inputCount < 3 ){
+                                    generateInputVideo( inputCount );
+                                    disRemoveVideo();
+                                }else{
+                                    alert('Sorry, the total videos you can add is 3');
+                                }
+                            }
+                        }
+                        
+                        var countFileInput = function(){
+                            var children = $('.fileContainer').find('.file-input');
+                            return children.length;
+                        }
+                        
+                        var countFileInputVideo = function(){
+                            var children = $('.videoContainer').find('.video-input');
+                            return children.length;
+                        }
+                        
+                        var generateInput = function( number ){
+                            var html = '<input type="file" class="form-control file-input" name="userfile'+number+'" required/>';
+                            $('.fileContainer').append(html);
+                        }
+                        
+                        var generateInputVideo = function( number ){
+                            var html = '<input type="url" class="form-control video-input" name="uservideo'+number+'" placeholder="Add video url" />';
+                            $('.videoContainer').append(html);
+                        }
+                        
+                        var disRemove = function(){
+                            var inputCount = countFileInput();
+                            if( inputCount == 1 ){
+                                $('#remove-input').addClass('disabled');
+                            }else{
+                                $('#remove-input').removeClass('disabled');
+                            }
+                        }
+                        disRemove();
+                        
+                        var disRemoveVideo = function(){
+                            var inputCount = countFileInputVideo();
+                            if( inputCount == 1 ){
+                                $('#remove-input-video').addClass('disabled');
+                            }else{
+                                $('#remove-input-video').removeClass('disabled');
+                            }
+                        }
+                        disRemoveVideo();
+                        
+                    });
+                </script>
+                <script type="text/javascript">
+                    $(function(){
+                        var $gallery = $('.imgFileContainer a').simpleLightbox();
+                    });
+                </script>
+                
+                <?php if(isset($this->event['plan']) && $this->event['plan'] != 'basic'){?>
+                <div class="form-group">
+                    <label class="form-label-55" for="video">
+                        <i class="fa fa-youtube"></i>&nbsp;Youtube Video: 
+                        <?php if(isset($this->event['plan']) && $this->event['plan'] == 'professional'){?>
+                        <a data-plan="<?= $this->event['plan']?>" id="add-more-video" class="btn btn-success" style="float:right;"><i class="fa fa-plus"></i></a>
+                        <a id="remove-input-video" class="btn btn-success" style="float:right;  margin-right:5px;"><i class="fa fa-minus"></i></a>
+                        <?php } ?>
+                    </label>
+                    <div class="videoContainer">
+                        <input type="url" class="form-control video-input" name="uservideo" value="<?=(isset($this->event['Video'])) ? $this->event['Video'] : '';?>" placeholder="Enter event video url"/>
+                    </div>
+                </div>
+                 <?php } ?>
+                
                 <div class="form-group">
                     <label class="form-label-55" for="website"><i class="fa fa-globe"></i>&nbsp;Website: </label>
                     <input type="url" class="form-control" id="website" name="Website" value="<?=(isset($this->event['Website'])) ? $this->event['Website'] : '';?>" placeholder="Enter event website"/>
                 </div>
-                <?php } ?>
                 
                 <div class="form-group">
                     <label class="form-label-55" for="facebook"><i class="fa fa-facebook-square"></i>&nbsp;Facebook: </label>
@@ -106,14 +279,7 @@
                 </div>
                 <?php } ?>
                 
-                <?php if($this->event['plan']!='basic'){?>
-                <div class="form-group">
-                    <label class="form-label-55" for="linkedin"><i class="fa fa-linkedin-square"></i>&nbsp;Linked In: </label>
-                    <input type="url" class="form-control" id="linkedin" name="Linkedin" value="<?=(isset($this->event['Linkedin'])) ? $this->event['Googleplus'] : '';?>" placeholder="Enter linkedin link"/>
-                </div>
-                <?php } ?>
-                
-                <?php if($this->event['plan']!='basic'){?>
+                <?php if($this->event['plan']=='professional'){?>
                 <div class="form-group">
                     <label class="form-label-55" for="instagram"><i class="fa fa-instagram"></i>&nbsp;Instagram: </label>
                     <input type="url" class="form-control" id="instagram" name="Instagram" value="<?=(isset($this->event['Instagram'])) ? $this->event['Instagram'] : '';?>" placeholder="Enter instagram link"/>
@@ -124,13 +290,6 @@
                 <div class="form-group">
                     <label class="form-label-55" for="pinterest"><i class="fa fa-pinterest"></i>&nbsp;Pinterest: </label>
                     <input type="url" class="form-control" id="pinterest" name="Pinterest" value="<?=(isset($this->event['Pinterest'])) ? $this->event['Googleplus'] : '';?>" placeholder="Enter pinterest link"/>
-                </div>
-                <?php } ?>
-                
-                <?php if($this->event['plan']=='professional'){?>
-                <div class="form-group">
-                    <label class="form-label-55" for="tumblr"><i class="fa fa-tumblr-square"></i>&nbsp;Tumblr: </label>
-                    <input type="url" class="form-control" id="tumblr" name="Tumblr" value="<?=(isset($this->event['Tumblr'])) ? $this->event['Googleplus'] : '';?>" placeholder="Enter tumblr link"/>
                 </div>
                 <?php } ?>
                 

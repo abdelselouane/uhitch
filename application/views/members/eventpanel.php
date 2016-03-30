@@ -1,10 +1,10 @@
 <div id="page_content">
-    <div id="page">
-        <section id="upcoming-events">
+    <div id="page">  
+        <section id="my-events">
             <h2 class="green center text-uppercase"><i class="fa fa-film"></i>&nbsp;My Events</h2>
-                <div class="container">
+                <div class="container">   
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <?php  
                                  //echo '<pre>'; print_r($data->event_data); echo '</pre>'; //exit; 
 
@@ -22,9 +22,9 @@
                                     <th style="width:120px;">Name</th>
                                     <th>At</th>
                                     <th>Date/Time</th>
-                                    <th>Has Ride</th>
+                                    <th style="width:50px">Has Ride</th>
                                     <th>Approved</th>
-                                    <th class="text-center">Action</th>
+                                    <th class="text-center" style="width:120px">Action</th>
                                   </tr>
                                 </thead>
                               <tbody>
@@ -34,8 +34,33 @@
                                         // echo '<pre>'; print_r($value); echo '</pre>';
                                   ?>
                                      <tr>
-                                        <td class="text-left"><img src="<?= base_url().'assets/photos/events/'.$value['Photo']?>" class="img-thumbnail" width="100px" height="auto"></td>
-                                        <td class="text-left"><?= $value['Name']?></td>
+                                        <td class="text-left event-gallery<?=$key?>">
+                                            
+                                            <a href="<?= base_url().'assets/photos/events/'.$value['Photo']?>">
+                                                <img src="<?= base_url().'assets/photos/events/'.$value['Photo']?>" class="img-thumbnail" width="100px" height="auto">
+                                            </a>
+                                            
+                                            <?php if(isset($value['Photo1']) && !empty($value['Photo1'])){ ?>
+                                            <a href="<?= base_url().'assets/photos/events/'.$value['Photo1']?>" class="hidden"><img src="<?= base_url().'assets/photos/events/'.$value['Photo1']?>" alt="" title=""/></a>
+                                            <?php } ?>
+                                            <?php if(isset($value['Photo1']) && !empty($value['Photo2'])){ ?>
+                                            <a href="<?= base_url().'assets/photos/events/'.$value['Photo2']?>" class="hidden"><img src="<?= base_url().'assets/photos/events/'.$value['Photo2']?>" alt="" title=""/></a>
+                                            <?php } ?>
+                                            <?php if(isset($value['Photo1']) && !empty($value['Photo3'])){ ?>
+                                            <a href="<?= base_url().'assets/photos/events/'.$value['Photo3']?>" class="hidden"><img src="<?= base_url().'assets/photos/events/'.$value['Photo3']?>" alt="" title=""/></a>
+                                            <?php } ?>
+                                            <?php if(isset($value['Photo1']) && !empty($value['Photo4'])){ ?>
+                                            <a href="<?= base_url().'assets/photos/events/'.$value['Photo4']?>" class="hidden"><img src="<?= base_url().'assets/photos/events/'.$value['Photo4']?>" alt="" title=""/></a>
+                                            <?php } ?>
+                                            
+                                            <script type="text/javascript">
+                                                $(function(){
+                                                    var $gallery<?=$key?> = $('.event-gallery<?=$key?> a').simpleLightbox();
+                                                });
+                                            </script>
+                                            
+                                        </td>
+                                        <td class="text-left"><a href="<?= base_url()."index.php/main/eventinfo?q=".$value['EventId']?>" target="_blank"><?= $value['Name']?></a></td>
                                         <td class="text-left"><?= $value['Location'].'<br>'.$value['City'].', '.$value['State'].', '.$value['Zip']?></td>
                                         <td class="text-left"><?php echo date('m/d/Y', strtotime($value['EventDate'])); echo ' <br>'.$value['EventTime']?></td>
                                          <td class="text-left"><?= ($value['RideId']!='') ? '<span class="alert alert-success"><i class="fa fa-car"></i> YES </span>' : '<span class="alert alert-danger"><i class="fa fa-car"></i> NO </span>'?></td>

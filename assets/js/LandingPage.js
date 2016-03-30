@@ -1,31 +1,48 @@
 
 var map;
-var mapIcon = '../../assets/imgs/mapIcon.png'; 
+var mapIcon = '../assets/imgs/mapIcon.png'; 
 $(document).ready(function(){
     
     var baseUrl = $('#baseUrl').val();
     var url = baseUrl+"index.php/main/getSurroundingRides";
+    var schoolLat   = $('#school_lat').val();
+    var schoolLon   = $('#school_lon').val();
+    
+    map = new GMaps({
+        el: '#map',
+        lat: schoolLat,
+        lng: schoolLon,
+        zoom: 8
+    });
     
     $.ajax({
         url: url,
         type: "post",
         success: function (response) {
-           // you will get response from your php page (what you echo or print)                 
-            console.log(response);
+            var rides = JSON.parse(response);
+            var ridesMap = new Array();
+            for(var i=0; i<rides.length; i++){
+                html = '<p>Trip to: '+rides[i].Arrival +'</p>';
+                //console.log(rides[i]);
+                ridesMap[i] =   {
+                    lat: rides[i].Lat_Dep,
+                    lng: rides[i].Lon_Dep,
+                    icon: mapIcon,
+                    title: rides[i].DepartShort,
+                    infoWindow: {
+                      content: html
+                    }
+                }
+            }
+            map.addMarkers(ridesMap);
         },
         error: function(jqXHR, textStatus, errorThrown) {
            console.log(textStatus, errorThrown);
         }
-
-
     });
     
     
-  map = new GMaps({
-    el: '#map',
-    lat: -12.043333,
-    lng: -77.028333
-  });
+ 
   /*map.addMarker({
     lat: -12.043333,
     lng: -77.03,
@@ -42,7 +59,7 @@ $(document).ready(function(){
       console.log('mouseover');
     }
   });*/
-  map.addMarkers([{
+  /*map.addMarkers([{
         lat: -12.042,
         lng: -77.028333,
         icon: mapIcon,
@@ -68,7 +85,7 @@ $(document).ready(function(){
           content: '<p>HTML Content</p>'
         }
     }
-]);
+]);*/
   
 });
 

@@ -23,10 +23,19 @@
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/normalize.css'>
 <link rel="stylesheet" type="text/css" href='<?php echo base_url();?>assets/css/pricing-table.css'>
 
+<!-- Pick a theme, load the plugin & initialize plugin -->
+<link href="<?=base_url();?>assets/css/tablesorter.css" rel="stylesheet">
+<!-- Simple light box  -->
+<link href='<?php echo base_url();?>assets/css/simplelightbox.min.css' rel='stylesheet' type='text/css'>
+<link href='<?php echo base_url();?>assets/css/simple-box.css' rel='stylesheet' type='text/css'>
+
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <link href="<?php echo base_url();?>assets/css/toastr.css" rel="stylesheet" type="text/css" />
 <!-- END PAGE LEVEL PLUGINS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/jquery-1.11.1.min.js"></script>
- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo8npBXxNBre8fZ8Bsz1B0KrjS8U5f4Yk" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo8npBXxNBre8fZ8Bsz1B0KrjS8U5f4Yk" async defer></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/gmaps.js"></script>
+
+
+

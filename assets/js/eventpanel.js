@@ -83,11 +83,12 @@ function getEventById(id){
            //dataType: "json",
            success: function( data ) {
                var data = JSON.parse(data);
-               
-              // console.log(data); return false;
                var base = base_url('index.php');
                
                //var profileurlurl = base + 'index.php/';
+               //console.log(data); 
+               //console.log(ImageExist(base + 'assets/photos/users/' +data.UserPhoto));
+               //return false;
                
                profileurl    = 'userProfile?q='+data.UserId;
                userprofile   = '<p><a target="_blank" href="'+profileurl+'">View User Profile <i class="fa fa-long-arrow-right"></i></a></p>';
@@ -151,7 +152,7 @@ function getRidesByEventId(id){
            success: function( data ) {
                var data = JSON.parse(data);
                
-               console.log(data); 
+               //console.log(data); 
                
                
                var rides = data.length > 1 ? '<i class="fa fa-car"></i> '+data.length+' Rides found for this event.' : '<i class="fa fa-car"></i> '+data.length+' Ride found for this event.';
@@ -204,5 +205,5 @@ function ImageExist(url)
 {
    var img = new Image();
    img.src = url;
-   return img.height != 0;
+   return img; //img.height != 0;
 }

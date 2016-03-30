@@ -125,12 +125,11 @@ class My_BaseController extends CI_Controller {
         $jqueryUI               = "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js";
         $jqueryValidate         = base_url()."assets/js/jquery.validate.js";
         $jqueryDataTables       = base_url()."assets/js/jquery.dataTables.js";
-        $mapAPI                 = "http://maps.google.com/maps/api/js?sensor=false";
         $bootstrapValidator     =  base_url()."assets/js/bootstrapValidator.min.js";
         $signUp                 = base_url()."assets/js/SignUpUser.js";
         $schoolList             = base_url()."assets/js/SchoolList.js";
         $logIn                  = base_url()."assets/js/LogInUser.js";
-        $members                = base_url()."assets/js/LandingPage.js";
+        $landing                = base_url()."assets/js/LandingPage.js";
         $forgot                 = base_url()."assets/js/ForgotPassword.js";
         $newPwd                 = base_url()."assets/js/ChangePassword.js";
         $contact                = base_url()."assets/js/ContactUs.js";
@@ -147,6 +146,12 @@ class My_BaseController extends CI_Controller {
         $eventpanel             = base_url()."assets/js/eventpanel.js";
         $adminEvents            = base_url()."assets/js/adminEvents.js";
         $profile                = base_url()."assets/js/profile.js";
+        $tablesorter            = base_url()."assets/js/jquery.tablesorter.js";
+        $tablesorterWidgets     = base_url()."assets/js/jquery.tablesorter.widgets.js";
+        $tablesorterPager       = base_url()."assets/js/jquery.tablesorter.pager.min.js";
+        
+        
+        $simple_lightbox = base_url()."assets/js/simple-lightbox.min.js";
         
         switch($type) {
             case 'profile':
@@ -163,7 +168,7 @@ class My_BaseController extends CI_Controller {
                 array_push($scripts, $jqueryUI, $jqueryValidate, $jqueryDataTables, $ridepanel);
                 break;
             case 'eventpanel':
-                array_push($scripts, $jqueryUI, $jqueryValidate, $jqueryDataTables, $eventpanel);
+                array_push($scripts, $jqueryUI, $jqueryValidate, $jqueryDataTables, $simple_lightbox, $eventpanel);
                 break;
             case 'message':
                 array_push($scripts, $message);
@@ -187,7 +192,7 @@ class My_BaseController extends CI_Controller {
             case 'event':
                 $library = "http://maps.googleapis.com/maps/api/js?libraries=places";
                 array_push($scripts, $jqueryUI, $jqueryValidate, $moment, $datetimepicker);
-                array_push($scripts, $event);
+                array_push($scripts, $simple_lightbox, $event);
                 array_push($scripts, $library);
                 break;
             case 'new':
@@ -203,7 +208,7 @@ class My_BaseController extends CI_Controller {
                 array_push($scripts, $settings);
                 break;
             case 'landing':
-                array_push($scripts, $jqueryUI, $jqueryDataTables, $members);
+                array_push($scripts, $simple_lightbox, $tablesorter, $tablesorterWidgets, $tablesorterPager, $landing);
                 break;
             case 'postride':
                 array_push($scripts, $postRide, $jqueryUI, $jqueryValidate, $moment, $datetimepicker);

@@ -10,8 +10,7 @@
     $member     = (trim($data->members)) ? $data->members: 'N/A';
 ?>
 <div class="row">
-    <input type="hidden" id="baseUrl" name="baseUrl" value="<?=base_url()?>" ?>
-    <div class="col-xs-12 col-sm-6 col-md-10">
+    <div class="col-xs-12 col-sm-6 col-md-12">
         <div class="well well-sm" style="text-align:left;">
             <div class="row">
                 <div class="col-sm-6 col-md-3">
@@ -41,10 +40,3 @@
         </div>
     </div>
 </div>
-<?php
-    
-    /*$this->load->view('members/user/userImage');
-    $this->load->view('members/user/userDetails');*/
-    //$this->load->view('members/user/userRideHistory'); 
-
-?>

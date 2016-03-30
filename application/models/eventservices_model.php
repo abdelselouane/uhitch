@@ -42,8 +42,19 @@ class Eventservices_model extends User_Model {
         $this->eventDate    = date('Y-m-d', strtotime($this->input->post('event_date')));
         $this->eventTime    = $this->input->post('event_time');
         
+        $this->eventFilename  = isset($file[0]) ? $file[0] : NULL;
+        $this->eventFilename1 = isset($file[1]) ? $file[1] : NULL;
+        $this->eventFilename2 = isset($file[2]) ? $file[2] : NULL;
+        $this->eventFilename3 = isset($file[3]) ? $file[3] : NULL;
+        $this->eventFilename4 = isset($file[4]) ? $file[4] : NULL;
         
-        $this->eventFilename = isset($file) ? $file : NULL;
+        $video  = $this->input->post('uservideo');
+        $video1 = $this->input->post('uservideo1');
+        $video2 = $this->input->post('uservideo2');
+        
+        $this->video         = isset($video) ? $this->input->post('uservideo') : '';
+        $this->video1        = isset($video1) ? $this->input->post('uservideo1') : '';
+        $this->video2        = isset($video2) ? $this->input->post('uservideo2') : '';
         
         $this->city         = ucfirst($this->input->post('event_city')); 
         $this->state        = ucfirst($this->input->post('event_state'));
@@ -56,22 +67,24 @@ class Eventservices_model extends User_Model {
         $this->twitter      = $this->input->post('Twitter');
         $this->instagram    = $this->input->post('Instagram');
         $this->googleplus   = $this->input->post('Googleplus');
+        $this->pinterest    = $this->input->post('Pinterest');
         $this->description  = $this->input->post('Description');
         $this->comments     = $this->input->post('Comments');
+        $this->plan         = $this->input->post('plan');
     }
 
     function insertionToDb() {
         $query = 'INSERT INTO events (Name, EventId, Location, City, '
                     . 'State, CreatedByName, CreatedById,'
-                    . 'Comments, Lat, Lon, Zip, Photo, Website, Facebook, Twitter, Instagram, Googleplus, Description, EventDate, EventTime ) '
+                    . 'Comments, Lat, Lon, Zip, Photo, Photo1, Photo2, Photo3, Photo4, Video, Video1, Video2, Website, Facebook, Twitter, Instagram, Googleplus, Pinterest, Description, EventDate, EventTime, Plan ) '
                     . 'VALUES("'.$this->eventName.'", "'.$this->eventId.'", "'.$this->location.'", '
                     . ' "'.$this->city.'", "'.$this->state.'", "'.$this->userName.'", "'.$this->userId.'", '
                     . ' "'.$this->comments.'", '
-                    . ' "'.$this->lat.'", "'.$this->lon.'", "'.$this->zip.'", "'.$this->eventFilename.'", '
-                    . ' "'.$this->website.'", "'.$this->facebook.'", "'.$this->twitter.'", "'.$this->instagram.'", "'.$this->googleplus.'", "'.$this->description.'", '
-                    . ' "'.$this->eventDate.'", "'.$this->eventTime.'" ) ';
+                    . ' "'.$this->lat.'", "'.$this->lon.'", "'.$this->zip.'", "'.$this->eventFilename.'", "'.$this->eventFilename1.'", "'.$this->eventFilename2.'", "'.$this->eventFilename3.'", "'.$this->eventFilename4.'", "'.$this->video.'", "'.$this->video1.'", "'.$this->video2.'", '
+                    . ' "'.$this->website.'", "'.$this->facebook.'", "'.$this->twitter.'", "'.$this->instagram.'", "'.$this->googleplus.'", "'.$this->pinterest.'", "'.$this->description.'", '
+                    . ' "'.$this->eventDate.'", "'.$this->eventTime.'", "'.$this->plan.'" ) ';
         
-       // echo $query; exit;
+        //echo $query; exit;
         $this->db->execute($query);
     }
     

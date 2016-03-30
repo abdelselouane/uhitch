@@ -132,12 +132,12 @@ class Main extends My_BaseController {
             $this->event = !empty($info) ? $info : '';
         }
         
-        $this->event['plan'] = 'professional';
+        $this->event['plan'] = 'basic';
         if(isset($plan) && !empty($plan)){
             $this->event['plan'] = $plan;
         }
         $this->title = 'Uhitch | Create New Event';
-        $this->bg = 'body9';
+        $this->bg = 'body8';
         $this->setScripts('event');
         $this->display('newEvent');
     }
@@ -309,12 +309,42 @@ class Main extends My_BaseController {
             $this->load->model('retrievedata_model');
             $info = $this->retrievedata_model->getEventById($id);
             
+            //echo '<pre>'; print_r($info); echo '</pre>';exit;
+            
             if(is_array($info) && !empty($info)){
                 
                 $this->load->model('eventservices_model');
                 $this->eventservices_model->deleteEventById($id);
                 
                 $fileRoot = 'assets/photos/events/'.$info['Photo'];
+                $url = base_url($fileRoot);
+
+                if( isUrlExists( $url ) ){
+                    unlink($fileRoot);
+                }
+                
+                $fileRoot = 'assets/photos/events/'.$info['Photo1'];
+                $url = base_url($fileRoot);
+
+                if( isUrlExists( $url ) ){
+                    unlink($fileRoot);
+                }
+                
+                $fileRoot = 'assets/photos/events/'.$info['Photo2'];
+                $url = base_url($fileRoot);
+
+                if( isUrlExists( $url ) ){
+                    unlink($fileRoot);
+                }
+                
+                $fileRoot = 'assets/photos/events/'.$info['Photo3'];
+                $url = base_url($fileRoot);
+
+                if( isUrlExists( $url ) ){
+                    unlink($fileRoot);
+                }
+                
+                $fileRoot = 'assets/photos/events/'.$info['Photo4'];
                 $url = base_url($fileRoot);
 
                 if( isUrlExists( $url ) ){
@@ -334,7 +364,8 @@ class Main extends My_BaseController {
         }
         
         $this->setFlashData();
-        $this->eventpanel();
+        $goto =  base_url().'index.php/main/eventpanel';
+        header('location: '.$goto);
     }
         
     function hitchARide() {
@@ -856,38 +887,53 @@ class Main extends My_BaseController {
         $this->load->model('eventservices_model');
         
         $post = $this->input->post(); 
-        echo '<pre>'; print_r($post); echo '</pre>'; exit;
+        //echo '<pre>'; print_r($post); echo '</pre>'; exit;
+        
+        
         if(isset($post['admin']) &&  $post['admin'] == 1){
             $this->admin = 1;
         }
         if(isset($post['EventId']) && empty($post['EventId'])){
             
-            $config['file_name'] = substr(str_shuffle(MD5(microtime())), 0, 45);
+            //echo '<pre>'; print_r($post); echo '</pre>';
+            //echo '<pre>'; print_r($_FILES); echo '</pre>';
+           // exit;
+            $i = 0;
+            foreach($_FILES as $key => $value){
+                
+                $config['file_name'] = substr(str_shuffle(MD5(microtime())), 0, 45);
 
-            // Direct Upload path on server
-            $config['upload_path']      = 'assets/photos/events/';
-            $config['allowed_types']    = 'jpg|png|jpeg';
-            $config['max_size']         = '10000';
-            $config['max_width']        = '2400';
-            $config['max_height']       = '1600';
+                // Direct Upload path on server
+                $config['upload_path']      = 'assets/photos/events/';
+                $config['allowed_types']    = 'jpg|png|jpeg';
+                $config['max_size']         = '100000';
+                $config['max_width']        = '5400';
+                $config['max_height']       = '3000';
 
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-            if (!$this->upload->do_upload()) {
-                //$error = array('error' => $this->upload->display_errors());
-                $this->error['Message'] = $this->upload->display_errors();
-                $this->display('events/error');
-            } else {
-                $data = array('upload_data' => $this->upload->data());
-                $img = $data["upload_data"]["file_name"];
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                
+                if (!$this->upload->do_upload($key)) {
+                    $this->error['Message'] = $this->upload->display_errors();
+                    $this->display('events/error');
+                } else {
+                    $data = array('upload_data' => $this->upload->data());
+                    $img[$i] = $data["upload_data"]["file_name"];
+                }
+                $i++;
+            }
+            
+            if(isset($img) && !empty($img)){
                 $this->eventservices_model->registerEvent($img);
                 $this->success['Message'] = 'Your event is successfuly updated.';
                 $this->display('events/success');
-            } 
+            }
+            
         }else{
             
-            //echo '<pre>'; print_r($post); echo '</pre>';exit;
-            //echo '<pre>'; print_r($_FILES); echo '</pre>';exit;
+            echo '<pre>'; print_r($post); echo '</pre>';
+            echo '<pre>'; print_r($_FILES); echo '</pre>';exit;
+            
             $eventId = $post['EventId'];
             if(isset($_FILES['userfile']) && !empty($_FILES['userfile']['name'])){
                 //echo '<pre>'; print_r($_FILES); echo '</pre>';
@@ -963,12 +1009,8 @@ class Main extends My_BaseController {
     function getSurroundingRides() {
         $this->load->model('retrievedata_model');
         $rides = $this->retrievedata_model->applyRideTicker();
-        
-        
-        
-        foreach($rides as $key=>$value){
-            echo '<pre>'; print_r($value); echo '</pre>';
-        }
+        print_r(json_encode($rides));
+        exit;
     }
             
     function calculateLogIn() {

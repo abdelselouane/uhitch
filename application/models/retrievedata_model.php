@@ -239,9 +239,9 @@ class retrievedata_model extends User_Model {
      function retrieveEventInformation($id) {
          $query =  "SELECT "
                     . "e.Name, e.Location, e.City, e.State, e.Zip, "
-                    . "e.Lat, e.Lon, e.Photo, e.Website, e.Facebook, e.Twitter, e.Instagram, e.Googleplus, e.Description, "
+                    . "e.Lat, e.Lon, e.Photo, e.Photo1, e.Photo2, e.Photo3, e.Photo4, e.Video, e.Video1, e.Video2,e.Website, e.Facebook, e.Twitter, e.Instagram, e.Googleplus, e.Pinterest, e.Description, "
                     . "e.Comments, e.EventDate, "
-                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, u.Photo as UserPhoto, "
+                    . "e.EventTime, e.Plan, e.CreatedByName, e.CreatedById, e.EventId, u.Photo as UserPhoto, "
                     . "r.Ride_ID as RideId "
                  . "FROM events e "
                  . "INNER JOIN user u "
@@ -256,9 +256,9 @@ class retrievedata_model extends User_Model {
     function getEventById($id) {
          $query =  "SELECT "
                     . "e.Name, e.Location, e.City, e.State, e.Zip, "
-                    . "e.Lat, e.Lon, e.Photo, e.Website, e.Facebook, e.Twitter, e.Instagram, e.Googleplus, e.Description, "
+                    . "e.Lat, e.Lon, e.Photo, e.Photo1, e.Photo2, e.Photo3, e.Photo4, e.Video, e.Video1, e.Video2, e.Website, e.Facebook, e.Twitter, e.Instagram, e.Googleplus, e.Pinterest, e.Description, "
                     . "e.Comments, e.EventDate, e.Reviewed, "
-                    . "e.EventTime, e.EventId, e.CreatedByName as UserName, e.CreatedById as UserId, u.Photo as UserPhoto, "
+                    . "e.EventTime, e.Plan, e.EventId, e.CreatedByName as UserName, e.CreatedById as UserId, u.Photo as UserPhoto, "
                     . "r.Ride_ID as RideId "
                  . "FROM events e "
                  . "INNER JOIN user u "
@@ -276,8 +276,8 @@ class retrievedata_model extends User_Model {
     function getAllEventsByUserId($id){
         $query =  "SELECT "
                     . "e.Name, e.Location, e.City, e.State, e.Zip, "
-                    . "e.Lat, e.Lon, e.Comments, e.Photo, e.EventDate, "
-                    . "e.EventTime, e.CreatedByName, e.CreatedById, e.EventId, e.Reviewed, "
+                    . "e.Lat, e.Lon, e.Comments, e.Photo, e.Photo1, e.Photo2, e.Photo3, e.Photo4, e.Video, e.Video1, e.Video2, e.Website, e.Facebook, e.Twitter, e.Instagram, e.Googleplus, e.Pinterest, e.Description, e.EventDate, "
+                    . "e.EventTime, e.Plan, e.CreatedByName, e.CreatedById, e.EventId, e.Reviewed, "
                     . "r.Ride_ID as RideId "
                  . "FROM events e "
                  . "INNER JOIN user u "
@@ -286,7 +286,7 @@ class retrievedata_model extends User_Model {
                  . "ON e.EventId = r.Event_ID "
                  . "WHERE u.UserID = '$id' GROUP BY EventId";
         
-        //echo $query; exit;
+       // echo $query; exit;
          
          return $this->db->retrieveRows($query);
     }

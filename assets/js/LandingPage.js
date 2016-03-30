@@ -12,7 +12,7 @@ $(document).ready(function(){
         el: '#map',
         lat: schoolLat,
         lng: schoolLon,
-        zoom: 8
+        zoom: 20
     });
     
     $.ajax({
@@ -23,7 +23,7 @@ $(document).ready(function(){
             var ridesMap = new Array();
             for(var i=0; i<rides.length; i++){
                 html = '<p>Trip to: '+rides[i].Arrival +'</p>';
-                //console.log(rides[i]);
+                console.log(rides[i]);
                 ridesMap[i] =   {
                     lat: rides[i].Lat_Dep,
                     lng: rides[i].Lon_Dep,

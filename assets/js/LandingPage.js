@@ -19,13 +19,10 @@ $(document).ready(function(){
         url: url,
         type: "post",
         success: function (response) {
-            
-            console.log(response);
-            
             var rides = JSON.parse(response);
             var ridesMap = new Array();
             for(var i=0; i<rides.length; i++){
-                html = '<p>Trip to: '+rides[i].Arrival +'</p>';
+                html = '<p>Trip to: '+rides[i].Arrival +'</p><a href="" class="btn btn-primary">Details</a>';
                 console.log(rides[i]);
                 ridesMap[i] =   {
                     lat: rides[i].Lat_Dep,
@@ -37,7 +34,6 @@ $(document).ready(function(){
                     }
                 }
             }
-            console.log(ridesMap);
             map.addMarkers(ridesMap);
         },
         error: function(jqXHR, textStatus, errorThrown) {

@@ -12,7 +12,7 @@ $(document).ready(function(){
         el: '#map',
         lat: schoolLat,
         lng: schoolLon,
-        zoom: 10
+        zoom: 15
     });
     
     $.ajax({

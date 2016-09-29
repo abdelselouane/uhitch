@@ -193,9 +193,63 @@ class Eventservices_model extends User_Model {
         return $this->db->retrieveRows($query);
     }
     
+    function deleteEventPhoto($id, $photoId) {
+        $query = 'UPDATE events 
+                    SET Reviewed = 0, ';
+        switch ($photoId)
+        {
+            case '1':
+                $query .= 'Photo = null';
+                break;
+            case '2':
+                $query .= 'Photo1 = null';
+                break;
+            case '3':
+                $query .= 'Photo2 = null';
+                break;
+            case '4':
+                $query .= 'Photo3 = null';
+                break;
+            case '5':
+                $query .= 'Photo4 = null';
+                break;
+            case '6':
+                $query .= 'Photo5 = null';
+                break;
+        }
+        $query .= ' WHERE EventId="'.$id.'" ';
+        //echo $query;
+        $this->db->execute($query);
+    }
+    
     function updateEventById($post) {
-        //$post = $this->input->post();
-        // echo '<pre>'; print_r($post); echo '</pre>'; exit;
+        
+        $post['Name'] = isset($post['Name']) ? $post['Name'] : '';
+        $post['eventLat'] = isset($post['eventLat']) ? $post['eventLat'] : '';
+        $post['eventLon'] = isset($post['eventLon']) ? $post['eventLon'] : '';
+        $post['event_address'] = isset($post['event_address']) ? $post['event_address'] : '';
+        $post['event_city'] = isset($post['event_city']) ? $post['event_city'] : '';
+        $post['event_state'] = isset($post['event_state']) ? $post['event_state'] :'';
+        $post['event_zip'] = isset($post['event_zip']) ? $post['event_zip'] : '';
+        $post['updatefile'] = isset($post['updatefile']) ? $post['updatefile'] : '';
+        $post['updatefile1'] = isset($post['updatefile1']) ? $post['updatefile1'] : '';
+        $post['updatefile2'] = isset($post['updatefile2']) ? $post['updatefile2'] : '';
+        $post['updatefile3'] = isset($post['updatefile3']) ? $post['updatefile3'] : '';
+        $post['updatefile4'] = isset($post['updatefile4']) ? $post['updatefile4'] : '';
+        $post['updatefile5'] = isset($post['updatefile5']) ? $post['updatefile5'] : '';
+        $post['Website'] = isset($post['Website']) ? $post['Website'] : '';
+        $post['Facebook'] = isset($post['Facebook']) ? $post['Facebook'] :'';
+        $post['Twitter'] = isset($post['Twitter']) ? $post['Twitter'] : '';
+        $post['Instagram'] = isset($post['Instagram']) ? $post['Instagram'] : '';
+        $post['Pinterest'] = isset($post['Pinterest']) ? $post['Pinterest'] : '';
+        $post['Googleplus'] = isset($post['Googleplus']) ? $post['Googleplus'] : '';
+        $post['Description'] = isset($post['Description']) ? $post['Description'] : '';
+        $post['event_date'] = isset($post['event_date']) ? $post['event_date'] : '';
+        $post['event_time'] = isset($post['event_time']) ? $post['event_time'] : '';
+        $post['Comments'] = isset($post['Comments']) ? $post['Comments'] :'';
+        
+        //echo '<pre>'; print_r($post); echo '</pre>'; 
+        //exit;
         $query = 'UPDATE events 
                     SET Reviewed = 0,
                         Name = "'.$post['Name'].'",
@@ -206,10 +260,16 @@ class Eventservices_model extends User_Model {
                         State = "'.$post['event_state'].'",
                         Zip = "'.$post['event_zip'].'",
                         Photo = "'.$post['updatefile'].'",
+                        Photo1 = "'.$post['updatefile1'].'",
+                        Photo2 = "'.$post['updatefile2'].'",
+                        Photo3 = "'.$post['updatefile3'].'",
+                        Photo4 = "'.$post['updatefile4'].'",
+                        Photo5 = "'.$post['updatefile5'].'",
                         Website = "'.$post['Website'].'",
                         Facebook = "'.$post['Facebook'].'",
                         Twitter = "'.$post['Twitter'].'",
                         Instagram = "'.$post['Instagram'].'",
+                        Pinterest = "'.$post['Pinterest'].'",
                         Googleplus = "'.$post['Googleplus'].'",
                         Description = "'.$post['Description'].'",
                         EventDate = "'.date('Y-m-d', strtotime($post['event_date'])).'",

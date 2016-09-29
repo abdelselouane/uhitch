@@ -132,10 +132,14 @@ class Main extends My_BaseController {
             $this->event = !empty($info) ? $info : '';
         }
         
-        $this->event['plan'] = 'basic';
+        $get = $this->input->get();
+        
         if(isset($plan) && !empty($plan)){
             $this->event['plan'] = $plan;
+        }else if(isset($get['plan']) && !empty($get['plan'])){
+            $this->event['plan'] = $get['plan'];
         }
+        
         $this->title = 'Uhitch | Create New Event';
         $this->bg = 'body8';
         $this->setScripts('event');
@@ -883,6 +887,21 @@ class Main extends My_BaseController {
         return false;
     }
 
+    
+    function deleteeventphoto() {
+        $this->load->model('eventservices_model');
+        $post = $this->input->post();
+        if(isset($post['eventId']) && isset($post['photoId'])){
+            $fileLoc = $post['photo'];
+            $fileRoot = 'assets/photos/events/'.$fileLoc;
+            $url = base_url($fileRoot);
+            if( isUrlExists( $url ) ){
+                unlink($fileRoot);
+            }
+            $this->eventservices_model->deleteEventPhoto($post['eventId'], $post['photoId']);
+        }
+    }
+    
     function eventsubmission() {
         $this->load->model('eventservices_model');
         
@@ -931,14 +950,28 @@ class Main extends My_BaseController {
             
         }else{
             
-            echo '<pre>'; print_r($post); echo '</pre>';
-            echo '<pre>'; print_r($_FILES); echo '</pre>';exit;
+            //echo '<pre>'; print_r($post); echo '</pre>';
+            //echo '<pre>'; print_r($_FILES); echo '</pre>';exit;
             
             $eventId = $post['EventId'];
             if(isset($_FILES['userfile']) && !empty($_FILES['userfile']['name'])){
-                //echo '<pre>'; print_r($_FILES); echo '</pre>';
+                //echo '<pre>'; print_r($_FILES); echo '</pre>'; exit;
+                $fileLoc = '';
+                if(isset($post['whichFile'])){
+                    if($post['whichFile'] == 1){
+                        $fileLoc = (isset($post['updatefile'])) ? $post['updatefile'] : $_FILES['userfile']['name'];
+                    }else if($post['whichFile'] == 2){
+                         $fileLoc = (isset($post['updatefile1'])) ? $post['updatefile1'] : $_FILES['userfile']['name'];
+                    }else if($post['whichFile'] == 3){
+                         $fileLoc = (isset($post['updatefile2'])) ? $post['updatefile2'] : $_FILES['userfile']['name'];
+                    }else if($post['whichFile'] == 4){
+                         $fileLoc = (isset($post['updatefile3'])) ? $post['updatefile3'] : $_FILES['userfile']['name'];
+                    }else if($post['whichFile'] == 5){
+                         $fileLoc = (isset($post['updatefile4'])) ? $post['updatefile4'] : $_FILES['userfile']['name'];
+                    }
+                }
                 
-                $fileRoot = 'assets/photos/events/'.$post['updatefile'];
+                $fileRoot = 'assets/photos/events/'.$fileLoc;
                 $url = base_url($fileRoot);
                 
                 if( isUrlExists( $url ) ){
@@ -965,19 +998,34 @@ class Main extends My_BaseController {
                     $this->error['Message'] = $this->upload->display_errors();
                     $this->display('events/error');
                     
-                }else{ 
-                    
+                }else{
                      
                     $data = array('upload_data' => $this->upload->data());
                     $img = $data["upload_data"]["file_name"];
-                    //echo '<pre>'; print_r($data); echo '</pre>'; 
+                    
                    
                     $post = $this->input->post();
-                    $post['updatefile'] = $img;
+                    $fileLoc = '';
+                    if(isset($post['whichFile'])){
+                        if($post['whichFile'] == 1)
+                            $post['updatefile'] = $img;
+                        else if($post['whichFile'] == 2)
+                            $post['updatefile1'] = $img;
+                        else if($post['whichFile'] == 3)
+                            $post['updatefile2'] = $img;
+                        else if($post['whichFile'] == 4)
+                            $post['updatefile3'] = $img;
+                        else if($post['whichFile'] == 5)
+                            $post['updatefile4'] = $img;
+                    }
                     
                     $this->eventservices_model->updateEventById($post);
-                    $this->success['Message'] = 'Your event is successfuly updated.';
-                    $this->display('events/success');
+                    if(isset($post['editUploadSubmission'])){
+                        return true;
+                    }else{
+                        $this->success['Message'] = 'Your event is successfuly updated.';
+                        $this->display('events/success');
+                    }
                    
                 } 
                 

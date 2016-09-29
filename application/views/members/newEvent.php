@@ -62,18 +62,52 @@
                 </div>
                 
                 <div class="form-group">
-                    
+                    <?php $countPhotos = 0; $countAllowed = 0; ?>
                     <label class="form-label-55">
                         <i class="fa fa-folder-open"></i>&nbsp;Upload Event Photo <span class="asterisk">*</span>
-                        <?php if(isset($this->event['plan']) && $this->event['plan'] != 'basic'){?>
+                        <?php if(!isset($this->event['EventId'])){?>
                         <a data-plan="<?= $this->event['plan']?>" id="add-more" class="btn btn-success" style="float:right;"><i class="fa fa-plus"></i></a>
                         <a id="remove-input" class="btn btn-success" style="float:right;  margin-right:5px;"><i class="fa fa-minus"></i></a>
+                        <?php }else{ ?>
+                             
+                        <?php 
+                                    echo '<pre>'; print_r($this->event); echo '</pre>';
+                        
+                            if($this->event['Photo'] !== ''){
+                                $countPhotos = $countPhotos + 1;
+                            }
+                            if($this->event['Photo1'] !== ''){
+                                $countPhotos = $countPhotos + 1;
+                            }
+                            if($this->event['Photo2'] !== ''){
+                                $countPhotos = $countPhotos + 1;
+                            }
+                            if($this->event['Photo3'] !== ''){
+                                $countPhotos = $countPhotos + 1;
+                            }
+                            if($this->event['Photo4'] !== ''){
+                                $countPhotos = $countPhotos + 1;
+                            }
+                
+                            echo $countPhotos;
+                            if($this->event['Plan'] === 'brilliant'){
+                                $countAllowed = 3 - $countPhotos;
+                            }
+                            if($this->event['Plan'] === 'professional'){
+                                $countAllowed = 3 - $countPhotos;
+                            }
+                            
+                        ?>
+                        
+                        
+                        <a data-plan="<?= $this->event['plan']?>" class="btn btn-success" style="float:right;"><i class="fa fa-plus"></i></a>
                         <?php } ?>
                     </label>
                     
+                    <?php if(isset($this->event['Photo']) || isset($this->event['Photo1']) || isset($this->event['Photo2'])){ ?>
                     <div class="imgFileContainer">
                         
-                    <?php if(isset($this->event['Photo'])){ 
+                    <?php if(isset($this->event['Photo']) && $this->event['Photo'] !== ''){ 
                         $imagepath = file_exists("assets/photos/events/".$this->event['Photo']) ? "assets/photos/events/".$this->event['Photo'] : "assets/photos/events/default.png";
                         $imageUrl = base_url($imagepath);
                     ?>
@@ -81,14 +115,13 @@
                             <a href="<?= $imageUrl ?>">
                                 <img src="<?= $imageUrl ?>" class="img-thumbnail">
                             </a>
-                            <button data-id="" class="btn btn-primary img-update" style="">
-                                <i class="fa fa-edit"></i>
-                            </button>
+                            <div class="btn btn-danger img-remove" data-id="1" data-event-id="<?=$this->event['EventId']?>" data-event-photo="<?=$this->event['Photo']?>"><i class="fa fa-remove"></i></div>
+                            <div class="btn btn-primary img-update" data-id="1" id="fileuploader1"></div>
                             <input type="hidden" id="updatefile" name="updatefile" value="<?= $this->event['Photo'] ?>"/>
                         </div>
                     <?php } ?>
                         
-                    <?php if(isset($this->event['Photo1'])){ 
+                    <?php if(isset($this->event['Photo1']) && $this->event['Photo1'] !== ''){ 
                         $imagepath1 = file_exists("assets/photos/events/".$this->event['Photo1']) ? "assets/photos/events/".$this->event['Photo1'] : "assets/photos/events/default.png";
                         $imageUrl1 = base_url($imagepath1);
                     ?>
@@ -96,14 +129,14 @@
                             <a href="<?= $imageUrl1 ?>">
                                 <img src="<?= $imageUrl1 ?>" class="img-thumbnail">
                             </a>
-                            <button data-id="" class="btn btn-primary img-update">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            <input type="hidden" id="updatefile" name="updatefile" value="<?= $this->event['Photo1'] ?>"/>
+                             <div class="btn btn-danger img-remove" data-id="2" data-event-id="<?=$this->event['EventId']?>" data-event-photo="<?=$this->event['Photo1']?>"><i class="fa fa-remove"></i></div>
+
+                            <div class="btn btn-primary img-update" data-id="2" id="fileuploader2"></div>
+                            <input type="hidden" id="updatefile1" name="updatefile1" value="<?= $this->event['Photo1'] ?>"/>
                         </div>
                     <?php } ?>
                         
-                    <?php if(isset($this->event['Photo2'])){ 
+                    <?php if( isset($this->event['Photo2']) && $this->event['Photo2'] !== ''){ 
                         $imagepath2 = file_exists("assets/photos/events/".$this->event['Photo2']) ? "assets/photos/events/".$this->event['Photo2'] : "assets/photos/events/default.png";
                         $imageUrl2 = base_url($imagepath2);
                     ?>
@@ -111,26 +144,209 @@
                             <a href="<?= $imageUrl2 ?>">
                                 <img src="<?= $imageUrl2 ?>" class="img-thumbnail">
                             </a>
-                            <button data-id="" class="btn btn-primary img-update">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            <input type="hidden" id="updatefile" name="updatefile" value="<?= $this->event['Photo2'] ?>"/>
+                            <div class="btn btn-danger img-remove" data-id="3" data-event-id="<?=$this->event['EventId']?>" data-event-photo="<?=$this->event['Photo2']?>"><i class="fa fa-remove"></i></div>
+                            <div class="btn btn-primary img-update" data-id="3" id="fileuploader3"></div>
+                            <input type="hidden" id="updatefile2" name="updatefile2" value="<?= $this->event['Photo2'] ?>"/>
                         </div>
                     <?php } ?>
                         <div class="clear"></div>
                     </div>
-                    
+                    <?php } ?>
                     <div class="fileContainer" <?= (isset($this->event['EventId'])) ? 'style="display:none;"' : ''  ?>>
                         <input id="add_file" type="file" class="form-control file-input" name="userfile" required/>
+                        <input type='hidden' name='whichFile' value='1' />
                     </div>
-                    <span class="form-info-span">ONLY [PNG, JPG, JPEG] 4000MB 800x500</span>
-                    <?php if(isset($this->event['Photo'])){ ?>
-                        <button id="updatePhoto" class="btn btn-primary text-uppercase" style="width:200px"><i class="fa fa-upload"></i>&nbsp;Upload New Photo</button>
+                    
+                    <?php if(isset($this->event['EventId'])){ ?>
+                    <div id="extrabutton" class="ajax-file-upload-green">Update the selected photo</div>
                     <?php } ?>
+                    
+                    <span class="form-info-span">ONLY [PNG, JPG, JPEG] 4000MB 800x500</span>
+                    
+                    <div id="eventsmessage"></div>
+                    
+                    <!--?php if(isset($this->event['Photo'])){ ?>
+                        <button id="updatePhoto" class="btn btn-primary text-uppercase" style="width:200px"><i class="fa fa-upload"></i>&nbsp;Upload New Photo</button>
+                    <!--?php } ?-->
                 </div>
-                
+                <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js"></script>
                 <script type="text/javascript">
                     $(document).ready(function(){
+                        
+                        
+                        $('.img-remove').click(function(){
+                        
+                            var eventId = $(this).attr('data-event-id');
+                            var photo = $(this).attr('data-id');
+                            var root = $(this).attr('data-event-photo');
+                            var data = { eventId : eventId, photoId: photo, photo: root };
+                            $.ajax({
+                                  type: 'POST',
+                                  url: '<?=base_url()?>/index.php/main/deleteeventphoto',
+                                  data: data,
+                                  success: function(resultData) {
+                                    //console.log(resultData); return false;
+                                      toastr.success('Your Image was successfully removed');
+                                        setTimeout(function(){ 
+                                          location.reload();
+                                     }, 3000);
+                                  },
+                                error: function(error) {
+                                    console.log(error);
+                                      toastr.error('Sorry, this Image can\'t be removed');
+                                  }
+                            });
+                            
+                        });
+                        
+                        var whichFile = 0;
+                        
+                        $('.img-update').click(function(){
+                            whichFile = $(this).attr('data-id');
+                        });
+                        
+                        var extraObj1 = $("#fileuploader1").uploadFile({
+                            
+                            url: "<?=base_url()?>index.php/main/eventsubmission",
+                            multiple: false,
+                            dragDrop: false,
+                            maxFileCount: 1,
+                            maxFileSize:5000*5000,
+                            uploadStr: '<i class="fa fa-edit"></i>',
+                            fileName: "userfile",
+                            extraHTML:function()
+                            {
+                                var html = "<input type='hidden' name='editUploadSubmission' value='true' />";
+                                     html += "<input type='hidden' name='whichFile' value='"+whichFile+"' />";
+                                return html;
+                            },
+                            //returnType:"json",
+                            dynamicFormData: function()
+                            {
+                                var form = $('#submit_event');
+                                var data =  $( form ).serializeArray();
+                                return data;
+                            },
+                            showPreview:true,
+                            previewHeight: "100px",
+                            previewWidth: "100px",
+                            onSuccess:function(files,data,xhr,pd)
+                            {
+                                var eventId = $('#EventId').val();
+                                toastr.success('Your Image was uploaded successfully');
+                                setTimeout(function(){ 
+                                  location.reload();
+                                }, 3000);
+                            },
+                            onError: function(files,status,errMsg,pd)
+                            {
+                                $("#eventsmessage").html($("#eventsmessage").html()+"<br/>Error for: "+errMsg);
+                            },
+                            onCancel:function(files,pd)
+                            {
+                                $("#eventsmessage").html($("#eventsmessage").html()+"<br/>Canceled  files: "+JSON.stringify(files));
+                            },
+                            autoSubmit:false
+                        }); 
+                        
+                        var extraObj2 = $("#fileuploader2").uploadFile({
+                            
+                            url: "<?=base_url()?>index.php/main/eventsubmission",
+                            multiple: false,
+                            dragDrop: false,
+                            maxFileCount: 1,
+                            maxFileSize:5000*5000,
+                            uploadStr: '<i class="fa fa-edit"></i>',
+                            fileName: "userfile",
+                            extraHTML:function()
+                            {
+                                var html = "<input type='hidden' name='editUploadSubmission' value='true' />";
+                                     html += "<input type='hidden' name='whichFile' value='"+whichFile+"' />";
+                                return html;
+                            },
+                            //returnType:"json",
+                            dynamicFormData: function()
+                            {
+                                var form = $('#submit_event');
+                                var data =  $( form ).serializeArray();
+                                return data;
+                            },
+                            showPreview:true,
+                            previewHeight: "100px",
+                            previewWidth: "100px",
+                            onSuccess:function(files,data,xhr,pd)
+                            {
+                                var eventId = $('#EventId').val();
+                                toastr.success('Your Image was uploaded successfully');
+                                setTimeout(function(){ 
+                                  location.reload();
+                                }, 3000);
+                            },
+                            onError: function(files,status,errMsg,pd)
+                            {
+                                $("#eventsmessage").html($("#eventsmessage").html()+"<br/>Error for: "+errMsg);
+                            },
+                            onCancel:function(files,pd)
+                            {
+                                $("#eventsmessage").html($("#eventsmessage").html()+"<br/>Canceled  files: "+JSON.stringify(files));
+                            },
+                            autoSubmit:false
+                        });
+                        
+                        var extraObj3 = $("#fileuploader3").uploadFile({
+                            
+                            url: "<?=base_url()?>index.php/main/eventsubmission",
+                            multiple: false,
+                            dragDrop: false,
+                            maxFileCount: 1,
+                            maxFileSize:5000*5000,
+                            uploadStr: '<i class="fa fa-edit"></i>',
+                            fileName: "userfile",
+                            extraHTML:function()
+                            {
+                                var html = "<input type='hidden' name='editUploadSubmission' value='true' />";
+                                    html += "<input type='hidden' name='whichFile' value='"+whichFile+"' />";
+                                return html;
+                            },
+                            //returnType:"json",
+                            dynamicFormData: function()
+                            {
+                                var form = $('#submit_event');
+                                var data =  $( form ).serializeArray();
+                                return data;
+                            },
+                            showPreview:true,
+                            previewHeight: "100px",
+                            previewWidth: "100px",
+                            onSuccess:function(files,data,xhr,pd)
+                            {
+                                var eventId = $('#EventId').val();
+                                toastr.success('Your Image was uploaded successfully');
+                                setTimeout(function(){
+                                  location.reload();
+                                }, 3000);
+                            },
+                            onError: function(files,status,errMsg,pd)
+                            {
+                                $("#eventsmessage").html($("#eventsmessage").html()+"<br/>Error for: "+errMsg);
+                            },
+                            onCancel:function(files,pd)
+                            {
+                                $("#eventsmessage").html($("#eventsmessage").html()+"<br/>Canceled  files: "+JSON.stringify(files));
+                            },
+                            autoSubmit:false
+                        }); 
+    
+                        $("#extrabutton").click(function(){
+                            if(whichFile == 1)
+                                extraObj1.startUpload();
+                            else if(whichFile == 2)
+                                extraObj2.startUpload();
+                            else if(whichFile == 3)
+                                extraObj3.startUpload();
+                            
+                        }); 
+                       
                         
                         $('#add-more').on('click', function(){
                             var self = $(this);
@@ -314,3 +530,129 @@
         </section>
     </div>
 </div>   
+<style>
+.ajax-file-upload-statusbar {
+    border: 5px solid #0ba1b5;
+    margin-top: 10px;
+    width: 430px !important;
+    margin-right: 10px;
+    margin: 5px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 10px;
+    background-color: #fff;
+}
+.ajax-file-upload-filename {
+    width: 300px;
+    height: auto;
+    margin: 0 5px 5px 0px;
+}
+.ajax-file-upload-filesize {
+    width: 50px;
+    height: auto;
+    margin: 0 5px 5px 0px;
+    display: inline-block;
+    vertical-align:middle;
+}
+.ajax-file-upload-progress {
+    margin: 5px 10px 5px 0px;
+    position: relative;
+    width: 250px;
+    border: 1px solid #ddd;
+    padding: 1px;
+    border-radius: 3px;
+    display: inline-block;
+    color:#FFFFFF;
+    vertical-align:middle;
+}
+.ajax-file-upload-bar {
+    background-color: #0ba1b5;
+    width: 0;
+    height: 20px;
+    border-radius: 3px;
+    color:#FFFFFF;
+}
+.ajax-file-upload-percent {
+    position: absolute;
+    display: inline-block;
+    top: 3px;
+    left: 48%
+}
+.ajax-file-upload-red {
+    -moz-box-shadow: inset 0 39px 0 -24px #e67a73;
+    -webkit-box-shadow: inset 0 39px 0 -24px #e67a73;
+    box-shadow: inset 0 39px 0 -24px #e67a73;
+    background-color: #e4685d;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    display: inline-block;
+    color: #fff;
+    font-family: arial;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 4px 15px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #b23e35;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right:5px;
+}   
+.ajax-file-upload-green {
+    width: 50%;
+    background-color: #77b55a;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    color: #fff;
+    font-family: arial;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 10px 15px;
+    text-decoration: none;
+    cursor: pointer;
+    text-shadow: 0 1px 0 #5b8a3c;
+    vertical-align: middle;
+    /* margin-right: 5px; */
+    margin: 10px auto;
+}
+.ajax-file-upload-preview{
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.ajax-upload-dragdrop
+{
+
+	border:2px dotted #A5A5C7;
+	width:420px;
+	color: #DADCE3;
+	text-align:left;
+	vertical-align:middle;
+	padding:10px 10px 0px 10px;
+}
+.state-hover
+{
+    border:2px solid #A5A5C7;
+}
+#eventsmessage{
+    color: #a94442;
+    padding: 20px;
+}
+</style>

@@ -854,7 +854,7 @@ END BOOTSTRAP OVERRIDES
 }
 
 #page #members #events .imgFileContainer img { 
-    width:120px;
+    width: 120px;
     height: 120px !important;
 }
 
@@ -867,10 +867,15 @@ END BOOTSTRAP OVERRIDES
   z-index: 5;
 }
 
-#page #members #events .imgFileContainer button{
+#page #members #events .imgFileContainer div.img-update{
     position: relative;
-    margin-left: -85px;
+    margin-left: -100px;
     opacity: 0.9;
+}
+
+#page #members #events .imgFileContainer div.img-remove{
+    margin-left: -50px;
+    position: relative;
 }
 
 #page #members #events textarea {

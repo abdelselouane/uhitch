@@ -85,7 +85,14 @@
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
-					<div class="item active">
+                    <div class="item active">
+                        <video id="U3_video" preload controls autoplay>
+                            <source src="<?php echo base_url();?>assets/videos/U3_1080p.mp4" />
+                            <source src="<?php echo base_url();?>assets/videos/U3_1080p.mp4" />
+                            <source src="<?php echo base_url();?>assets/videos/U3_1080p.mp4" />
+                        </video>
+					</div>
+					<div class="item">
 						<img src="<?php echo base_url();?>assets/imgs/bg-home.jpg" alt="..." class="img-responsive">
 							<div class="uhitch-caption">
 								<h1>RIDE ON DEMAND</h1>
@@ -103,24 +110,6 @@
                                 <p>We match our users to the best ride experience based on personal preference. We also provide places to go with our events page.</p>
                                 <a href="<?php echo site_url('welcome/join'); ?>" class="btn btn-success join-us" type="button">JOIN US NOW</a>
 							</div>
-					</div>
-					
-					<div class="item">
-                        
-                        <video autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" loop>
-                          <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
-                        <source src="//demosthenes.info/assets/videos/polina.webm" type="video/webm">
-                        <source src="//demosthenes.info/assets/videos/polina.mp4" type="video/mp4">
-                        </video>
-                        <div class="uhitch-caption">
-                            <h1>Uhitch</h1>
-                            <h3>Try it in action.</h3>
-                            <p>Right now? See it live? Need a ride? your in the right place.</p>
-                            <button class="pause">Pause</button>
-                            <span class="input-group-btn">
-                                <a href="<?php echo site_url('welcome/join'); ?>" class="btn btn-success join-us" type="button">JOIN US NOW</a>
-                            </span>
-                        </div>
 					</div>
 				</div>
 			</div>
@@ -181,32 +170,14 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        var vid = document.getElementById("bgvid");
-        var pauseButton = document.querySelector(".uhitch-caption button.pause");
-
-        function vidFade() {
-          vid.classList.add("stopfade");
-        }
-
-        vid.addEventListener('ended', function()
-        {
-        // only functional if "loop" is removed 
-        vid.pause();
-        // to capture IE10
-        vidFade();
-        }); 
-
-
-        pauseButton.addEventListener("click", function() {
-          vid.classList.toggle("stopfade");
-          if (vid.paused) {
-            vid.play();
-            pauseButton.innerHTML = "Pause";
-          } else {
-            vid.pause();
-            pauseButton.innerHTML = "Paused";
-          }
-        });    
+        $(function () {
+            $('#U3_video').on('play', function (e) { 
+                $("#carousel-example-generic").carousel('pause');
+            });
+            $('#U3_video').on('stop pause ended', function (e) { 
+                $("#carousel-example-generic").carousel();
+            });
+        });
     </script>
     </body>
 </html>
